@@ -83,4 +83,4 @@
 https://www.figma.com/file/2staqgNAmpoYTVKI3oEJ2T/Drummer-Tracker?type=design&node-id=0%3A1&t=sjpbtps5eNunMAhB-1
 
 ## ■ER図
-https://drive.google.com/file/d/1g8VHOn8wQTf8vxnfU7Ww4Fjn56Ms_O5B/view?usp=sharing
+https://drive.google.com/file/d/18u4DpTKDyZSqdMV6p5kjvhtF1gEos_v0/view?usp=sharing
