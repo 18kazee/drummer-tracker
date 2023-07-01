@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top p-0">
   <div class="container">
-    <a class="navbar-brand fw-normal ls-2" href="index.html">Drummer Trucker</a>
+    <%= link_to "Drummer Trucker", root_path, class: "navbar-brand fw-normal ls-2" %>
     <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -46,10 +46,8 @@
           </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span class="nav-link-text">会員登録</span>
-        </a>
-      </li>
+          <%= link_to "会員登録", new_user_path, class: "nav-link" %>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="nav-link-text">マイページ</span>
