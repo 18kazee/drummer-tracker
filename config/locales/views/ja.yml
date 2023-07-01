@@ -205,5 +205,5 @@ ja:
       title: 'Sign in'
       to_login_page: 'ログインページへ'
     create:
-      success: 'ユーザーの作成に成功しました'
-      fail: 'ユーザーの作成に失敗しました'
+      success: '会員登録しました'
+      failed: '会員登録に失敗しました'

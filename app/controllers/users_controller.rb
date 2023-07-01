@@ -6,13 +6,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     # If user is saved successfully than show message
     if @user.save
-      flash[:notice] = 'User created successfully!'
-      redirect_to root_path
+      redirect_to root_path, success: t('.success')
     else
-      render :new
+      render :new, status: :unprocessable_entity 
     end
   end
 
