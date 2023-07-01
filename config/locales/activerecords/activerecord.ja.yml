@@ -4,7 +4,7 @@ ja:
       user: 会員
     attributes:
       user:
-        username: 名前
+        name: 名前
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認用）
