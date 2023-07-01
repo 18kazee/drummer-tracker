@@ -897,6 +897,12 @@ progress {
   margin-left: auto;
 }
 
+.flash-wrapper {
+  text-align: center;
+  width: 100%;
+}
+
+
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
@@ -5797,8 +5803,8 @@ textarea.form-control-lg {
 
 .alert {
   position: relative;
-  padding: 1.25rem 1.25rem;
-  margin-bottom: 1rem;
+  padding: 10px;
+  margin: 70px 0 0 0;
   border: 1px solid transparent;
   border-radius: 0.188rem;
 }
@@ -21691,4 +21697,6 @@ a.footer-link:hover {
 .text-content {
   padding: 10px 0 50px 0;
 }
+
+
 /*# sourceMappingURL=theme.css.map */

@@ -1,21 +1,16 @@
 <footer class="footer  bg-black py-2 position-absolute w-100 bottom-0">
   <div class="container">
       <ul class="footer-list">
+        <li> <p>&copy; DrummerTrucker All Rights Resaved<span class="mx-2">|</span><span class="text-900 hover-color-white">2023 </span></p></li>
         <li>
-          <a class="footer-link " href="#">Drummer Trucker</a>
-        </li>
-        <li>
-          <a class="footer-link" href="#">利用規約</a>
+          <%= link_to '利用規約', '#', class: "footer-link" %>
           <span class="mx-2">|</span>
-          <a class="footer-link" href="#">プライバシーポリシー</a>
+          <%= link_to 'プライバシーポリシー', '#', class: "footer-link" %>
           <span class="mx-2">|</span>
-          <a class="footer-link" href="#">お問い合わせ</a>
+          <%= link_to 'お問い合わせ', '#', class: "footer-link" %>
         </li>
       </ul>
-      <div class="copy-right">
-        <p>&copy; DrummerTrucker All Rights Resaved<span class="mx-2">|</span><span class="text-900 hover-color-white">2023 </span></p>
-      </div>
-    </div>
+  </div>
 </footer>
 <a class="btn-back-to-top" href="#top">
   <%= image_tag "upload-arrow.svg", width: 8, alt: "" %>
