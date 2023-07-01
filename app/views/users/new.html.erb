@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row min-vh-100 align-items-center py-0">
       <div class="col-12 px-0">
-        <h1 class="py-3">Sign up</h1>
+        <h1 class="py-3"><%= (t'.title') %></h1>
         <%= form_with model: @user, local: true do |f| %>
           <div class="mb-2">
             <%= f.label :name, class: "form-label" %>
@@ -20,11 +20,11 @@
             <%= f.label :password_confirmation, class: "form-label" %>
             <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
-          <div class="mb-2">
-            <%= f.submit "Sign up", class: "btn btn-primary" %>
-            <%= button_to "ログインはこちら", "#", class: 'btn col-auto' %>
+          <div class="mb-3">
+            <%= f.submit (t 'defaults.register'), class: "btn btn-primary" %>
           </div>
         <% end %>
+        <%= link_to (t '.to_login_page'), "#" %>
       </div>
     </div>
   </div>
