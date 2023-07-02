@@ -41,9 +41,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span class="nav-link-text">ログイン</span>
-          </a>
+          <%= link_to (t 'user_sessions.new.title'), login_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to (t 'users.new.title'), new_user_path, class: "nav-link" %>

@@ -203,7 +203,15 @@ ja:
   users:
     new:
       title: 'Sign in'
-      to_login_page: 'ログインページへ'
+      to_login_page: 'Loginページへ'
     create:
       success: '会員登録しました'
       failed: '会員登録に失敗しました'
+  user_sessions:
+    new:
+      title: 'Login'
+      to_register_page: 'Sign inページへ'
+      to_reset_password_page: 'パスワードをお忘れの方はこちら'
+    create:    
+      success: 'ログインしました'
+      failed: 'ログインできませんでした'
