@@ -56,7 +56,13 @@
                 <ul class="nav flex-column">
                   <li class="nav-item"><a class="nav-link fw-medium px-1 py-2" href="#">マイページ</a></li>
                   <li class="nav-item"><a class="nav-link fw-medium px-1 py-2" href="#">アカウント設定</a></li>
-                  <li class="nav-item"><a class="nav-link fw-medium px-1 py-2" href="#">ログアウト</a></li>
+                  <li class="nav-item">
+                    <%= link_to t('default.logout'), logout_path, 
+                                                     class: "nav-link fw-medium px-1 py-2",
+                                                     method: :delete,
+                                                     data: { 'turbo-method': :delete, turbo_confirm: t('defaults.message.logout_confirm')
+                                                     } %>
+                  </li>
                 </ul>
               </div>
             </div>

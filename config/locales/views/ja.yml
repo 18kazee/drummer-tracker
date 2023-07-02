@@ -200,6 +200,8 @@ ja:
       not_update: "%{item}を更新できませんでした"
       delete: "%{item}を削除しました"
       delete_confirm: '削除しますか'
+      logout_confirm: 'ログアウトしますか'
+
   users:
     new:
       title: 'Sign in'
@@ -215,3 +217,5 @@ ja:
     create:    
       success: 'ログインしました'
       failed: 'ログインできませんでした'
+    destroy:
+      success: 'ログアウトしました'
