@@ -35,17 +35,6 @@
             <span class="nav-link-text">おすすめ診断</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span class="nav-link-text">ゲストログイン</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <%= link_to (t 'user_sessions.new.title'), login_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to (t 'users.new.title'), new_user_path, class: "nav-link" %>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="nav-link-text">マイページ</span>
@@ -57,7 +46,7 @@
                   <li class="nav-item"><a class="nav-link fw-medium px-1 py-2" href="#">マイページ</a></li>
                   <li class="nav-item"><a class="nav-link fw-medium px-1 py-2" href="#">アカウント設定</a></li>
                   <li class="nav-item">
-                    <%= link_to t('default.logout'), logout_path, 
+                    <%= link_to t('defaults.logout'), logout_path, 
                                                      class: "nav-link fw-medium px-1 py-2",
                                                      method: :delete,
                                                      data: { 'turbo-method': :delete, turbo_confirm: t('defaults.message.logout_confirm')
