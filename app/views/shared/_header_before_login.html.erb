@@ -24,9 +24,7 @@
           <%= link_to (t 'users.new.title'), new_user_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span class="nav-link-text">ゲストログイン</span>
-          </a>
+          <%= link_to (t 'user_sessions.guest_login.title'), guest_login_path, data: { "turbo-method": :post }, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to (t 'user_sessions.new.title'), login_path, class: "nav-link" %>

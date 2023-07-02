@@ -219,3 +219,6 @@ ja:
       failed: 'ログインできませんでした'
     destroy:
       success: 'ログアウトしました'
+    guest_login:
+      title: 'ゲストログイン'
+      success: 'ゲストログインしました'
