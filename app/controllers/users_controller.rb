@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # If user is saved successfully than show message
     if @user.save
-      redirect_to root_path, success: t('.success')
+      redirect_to login_path, success: t('.success')
     else
       render :new, status: :unprocessable_entity 
     end

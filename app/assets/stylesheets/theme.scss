@@ -21702,5 +21702,10 @@ a.footer-link:hover {
   width: 100%;
 }
 
+label.required:after {
+  content:" *";
+  color: red;
+}
+
 
 /*# sourceMappingURL=theme.css.map */
