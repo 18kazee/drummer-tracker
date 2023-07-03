@@ -1,0 +1,17 @@
+<% if params[:q].present? && @drummers.any? %>
+ <div class="col-lg-7" style="height: 200px;">
+   <div class="row row-cols-1 row-cols-md-3 g-3 pt-5 ">
+     <%= render 'drummer' %>
+   </div>
+   <div class= "pt-3 pb-10">
+     <%= paginate @drummers %>
+   </div>
+ </div>
+<% elsif params[:q].present? %>
+ <div class="col-lg-7 pt-8 text-center" style="height: 200px;">
+   <p><%= t('defaults.message.no_result') %></p>
+ </div>
+<% else %>
+ <div class="col-lg-7" style="height: 200px;"></div>
+<% end %>
+
