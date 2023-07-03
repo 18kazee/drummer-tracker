@@ -4,7 +4,7 @@
     <%= link_to 'クリア', search_drummers_path, class: 'px-1 btn btn-outline-secondary' %>
   </div>
   <div class="input-group pt-2">
-    <%= f.select :genres_name_eq, Genre.all.pluck(:name), { prompt: t('defaults.message.genres') }, { class: 'form-select' } %>
+    <%= f.select :genres_name_eq, Genre.all.pluck(:name), { include_blank: true, prompt: t('defaults.message.genres') }, { class: 'form-select' } %>
     <%= f.submit t('defaults.search'), class: 'px-2 btn btn-primary' %>
   </div>
 <% end %>
