@@ -7,13 +7,10 @@
     <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span class="nav-link-text">ドラマーを探す</span>
-          </a>
+          <%= link_to 'ドラマーを探す', search_drummers_path, class: "nav-link" %>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span class="nav-link-text">ドラマー一覧</span>
-          </a>
+          <%= link_to "ドラマー一覧", drummers_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

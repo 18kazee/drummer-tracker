@@ -119,6 +119,21 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    page_entries_info:
+      more_pages:
+        display_entries: "<b>%{total}</b>中の%{entry_name}を表示しています <b>%{first} - %{last}</b>"
+      one_page:
+        display_entries:
+          one: "<b>%{count}</b>レコード表示中です %{entry_name}"
+          other: "<b>%{count}</b>レコード表示中です %{entry_name}"
+          zero: "レコードが見つかりませんでした %{entry_name}"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      next: "次 &rsaquo;"
+      previous: "&lsaquo; 前"
+      truncate: "&hellip;"
   number:
     currency:
       format:
@@ -188,6 +203,9 @@ ja:
     edit: '編集'
     show: '詳細'
     delete: '削除'
+    search: '検索'
+    country: '出身国'
+    name_or_relative: 'ドラマーの名前や関連するアーティスト名を入力'
     password_reset: 'パスワードリセット'
     search_word: '検索ワード'
     unspecified: '指定なし'
@@ -201,7 +219,7 @@ ja:
       delete: "%{item}を削除しました"
       delete_confirm: '削除しますか'
       logout_confirm: 'ログアウトしますか'
-
+      no_result: '検索結果はありません'
   users:
     new:
       title: '会員登録'
@@ -222,3 +240,7 @@ ja:
     guest_login:
       title: 'ゲストログイン'
       success: 'ゲストログインしました'
+  drummers:
+    search:
+      title: 'ドラマーを探す'
+      
