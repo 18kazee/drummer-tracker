@@ -4,7 +4,7 @@
     <%= f.submit (t'defaults.search'), class: 'btn btn-primary' %>
   </div>
   <div class="input-group pt-2">
-    <%= f.search_field :country_eq, placeholder: (t'defaults.country'),  class: 'form-control' %>
+    <%= f.collection_select :genres_name_eq, Genre.all, :name, :name, { include_blank: true, placeholder: (t 'defaults.country') }, { class: 'form-select' } %>
     <%= f.submit t('defaults.search'), class: 'btn btn-primary' %>
   </div>
 <% end %>
