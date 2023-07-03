@@ -6,7 +6,9 @@
           <%= drummer.name %>
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">
-          <%= drummer.country %>
+          <% drummer.genres.each do |genre| %>
+            <%= genre.name %>
+          <% end %>
         </h6>
         <p class="card-text">
           <%= drummer.profile %>

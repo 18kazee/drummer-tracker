@@ -203,7 +203,7 @@ ja:
     edit: '編集'
     show: '詳細'
     delete: '削除'
-    search: '検索'
+    search: '検 索'
     country: '出身国'
     name_or_relative: 'ドラマーの名前や関連するアーティスト名を入力'
     password_reset: 'パスワードリセット'
@@ -220,6 +220,7 @@ ja:
       delete_confirm: '削除しますか'
       logout_confirm: 'ログアウトしますか'
       no_result: '検索結果はありません'
+      genres: 'ジャンルを選択'
   users:
     new:
       title: '会員登録'
