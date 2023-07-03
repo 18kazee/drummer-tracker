@@ -9,17 +9,20 @@
               <%= f.label :email, User.human_attribute_name(:email), class: "form-label" %>
               <%= f.email_field :email, class: "form-control" %>
             </div>
-            <div class="mb-5">
+            <div class="mb-4">
               <%= f.label :password, User.human_attribute_name(:password), class: "form-label" %>
               <%= f.password_field :password, class: "form-control" %>
             </div>
-            <div class="mb-4">
+            <div class="mb-3">
               <%= f.submit (t 'defaults.login'), class: "btn btn-primary" %>
             </div>
           <% end %>
           <ul class="list-unstyled">
-            <li> <%= link_to (t '.to_register_page'), new_user_path %> </li>
-            <li><%= link_to (t '.to_reset_password_page'), '#' %> </li>
+            <li> <%= link_to t('.to_register_page'), new_user_path %> </li>
+            <li><%= link_to t('.to_reset_password_page'), '#' %> </li>
+            <div class="pt-3">
+            <li><%= link_to t('.to_guest_login'), guest_login_path, data: {turbo_method: :post}, class: 'btn btn-success' %> </li>
+            </div>
           </ul>
         </div>
       </div>

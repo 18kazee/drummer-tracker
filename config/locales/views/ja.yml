@@ -233,6 +233,7 @@ ja:
       title: 'ログイン'
       to_register_page: 'Sign inページへ'
       to_reset_password_page: 'パスワードをお忘れの方はこちら'
+      to_guest_login: 'ゲストログインはこちら'
     create:    
       success: 'ログインしました'
       failed: 'ログインできませんでした'
