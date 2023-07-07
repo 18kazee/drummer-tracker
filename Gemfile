@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 # kaminari for pagination
 gem 'kaminari'
 
+# bootstrap5-kaminari-views for styling pagination
+gem 'bootstrap5-kaminari-views'
+
 # ransack for search
 gem 'ransack'
 
