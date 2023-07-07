@@ -1,18 +1,21 @@
 <% @drummers.each do |drummer| %>
   <div class="col">
-    <div class="card">
+    <div class="card h-100">
+      <div class="card-header text-muted">
+        <% genre_names = drummer.genres.map(&:name).join(', ') %>
+          <%= genre_names %>
+      </div>
+
       <div class="card-body">
         <h5 class="card-title">
           <%= drummer.name %>
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">
-          <% drummer.genres.each do |genre| %>
-            <%= genre.name %>
-          <% end %>
+          <% artist_names = drummer.artists.map(&:name).join(', ') %>
+            <%= artist_names %>
         </h6>
-        <p class="card-text">
-          <%= drummer.profile %>
-        </p>
+      </div> 
+      <div class="card-footer">
         <a class="btn btn-info btn-sm" href="#!"><%= (t'defaults.show') %></a>
       </div>
     </div>
