@@ -1,7 +1,7 @@
 <% if params[:q].present? && @drummers.any? %>
   <div class="col-lg-7" style="height: 200px;">
     <div class="row row-cols-1 row-cols-md-3 g-3 pt-2">
-      <%= render 'drummer' %>
+      <%= render partial: 'drummers/drummer' %> 
     </div>
     <div class= "justify-content-end kaminari-p">
       <%= paginate @drummers, theme: 'bootstrap-5' %>

@@ -242,7 +242,6 @@ ja:
     guest_login:
       title: 'ゲストログイン'
       success: 'ゲストログインしました'
-  drummers:
-    search:
+  search:
+    index:
       title: 'ドラマーを探す'
-      
