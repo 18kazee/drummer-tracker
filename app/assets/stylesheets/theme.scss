@@ -21707,11 +21707,14 @@ label.required:after {
   color: red;
 }
 
-@media (max-width: 768px) {
-  .search-result-container {
-    max-height: calc(100vh);
-    overflow-y: auto;
-    overflow-x: hidden;
+.kaminari-p {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+@media(max-width: 576px) {
+  .kaminari-p {
+    padding-bottom: 80px;
   }
 }
 
