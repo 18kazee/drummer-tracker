@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'search/drummers', to: 'search#index'
 
   resources :users, only: [:new, :create]
-  resources :drummers, only: [:index]
+  resources :drummers, only: [:index, :show]
   # Defines the root path route ("/")
   root "tops#index"
 end

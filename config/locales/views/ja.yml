@@ -245,3 +245,13 @@ ja:
   search:
     index:
       title: 'ドラマーを探す'
+  drummers:
+    show:  
+      name: '名前'
+      genre: 'ジャンル'
+      artist: '関係アーティスト'
+      profile: 'プロフィール'
+      song_name: '参加曲'
+      song_url: 'リンク'
+      return: '検索に戻る'
+

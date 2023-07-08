@@ -1,0 +1,54 @@
+<section>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div>
+        <%= t('.name')%>
+      </div>
+      <h3 class="card-title">
+        <%= @drummer.name %>
+      </h3>
+      <div>
+        <%= t('.artist') %>
+      </div>
+      <h5 class="card-subtitle mb-2 text-muted">
+        <% artist_names = @drummer.artists.map(&:name).join(', ') %>
+          <%= artist_names %>
+      </h5>
+      <div>
+        <%= t('.genre') %>
+      </div>
+      <h5 class="text-muted">
+        <% genre_names = @drummer.genres.map(&:name).join(', ') %>
+          <%= genre_names %>
+      </h5>
+      <div>
+        <%= t('.profile') %>
+      </div>
+      <h5 class="text-muted">
+        <%= @drummer.profile %>
+      </h5>
+        <% @drummer.songs.each do |song| %>
+          <div>
+            <div>
+              <%= t('.song_name') %>
+            </div>
+            <h5 class="text-muted">
+              <%= song.name %>
+            </h5>
+          </div>
+          <div>
+          <%= t('.song_url') %>
+          </div>
+          <div>
+            <%= link_to "#{song.url}", song.url, class: 'link-info'%>
+          </div>
+        <% end %>
+    </div>
+  </div>
+  <div class="pt-3"> 
+    <%= link_to (t'.return'), search_drummers_path, class: "btn btn-info btn-sm" %>
+  </div>
+</div>
+
+</section>
