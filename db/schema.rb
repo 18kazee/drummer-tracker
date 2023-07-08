@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_03_141316) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_06_041256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "drummer_artists", force: :cascade do |t|
+    t.bigint "drummer_id", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_drummer_artists_on_artist_id"
+    t.index ["drummer_id", "artist_id"], name: "index_drummer_artists_on_drummer_id_and_artist_id", unique: true
+    t.index ["drummer_id"], name: "index_drummer_artists_on_drummer_id"
+  end
 
   create_table "drummer_genres", force: :cascade do |t|
     t.bigint "drummer_id", null: false
@@ -49,6 +65,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_141316) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "drummer_artists", "artists"
+  add_foreign_key "drummer_artists", "drummers"
   add_foreign_key "drummer_genres", "drummers"
   add_foreign_key "drummer_genres", "genres"
 end

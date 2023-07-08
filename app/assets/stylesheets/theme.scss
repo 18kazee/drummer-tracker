@@ -3091,7 +3091,7 @@ textarea.form-control-lg {
   -moz-appearance: none;
   appearance: none;
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;
@@ -19120,7 +19120,7 @@ code[class*=language-], pre[class*=language-] {
 |   Headings
 -----------------------------------------------*/
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 h1, .h1 {
@@ -21707,5 +21707,15 @@ label.required:after {
   color: red;
 }
 
+.kaminari-p {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+@media(max-width: 576px) {
+  .kaminari-p {
+    padding-bottom: 80px;
+  }
+}
 
 /*# sourceMappingURL=theme.css.map */
