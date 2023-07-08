@@ -9,6 +9,7 @@ class Drummer < ApplicationRecord
   has_many :genres, through: :drummer_genres
   has_many :drummer_artists
   has_many :artists, through: :drummer_artists
+  has_many :songs
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name country]
