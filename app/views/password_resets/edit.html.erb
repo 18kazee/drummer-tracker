@@ -1,0 +1,18 @@
+<section>
+  <div class="container">
+    <div class="row pt-2">
+      <div class="col-lg-5 px-3">
+        <div class="overflow-hidden">
+          <h3><%= (t'.title') %></h3>
+            <%= bootstrap_form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+          <%= f.text_field :name %>
+          <%= f.email_field :email %>
+          <%= f.password_field :password %>
+          <%= f.password_field :password_confirmation %>
+          <%= f.primary %>
+        <% end %>
+       </div>
+      </div>
+    </div>
+  </div>
+</section>

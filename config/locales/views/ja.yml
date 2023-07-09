@@ -203,7 +203,7 @@ ja:
     edit: '編集'
     show: '詳細'
     delete: '削除'
-    search: '検 索'
+    search: '検索'
     country: '出身国'
     name_or_relative: 'ドラマーの名前や関連するアーティスト名を入力'
     password_reset: 'パスワードリセット'
@@ -224,14 +224,14 @@ ja:
   users:
     new:
       title: '会員登録'
-      to_login_page: 'Loginページへ'
+      to_login_page: 'ログインページへ'
     create:
       success: '会員登録しました'
       failed: '会員登録に失敗しました'
   user_sessions:
     new:
       title: 'ログイン'
-      to_register_page: 'Sign inページへ'
+      to_register_page: '会員登録へ'
       to_reset_password_page: 'パスワードをお忘れの方はこちら'
       to_guest_login: 'ゲストログインはこちら'
     create:    
@@ -253,5 +253,16 @@ ja:
       profile: 'プロフィール'
       song_name: '参加曲'
       song_url: 'リンク'
-      return: '検索に戻る'
-
+      return: '前の画面に戻る'
+  password_resets: 
+    create:
+      success: 'パスワードリセットのメールを送信しました'
+    update:
+      success: 'パスワードを変更しました'
+      failed: 'パスワードを変更できませんでした'
+    new:
+      title: 'パスワードリセット申請画面'
+      submit: '送信する'
+      to_login_page: 'ログイン画面へ'
+    edit:
+      title: 'パスワードリセット'
