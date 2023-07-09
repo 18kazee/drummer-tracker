@@ -1,16 +1,14 @@
 <% if params[:q].present? && @drummers.any? %>
-  <div class="col-lg-7" style="height: 200px;">
+  <div class="col-lg-7" >
     <div class="row row-cols-1 row-cols-md-3 g-3 pt-2">
       <%= render partial: 'drummers/drummer' %> 
     </div>
-    <div class= "justify-content-end kaminari-p">
-      <%= paginate @drummers, theme: 'bootstrap-5' %>
-    </div>
+    <%= paginate @drummers, theme: 'bootstrap-5' %>
   </div>
   <% elsif params[:q].present? %>
     <div class="col-lg-7 pt-8 text-center">
       <p><%= t('defaults.message.no_result') %></p>
     </div>
   <% else %>
-  <div class="col-lg-7" style="height: 200px;"></div>
+  <div class="col-lg-7" ></div>
 <% end %>

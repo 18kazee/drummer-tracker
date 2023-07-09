@@ -246,6 +246,8 @@ ja:
     index:
       title: 'ドラマーを探す'
   drummers:
+    index:
+      title: 'ドラマー'
     show:  
       name: '名前'
       genre: 'ジャンル'
