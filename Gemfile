@@ -57,6 +57,9 @@ gem 'ransack'
 # bootstrap for styling
 gem 'bootstrap_form'
 
+# rspotify for spotify api
+gem 'rspotify'
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
