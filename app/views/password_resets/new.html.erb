@@ -1,0 +1,30 @@
+<section>
+  <div class="container">
+    <div class="row pt-2">
+      <div class="col-lg-6">
+        <div class="overflow-hidden">
+          <h3><%= (t'.title') %></h3>
+          <p class="pt-2">
+            ご登録のメールアドレスに、パスワードリセット用のメールをお送りします。<br>
+            メールが届かない場合は、迷惑メールフォルダをご確認ください。
+          </p>
+          <p>
+            また、メールアドレスが変更されている場合は、お手数ですが、<br>
+            お問い合わせフォームよりご連絡ください。
+          </p>
+
+            <%= form_with url: password_resets_path, data: { turbo_method: :post }, local: true do |f| %>
+              <div class="form-group pt-3 pb-2">
+                <%= f.label :email, User.human_attribute_name(:email) %>
+                <%= f.email_field :email, class: 'form-control' %>
+              </div>
+              <%= f.submit (t'.submit'), class: 'btn btn-primary' %>
+            <% end %>
+
+            <div class="pt-5">
+              <%= link_to (t'.to_login_page'), login_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
