@@ -62,3 +62,7 @@ Session.vim
 # Ignore public uploads
 /public/uploads
 .env
+
+# Ignore csv files
+db/csv
+lib/tasks

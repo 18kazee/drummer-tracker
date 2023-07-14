@@ -6540,9 +6540,9 @@ textarea.form-control-lg {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   padding: 1rem;
   border-top: 1px solid var(--reign-border-color);
   border-bottom-right-radius: calc(0.625rem - 1px);
@@ -21705,6 +21705,19 @@ a.footer-link:hover {
 label.required:after {
   content:" *";
   color: red;
+}
+
+.album-img {
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+.loading-spinner {
+  display: none;
+}
+
+[aria-busy="true"] .loading-spinner {
+  display: block;
 }
 
 /*# sourceMappingURL=theme.css.map */
