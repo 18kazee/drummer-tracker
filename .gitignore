@@ -63,6 +63,3 @@ Session.vim
 /public/uploads
 .env
 
-# Ignore csv files
-db/csv
-lib/tasks
