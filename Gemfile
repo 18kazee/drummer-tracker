@@ -60,8 +60,6 @@ gem 'bootstrap_form'
 # rspotify for spotify api
 gem 'rspotify'
 
-# dotenv-rails for environment variables
-gem 'dotenv-rails'
 
 # sorcery for authentication
 gem "sorcery", "~> 0.16.5"
@@ -82,6 +80,9 @@ group :development do
   gem "web-console"
 
   gem "letter_opener_web"
+
+  # dotenv-rails for environment variables
+   gem 'dotenv-rails'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
