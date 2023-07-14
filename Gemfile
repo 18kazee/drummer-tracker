@@ -63,6 +63,8 @@ gem 'rspotify'
 # dotenv-rails for environment variables
 gem 'dotenv-rails'
 
+# sorcery for authentication
+gem "sorcery", "~> 0.16.5"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -95,4 +97,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem "sorcery", "~> 0.16.5"
+group :production do
+
+end
