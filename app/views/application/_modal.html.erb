@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "modal" do %>
+  <%# modalコントローラーをアタッチする %>
+  <div class="modal fade" data-controller="modal" data-spinner-target="spinner">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <%= yield %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
