@@ -60,6 +60,9 @@ gem 'bootstrap_form'
 # rspotify for spotify api
 gem 'rspotify'
 
+# dotenv-rails for environment variables
+gem 'dotenv-rails'
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
