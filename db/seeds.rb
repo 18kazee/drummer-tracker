@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require 'csv'
+
+csv_path = Rails.root.join('db', 'csv', 'drummers.csv')
+
+CSV.foreach(csv_path, headers: true) do |row|
+  puts "Name: #{row['name']}, Country: #{row['country']}, Profile: #{row['profile']}"
+  Drummer.create!(name: row['name'], country: row['country'].to_i, profile: row['profile'])
+end
