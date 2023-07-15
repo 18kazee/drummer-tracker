@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post 'guest_login', to: 'user_sessions#guest_login'
 
   get 'search/drummers', to: 'search#index'
+  get '/drummers/:id/modal', to: 'drummers#modal', as: 'modal'
 
   resources :users, only: [:new, :create]
   resources :drummers, only: [:index, :show]

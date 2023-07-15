@@ -1,0 +1,9 @@
+<%= render "modal", title: "詳細" do %>
+  <%= turbo_frame_tag "drummer", src: drummer_path, loading: :lazy do %>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  <% end %>
+<% end %>

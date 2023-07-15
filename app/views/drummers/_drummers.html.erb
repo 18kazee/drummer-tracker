@@ -16,7 +16,7 @@
         </h6>
         <h6><%= truncate(drummer.profile, length: 17, omission: '...') %></h6>
       </div> 
-      <%= link_to (t'defaults.show'), drummer_path(drummer), class: "btn btn-light btn-sm", data: { turbo_frame: "modal" } %>
+      <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-light btn-sm", data: { turbo_frame: "modal" } %>
     </div>
   </div>
 <% end %>

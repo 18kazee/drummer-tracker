@@ -81,7 +81,4 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: drummer_tracker_production
-  username: drummer_tracker
-  password: <%= ENV["DRUMMER_TRACKER_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
