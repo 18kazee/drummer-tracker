@@ -1,5 +1,5 @@
 class DrummersController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show, :modal]
   require 'rspotify'
   # SpotifyのAPIキーを認証
    RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
@@ -9,7 +9,7 @@ class DrummersController < ApplicationController
   end
 
   def show
-    @drummer = Drummer.find(params[:id])
+    @drummer = Drummer.includes(:artists, :genres).find(params[:id])
     @search_artists = []
     @drummer_artists = []
     # ドラマーに関連するアーティスト名を取得
@@ -24,6 +24,7 @@ class DrummersController < ApplicationController
     end
     @search_artists.sort_by! { |search_artist| -search_artist.followers['total'] }
     @search_artists.uniq!(&:name)
-
   end
+
+  def modal; end
 end
