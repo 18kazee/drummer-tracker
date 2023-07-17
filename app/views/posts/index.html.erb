@@ -7,11 +7,14 @@
         <% if logged_in? %>
           <%= turbo_frame_tag 'post_new', src: new_post_path, target: 'posts' %>
         <% end %>
-        <div id = "posts">
-          <%= render 'post_cards' %>
-        </div>
-        <%= paginate @posts %>
+        <%= turbo_frame_tag "posts-page-#{@posts.current_page}" do %>
+          <div id = "posts">
+            <%= render 'post_cards' %>
+          </div>
+          <%= turbo_frame_tag "posts-page-#{@posts.next_page}", loading: :lazy, src: path_to_next_page(@posts) %>
+        <% end %>
       </div>
+
       <div class="col-md-3">
       </div>
     </div>
