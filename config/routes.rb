@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
   get 'search/drummers', to: 'search#index'
   get '/drummers/:id/modal', to: 'drummers#modal', as: 'modal'
+  get '/drummers/autocomplete', to: 'drummers#autocomplete'
 
   resources :users, only: [:new, :create]
   resources :drummers, only: [:index, :show]
+  resources :posts
   resources :password_resets, only: [:new, :create, :edit, :update]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   # Defines the root path route ("/")

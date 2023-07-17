@@ -1,0 +1,20 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <% if logged_in? %>
+          <%= turbo_frame_tag 'post_new', src: new_post_path, target: 'posts' %>
+        <% end %>
+        <div id = "posts">
+          <%= render 'post_cards' %>
+        </div>
+        <%= paginate @posts %>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+  </div>
+</div>
+</section>
