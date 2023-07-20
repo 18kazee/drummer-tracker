@@ -12,20 +12,8 @@
         <li class="nav-item">
           <%= link_to "ドラマー一覧", drummers_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="nav-link-text">みんなのおすすめドラマー</span>
-          </a>
-          <div class="dropdown-menu dropdown-components py-3" aria-labelledby="navbarDropdownMenuLink">
-            <div class="row">
-              <div class="col-6 col-md-3 px-2">
-                <ul class="nav flex-column">
-                  <li class="nav-item"><a class="nav-link fw-medium px-1 py-2" href="#">投稿する</a></li>
-                  <li class="nav-item"><a class="nav-link fw-medium px-1 py-2" href="#">投稿一覧</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <li class="nav-item">
+          <%= link_to "みんなのおすすめドラマー", posts_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">

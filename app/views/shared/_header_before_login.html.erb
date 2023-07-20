@@ -12,10 +12,8 @@
         <li class="nav-item">
           <%= link_to "ドラマー一覧", drummers_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" id="navbarDropdownMenuLink3" href="#">
-            <span class="nav-link-text">みんなのおすすめドラマー</span>
-          </a>
+        <li class="nav-item">
+          <%= link_to "みんなのおすすめドラマー", posts_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
           <%= link_to (t 'users.new.title'), new_user_path, class: "nav-link" %>
