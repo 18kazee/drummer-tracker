@@ -25,7 +25,9 @@ class DrummersController < ApplicationController
     @search_artists.uniq!(&:name)
   end
 
-  def modal; end
+  def modal
+    @drummer = Drummer.find(params[:id])
+  end
 
   def autocomplete
     query = params[:q]

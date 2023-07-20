@@ -31,7 +31,10 @@
               <% end %>
             <% end %>
         <% else %>
-          <p>No artists found.</p>
+          <p>まだ登録されていません</p>
+        <% end %>
+        <% if logged_in? %>
+          <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: false } %>
         <% end %>
       </div>
     </div>

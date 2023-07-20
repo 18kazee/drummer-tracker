@@ -4,8 +4,14 @@
 
 import { application } from "./application"
 
+import AnimationController from "./animation_controller"
+application.register("animation", AnimationController)
+
 import AutocompleteController from "./autocomplete_controller"
 application.register("autocomplete", AutocompleteController)
+
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

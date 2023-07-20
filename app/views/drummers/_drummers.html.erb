@@ -1,6 +1,6 @@
 <% @drummers.each do |drummer| %>
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100 border-warning">
       <div class="text-muted">
         <% genre_names = drummer.genres.map(&:name).join(', ') %>
           <%= genre_names %>
