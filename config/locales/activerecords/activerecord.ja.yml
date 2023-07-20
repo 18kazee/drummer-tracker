@@ -2,6 +2,8 @@ ja:
   activerecord:
     models:
       user: 会員
+      drummer: ドラマー
+      post: 投稿
     attributes:
       user:
         name: 名前
@@ -10,3 +12,8 @@ ja:
         password_confirmation: パスワード（確認用）
         created_at: 登録日時
         updated_at: 更新日時
+      drummer:
+        drummer_id: ドラマー
+      post:
+        tweet: 投稿内容
+        drummer: ドラマー

@@ -1,15 +1,26 @@
-<%= turbo_frame_tag 'post_new', data: { turbo_action: :advance } do %>
-  <div data-controller="reset-form">
-  <%= form_with model: @post, local: true do |f| %>
-    <%= f.text_field :tweet, placeholder: 'ツイート内容を入力', class: 'form-control', data: { reset_form_target: "tweetField" } %>
-    <div data-controller="autocomplete" data-autocomplete-url-value="/drummers/autocomplete" role="combobox">
-      <%= f.text_field :drummer_id, data: { autocomplete_target: "input", reset_form_target: "drummerField" }, placeholder: "おすすめのドラマー名を入力して候補から選択", class: 'form-control' %>
-      <%= f.hidden_field :drummer_id, data: { autocomplete_target: "hidden", reset_form_target: "drummerHiddenField" } %>
-      <ul class="list-group" data-autocomplete-target="results" data-action="autocomplete#select"></ul>
+<%= turbo_frame_tag 'post_new', data: { turbo_action: 'advance' } do %>
+  <div data-controller="reset-form ">
+    <div class="p-fixed dropdown-menu11">
+      <%= bootstrap_form_with model: @post do |f| %>
+        <%= f.text_field :tweet, data: { reset_form_target: "tweetField" },
+                                 class: 'border-warning form-control',
+                                 placeholder: t('.placeholder_tweet') %>
+        <div data-controller="autocomplete" data-autocomplete-url-value="/drummers/autocomplete" role="combobox">
+          <%= f.text_field :drummer_id, data: { autocomplete_target: "input",
+                                                reset_form_target: "drummerField" },
+                                          class: 'border-warning form-control',
+                                          placeholder: t('.placeholder_drummer') , 
+                                          value: @drummer_name %>
+          <%= f.hidden_field :drummer_id, data: { autocomplete_target: "hidden", 
+                                                  reset_form_target: "drummerHiddenField" }, 
+                                                  value: @drummer_id %>
+          <ul class="list-group" data-autocomplete-target="results" data-action="autocomplete#select"></ul>
+        </div>
+        <div class="d-flex justify-content-start mt-3">
+          <%= f.submit t('.to_posts'), class: "btn btn-warning",
+                                   data: { action: "click->reset-form#submitForm" } %>
+        </div>
+      <% end %>
     </div>
-    <div class="d-flex justify-content-end">
-      <%= f.submit "投稿する", class: "btn btn-primary", data: { action: "click->reset-form#submitForm" } %>
-    </div>
-  <% end %>
   </div>
 <% end %>
