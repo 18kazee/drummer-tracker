@@ -1,0 +1,5 @@
+<%= turbo_stream.prepend "posts", partial: "posts/post_cards", locals: { post: @post } %>
+
+<%= turbo_stream.update "post_new", "" %>
+
+

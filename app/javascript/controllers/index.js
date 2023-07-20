@@ -4,8 +4,14 @@
 
 import { application } from "./application"
 
+import AutocompleteController from "./autocomplete_controller"
+application.register("autocomplete", AutocompleteController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import ResetFormController from "./reset_form_controller"
+application.register("reset-form", ResetFormController)

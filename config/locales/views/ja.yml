@@ -209,6 +209,7 @@ ja:
     password_reset: 'パスワードリセット'
     search_word: '検索ワード'
     unspecified: '指定なし'
+    close: '閉じる'
     message:
       require_login: 'ログインしてください'
       not_authorized: '権限がありません'
@@ -268,3 +269,12 @@ ja:
       to_login_page: 'ログイン画面へ'
     edit:
       title: 'パスワードリセット'
+  posts:
+    index:
+      login: 'ログインする'
+      guest_login: 'ゲストログインする'
+      register: '会員登録する'
+    new:
+      placeholder_tweet: '投稿内容を入力'
+      placeholder_drummer: 'おすすめドラマー名を入力'
+      to_posts: '投稿する'

@@ -1,0 +1,21 @@
+<% @posts.each do |post| %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mb-0"><%= post.user.name %></h5>
+      <p><%= post.tweet %></p>
+      <div class="card">
+        <h5 class="px-2 pt-2 mb-0"><%= post.drummer.name %></h5>
+        <p class="px-2 text-muted">
+          <% artist_names = post.drummer.artists.map(&:name).join(', ') %>
+          <%= artist_names %>
+        </p>
+      </div>
+      <div class="card-footer">
+        <h6 class="d-flex gap-3">
+          <span class="bi bi-chat"></span>
+          <span class="bi bi-heart"></span>
+        </h6>
+      </div>
+    </div>
+  </div>
+<% end %>
