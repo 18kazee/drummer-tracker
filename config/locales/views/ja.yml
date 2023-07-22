@@ -227,7 +227,7 @@ ja:
       title: '会員登録'
       to_login_page: 'ログインページへ'
     create:
-      success: '会員登録しました'
+      success: '会登録用のメールを送信しました。メールをご確認ください。'
       failed: '会員登録に失敗しました'
   user_sessions:
     new:
