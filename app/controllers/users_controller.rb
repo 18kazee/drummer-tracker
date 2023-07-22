@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # If user is saved successfully than show message
     if @user.save
-      redirect_to login_path, success: t('.success')
+      @user.send_activation_needed_email
+      redirect_to login_path, success: '登録用のメールを送信しました。メールをご確認ください。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
   def activate
     if @user = User.load_from_activation_token(params[:id])
       @user.activate!
-      redirect_to login_path, success: '有効化が完了しました。'
+      redirect_to login_path, success: '会員登録が完了しました。'
     else
       not_authenticated
     end
