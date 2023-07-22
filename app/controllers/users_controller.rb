@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create] 
+  skip_before_action :require_login, only: [:new, :create, :activate] 
 
   # User Registration
   def new
@@ -12,7 +12,16 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to login_path, success: t('.success')
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def activate
+    if @user = User.load_from_activation_token(params[:id])
+      @user.activate!
+      redirect_to login_path, success: '有効化が完了しました。'
+    else
+      not_authenticated
     end
   end
 
