@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get '/drummers/:id/modal', to: 'drummers#modal', as: 'modal'
   get '/drummers/autocomplete', to: 'drummers#autocomplete'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create] do
+    member do
+      get :activate
+    end
+  end
   resources :drummers, only: [:index, :show]
   resources :posts
   resources :password_resets, only: [:new, :create, :edit, :update]
