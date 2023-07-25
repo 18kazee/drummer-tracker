@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+  default from: "info@drummer-tracker.com"
 
   def reset_password_email(user)
     @user = User.find(user.id)
@@ -9,12 +10,12 @@ class UserMailer < ApplicationMailer
   def activation_needed_email(user)
    @user = user
    @url  = activate_user_url(@user.activation_token)
-   mail(to: user.email, subject: 'Welcome to My Awesome Site')
+   mail(to: user.email, subject: 'DrummerTrackerアカウントの認証')
   end
 
   def activation_success_email(user)
    @user = user
    @url  = login_url
-   mail(to: user.email, subject: 'Your account is now activated')
+   mail(to: user.email, subject: 'DrummerTrackeアカウントが認証されました')
   end
 end

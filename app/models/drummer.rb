@@ -4,11 +4,11 @@ class Drummer < ApplicationRecord
 
   enum country: {japan: 0, abroad: 1}
 
-  has_many :drummer_genres
+  has_many :drummer_genres, dependent: :destroy
   has_many :genres, through: :drummer_genres
-  has_many :drummer_artists
+  has_many :drummer_artists, dependent: :destroy
   has_many :artists, through: :drummer_artists
-  has_many :songs
+  has_many :songs, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name country]

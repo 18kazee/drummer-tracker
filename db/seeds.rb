@@ -8,9 +8,9 @@
 
 require 'csv'
 
-csv_path = Rails.root.join('db', 'csv', 'drummers.csv')
+csv_path = Rails.root.join("db/csv/drummers.csv")
 
 CSV.foreach(csv_path, headers: true) do |row|
-  puts "Name: #{row['name']}, Country: #{row['country']}, Profile: #{row['profile']}"
+  Rails.logger.debug "Name: #{row['name']}, Country: #{row['country']}, Profile: #{row['profile']}"
   Drummer.create!(name: row['name'], country: row['country'].to_i, profile: row['profile'])
 end
