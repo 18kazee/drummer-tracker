@@ -209,6 +209,9 @@ ja:
     password_reset: 'パスワードリセット'
     search_word: '検索ワード'
     unspecified: '指定なし'
+    placeholder_tweet: '投稿内容を入力'
+    placeholder_drummer: 'おすすめドラマー名を入力'
+    to_posts: '投稿する'
     close: '閉じる'
     message:
       require_login: 'ログインしてください'
@@ -221,7 +224,7 @@ ja:
       delete_confirm: '削除しますか'
       logout_confirm: 'ログアウトしますか'
       no_result: '検索結果はありません'
-      genres: 'ジャンルを選択'
+      genres: 'ジャンルを選択(空白可能)'
   users:
     new:
       title: '会員登録'
@@ -274,7 +277,6 @@ ja:
       login: 'ログインする'
       guest_login: 'ゲストログインする'
       register: '会員登録する'
-    new:
       placeholder_tweet: '投稿内容を入力'
       placeholder_drummer: 'おすすめドラマー名を入力'
       to_posts: '投稿する'

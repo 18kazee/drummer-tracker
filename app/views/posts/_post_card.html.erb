@@ -1,0 +1,26 @@
+<% @posts.each do |post| %>
+  <div class="card" id="post_<%= post.id %>">
+    <div class="card-body">
+      <% if logged_in? && current_user.id == post.user_id %>
+        <div class="text-end">
+        <%= link_to (t'defaults.edit'), edit_post_path(post), class: "btn btn-primary btn-sm" %>
+        <%= link_to (t'defaults.destroy'), post_path(post), data: { turbo_method: :delete,  turbo_confirm: (t'defaults.confirm') }, class: "btn btn-danger btn-sm" %>
+        </div>
+      <% end %>
+      <h5 class="mb-0"><%= post.user.name %></h5>
+      <p><%= post.tweet %></p>
+      <div class="card">
+        <h5 class="px-2 pt-2 mb-0"><%= post.drummer.name %></h5>
+        <p class="px-2 text-muted">
+          <% artist_names = post.drummer.artists.map(&:name).join(', ') %>
+          <%= artist_names %>
+        </p>
+      </div>
+      <div class="card-footer">
+        <h6 class="d-flex gap-3">
+        </h6>
+        <%= link_to 'ドラマー', modal_path(post.drummer.id), class: "btn btn-success btn-sm", data: { turbo_frame: "modal" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

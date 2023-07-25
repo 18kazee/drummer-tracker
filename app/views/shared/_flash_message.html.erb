@@ -1,7 +1,5 @@
-<%= turbo_frame_tag 'post_new' do %>
 <% flash.each do |message_type, message| %>
   <div class="flash-wrapper" data-controller="flash">
     <div data-flash-target="messages1" class="alert alert-<%= message_type %>"><%= message %></div>
   </div>
-<% end %>
 <% end %>

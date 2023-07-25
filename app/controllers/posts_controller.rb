@@ -5,10 +5,6 @@ class PostsController < ApplicationController
     set_drummer
     set_posts
     @drummers = Drummer.all
-  end
-
-  def new
-    set_drummer
     @post = Post.new
   end
 
@@ -16,26 +12,30 @@ class PostsController < ApplicationController
     set_posts
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      flash.now[:success] = "投稿しました"
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.prepend("posts", partial: "posts/post_cards", locals: { post: @post }),
-            turbo_stream.append("flash", partial: "shared/flash_message", locals: { flash_message: flash[:success] })
-          ]
-        end
-      end
-    else
-   flash.now[:danger] = "投稿に失敗しました"
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.append("flash", partial: "shared/flash_message", locals: { flash_message: flash[:danger] })
+      if @post.save
+        flash.now[:success] = "投稿しました"
+        format.turbo_stream
+      else
+        flash.now[:danger] = "投稿に失敗しました"
+        format.turbo_stream
       end
-      format.html { render 'new', status: :unprocessable_entity }
     end
   end
-end
+
+  def show
+    set_drummer
+    @post = Post.find(params[:id])
+  end
+ 
+  def destroy
+    @post = Post.find(params[:id])
+    respond_to do |format|
+    @post.destroy
+    flash.now[:success] = "投稿を削除しました"
+    format.turbo_stream
+  end
+  end
 
   private
 
@@ -50,5 +50,9 @@ end
 
   def set_posts
     @posts = Post.all.order("created_at DESC").page(params[:page])
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
