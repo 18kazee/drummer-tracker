@@ -2,25 +2,30 @@
   <div class="container">
     <div class="row">
       <div class="col-md-5">
-          <% if logged_in? %>
-            <%= turbo_frame_tag 'post_new', src: new_post_path(drummer_name: @drummer_name, drummer_id: @drummer_id), target: 'posts' %>
-          <% else %>
-            <div class="justify-content-center p-fixed">
-              <ul class="list-unstyled">
-                <li class="mb-3"><%= link_to t('.login'), login_path, class: 'btn btn-primary' %></li>
-                <li class="mb-3"><%= link_to t('.guest_login'), guest_login_path, class: 'btn btn-success', data: { turbo_method: :post } %></li>
-                <li class="mb-6"><%= link_to t('.register'), new_user_path %></li>
-              </ul>
-            </div>
+        <% if logged_in? %>
+          <%= turbo_frame_tag 'post_new' do %>
+            <%= render 'posts/form' %>
           <% end %>
+        <% else %>
+          <div class="justify-content-center p-fixed">
+            <h3>みんなのおすすめドラマー</h3>
+            <p class="small pt-2 pb-1">
+              ログインしてあなたもおすすめしてみませんか？
+              <br>ログインすればドラマーを探すの検索結果から投稿することもできます！
+            </p>
+            <ul class="list-unstyled">
+              <li class="mb-3"><%= link_to t('.login'), login_path, class: 'btn btn-primary' %></li>
+              <li class="mb-3"><%= link_to t('.guest_login'), guest_login_path, class: 'btn btn-success', data: { turbo_method: :post } %></li>
+              <li class="mb-6"><%= link_to t('.register'), new_user_path %></li>
+            </ul>
+          </div>
+        <% end %>
       </div>
       <div class="col-md-5 justify-content-center">
-        <%= turbo_frame_tag "posts-page-#{@posts.current_page}" do %>
-          <div id = "posts" class="posts-card">
-            <%= render 'post_cards' %>
+          <div id="posts" class="posts-card">
+              <%= render 'post_card' %>
           </div>
-          <%= turbo_frame_tag "posts-page-#{@posts.next_page}", loading: :lazy, src: path_to_next_page(@posts) %>
-        <% end %>
+          <%= paginate @posts, theme: 'bootstrap-5' %>
       </div>
     </div>
   </div>

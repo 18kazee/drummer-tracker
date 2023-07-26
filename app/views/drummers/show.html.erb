@@ -16,7 +16,10 @@
         <p class=>
           <%= @drummer.profile %>
         </p>
-  
+        <div class="text-end">
+          <p>ウィキペディア (Wikipedia): フリー百科事典</p>
+        </div>
+
         <% if @search_artists.present? %>
           <% @search_artists.each do |search_artist| %>
             <% @drummer_artists.each do |drummer_artist| %>
@@ -36,6 +39,7 @@
         <% if logged_in? %>
           <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: false } %>
         <% end %>
+
       </div>
     </div>
   </div>

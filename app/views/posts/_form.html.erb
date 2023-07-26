@@ -1,0 +1,31 @@
+<div class="p-fixed">
+  <h3>おすすめドラマーを投稿</h3>
+  <p class="small pt-2 pb-1">
+    知らない人にもあなたの投稿で知ってもらいませんか？
+    <br>検索をして、結果から投稿することもできます！
+  </p>
+  <div data-controller="reset-form ">
+    <div class="autocomplete-dropdown">
+      <%= bootstrap_form_with model: @post do |f| %>
+        <%= f.text_field :tweet, data: { reset_form_target: "tweetField" },
+                                 class: 'border-warning form-control',
+                                 placeholder: t('defaults.placeholder_tweet') %>
+        <div data-controller="autocomplete" data-autocomplete-url-value="/drummers/autocomplete" role="combobox">
+          <%= f.text_field :drummer_id, data: { autocomplete_target: "input",
+                                                reset_form_target: "drummerField" },
+                                          class: 'border-warning form-control',
+                                          placeholder: t('defaults.placeholder_drummer') , 
+                                          value: @drummer_name %>
+          <%= f.hidden_field :drummer_id, data: { autocomplete_target: "hidden", 
+                                                  reset_form_target: "drummerHiddenField" }, 
+                                                  value: @drummer_id %>
+          <ul class="list-group" data-autocomplete-target="results" data-action="autocomplete#select"></ul>
+        </div>
+        <div class="d-flex justify-content-start mt-3">
+          <%= f.submit t('defaults.to_posts'), class: "btn btn-warning",
+                                   data: { action: "click->reset-form#submitForm" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

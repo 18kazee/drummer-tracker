@@ -205,11 +205,16 @@ ja:
     delete: '削除'
     search: '検索'
     country: '出身国'
+    cancel: 'キャンセル'
     name_or_relative: 'ドラマーの名前や関連するアーティスト名を入力'
     password_reset: 'パスワードリセット'
     search_word: '検索ワード'
     unspecified: '指定なし'
+    placeholder_tweet: '投稿内容を入力'
+    placeholder_drummer: 'おすすめドラマー名を入力'
+    to_posts: '投稿する'
     close: '閉じる'
+    clear: 'クリア'
     message:
       require_login: 'ログインしてください'
       not_authorized: '権限がありません'
@@ -221,7 +226,7 @@ ja:
       delete_confirm: '削除しますか'
       logout_confirm: 'ログアウトしますか'
       no_result: '検索結果はありません'
-      genres: 'ジャンルを選択'
+      genres: 'ジャンルを選択(空白可能)'
   users:
     new:
       title: '会員登録'
@@ -274,7 +279,16 @@ ja:
       login: 'ログインする'
       guest_login: 'ゲストログインする'
       register: '会員登録する'
-    new:
       placeholder_tweet: '投稿内容を入力'
       placeholder_drummer: 'おすすめドラマー名を入力'
       to_posts: '投稿する'
+    show:
+      delete: '削除'
+    create: 
+      success: '投稿しました'
+      failed: '投稿に失敗しました'
+    update:
+      success: '更新しました'
+      failed: '更新できませんでした'
+    destroy:
+      success: '投稿を削除しました'

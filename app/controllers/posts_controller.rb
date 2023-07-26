@@ -2,13 +2,10 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    set_drummer
     set_posts
+    @drummer_id = params[:drummer_id]
+    @drummer_name = params[:drummer_name]
     @drummers = Drummer.all
-  end
-
-  def new
-    set_drummer
     @post = Post.new
   end
 
@@ -16,26 +13,56 @@ class PostsController < ApplicationController
     set_posts
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      flash.now[:success] = "投稿しました"
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.prepend("posts", partial: "posts/post_cards", locals: { post: @post }),
-            turbo_stream.append("flash", partial: "shared/flash_message", locals: { flash_message: flash[:success] })
-          ]
-        end
-      end
-    else
-   flash.now[:danger] = "投稿に失敗しました"
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.append("flash", partial: "shared/flash_message", locals: { flash_message: flash[:danger] })
+      if @post.save
+        flash.now[:success] = t(".success")
+        format.turbo_stream
+      else
+        flash.now[:danger] = t(".failed")
+        format.turbo_stream
       end
-      format.html { render 'new', status: :unprocessable_entity }
     end
   end
-end
+
+  def show
+    @post = Post.find(params[:id]) 
+  end
+
+  def edit
+    set_post
+    @drummer_name = Drummer.find(@post.drummer_id).name
+    @drummer_id = Drummer.find(@post.drummer_id).id
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("post_#{@post.id}") }
+      format.html 
+    end
+  end
+
+  def update
+    set_post
+    set_posts
+    if @post.update(post_params)
+      flash.now[:success] = t(".success")
+      respond_to do |format|
+        format.turbo_stream
+        format.html { render :edit } 
+      end
+    else
+      flash.now[:danger] = t(".failed")
+      respond_to do |format|
+        format.turbo_stream
+      end
+    end
+  end
+
+  def destroy
+    set_post
+    respond_to do |format|
+      @post.destroy
+      flash.now[:success] = t(".success")
+      format.turbo_stream
+    end
+  end
 
   private
 
@@ -43,12 +70,11 @@ end
     params.require(:post).permit(:tweet, :drummer_id, :user_id)
   end
 
-  def set_drummer
-    @drummer_id = params[:drummer_id]
-    @drummer_name = params[:drummer_name]
-  end
-
   def set_posts
     @posts = Post.all.order("created_at DESC").page(params[:page])
+  end
+
+  def set_post
+    @post = current_user.posts.find(params[:id])
   end
 end

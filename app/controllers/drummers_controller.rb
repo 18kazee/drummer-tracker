@@ -31,7 +31,6 @@ class DrummersController < ApplicationController
 
   def autocomplete
     query = params[:q]
-    puts "Query: #{query}" # ログ出力
     @drummers = Drummer.where("name ILIKE ?", "%#{query}%")
     render partial: 'drummers/autocomplete_results', locals: { drummers: @drummers }
   end
