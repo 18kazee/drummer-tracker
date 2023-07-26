@@ -1,5 +1,4 @@
 <section>
-  <%= turbo_frame_tag "drummers-list", data: { turbo_action: :advance } do %>
     <div class="container search-result-container">
       <div class="row pt-2">
         <div class="col-lg-5 px-3">
@@ -13,11 +12,10 @@
               どちらか一方の検索条件だけで検索できるので、
               <br>お好みの方法で検索してください。
             </p>
-            <%= render 'form' %>
+              <%= render 'form' %>
           </div>
         </div>
-        <%= render 'result' %> 
+          <%= render 'result' %> 
       </div>
     </div>
-  <% end %>
 </section>

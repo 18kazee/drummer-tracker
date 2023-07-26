@@ -2,32 +2,24 @@
   <div class="container">
     <div class="row">
       <div class="col-md-5">
-          <% if logged_in? %>
-            <div class="p-fixed">
-              <h3>おすすめドラマーを投稿</h3>
-              <p class="small pt-2 pb-1">
-                知らない人にもあなたの投稿で知ってもらいませんか？
-                <br>検索をして、結果から投稿することもできます！
-              </p>
-              <%= turbo_frame_tag 'post_new', target: 'posts' do %>
-                <%= render 'posts/form' %>
-              <% end %>
-            </div>
-          <% else %>
-            <div class="justify-content-center p-fixed">
-              <h3>みんなのおすすめドラマー</h3>
-              <p class="small pt-2 pb-1">
-                ログインしてあなたもおすすめしてみませんか？
-                <br>ログインすればドラマーを探すの検索結果から投稿することもできます！
-              </p>
- 
-              <ul class="list-unstyled">
-                <li class="mb-3"><%= link_to t('.login'), login_path, class: 'btn btn-primary' %></li>
-                <li class="mb-3"><%= link_to t('.guest_login'), guest_login_path, class: 'btn btn-success', data: { turbo_method: :post } %></li>
-                <li class="mb-6"><%= link_to t('.register'), new_user_path %></li>
-              </ul>
-            </div>
+        <% if logged_in? %>
+          <%= turbo_frame_tag 'post_new' do %>
+            <%= render 'posts/form' %>
           <% end %>
+        <% else %>
+          <div class="justify-content-center p-fixed">
+            <h3>みんなのおすすめドラマー</h3>
+            <p class="small pt-2 pb-1">
+              ログインしてあなたもおすすめしてみませんか？
+              <br>ログインすればドラマーを探すの検索結果から投稿することもできます！
+            </p>
+            <ul class="list-unstyled">
+              <li class="mb-3"><%= link_to t('.login'), login_path, class: 'btn btn-primary' %></li>
+              <li class="mb-3"><%= link_to t('.guest_login'), guest_login_path, class: 'btn btn-success', data: { turbo_method: :post } %></li>
+              <li class="mb-6"><%= link_to t('.register'), new_user_path %></li>
+            </ul>
+          </div>
+        <% end %>
       </div>
       <div class="col-md-5 justify-content-center">
           <div id="posts" class="posts-card">

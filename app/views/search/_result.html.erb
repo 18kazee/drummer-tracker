@@ -1,11 +1,14 @@
 <% if params[:q].present? && @drummers.any? %>
   <div class="col-lg-7" >
-    <%= turbo_frame_tag "drummers-page-#{@drummers.current_page}" do %>
+
+    <%= turbo_frame_tag "drummers-list" do %>
       <div class="row row-cols-1 row-cols-md-3 g-3 pt-2">
         <%= render partial: 'drummers/drummers' %> 
       </div>
-    <%= turbo_frame_tag "drummers-page-#{@drummers.next_page}", loading: :lazy, src: path_to_next_page(@drummers) %>
-    <% end %>
+  <% end %>
+    <div class="pt-5 justify-content-center d-flex">
+      <%= paginate @drummers, theme: 'bootstrap-5' %>
+    </div>
   </div>
 <% elsif params[:q].present? %>
   <div class="col-lg-7 pt-8 text-center">
