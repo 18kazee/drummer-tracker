@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
+  before_action :redirect_if_logged_in, only: [:new, :resend_activation_form, :resend_activation]
 
   # User Registration
   def new
@@ -48,5 +49,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :salt)
+  end
+
+  def redirect_if_logged_in
+    if logged_in?
+      redirect_to root_path, success: 'ログインしています'
+    else
+    end
   end
 end
