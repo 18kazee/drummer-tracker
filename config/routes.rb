@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get '/drummers/:id/modal', to: 'drummers#modal', as: 'modal'
   get '/drummers/autocomplete', to: 'drummers#autocomplete'
 
+  post 'resend_activation', to: 'users#resend_activation'
+  get 'resend_activation', to: 'users#resend_activation_form', as: :resend_activation_form
+
   resources :users, only: [:new, :create] do
     member do
       get :activate
