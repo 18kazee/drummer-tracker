@@ -1,0 +1,21 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <h3>確認メール再送信</h3>
+
+        <%= form_with(url: resend_activation_path, method: :post) do |f| %>
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control'%>
+          <div class="pt-3">
+            <%= f.submit '確認メールを再送信', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+
+        <div class="pt-2 text-end">
+          <%= link_to '登録画面へ戻る', new_user_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -14,4 +14,13 @@ class User < ApplicationRecord
 
     UserMailer.activation_needed_email(self).deliver_now
   end
+
+  def resend_activation_email
+    # アクティベーショントークンの再生成
+    restore_activation_token!
+
+    # アクティベーションメールの再送信
+    UserMailer.activation_needed_email(self).deliver_now
+  end
+
 end
