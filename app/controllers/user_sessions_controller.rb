@@ -18,13 +18,18 @@ class UserSessionsController < ApplicationController
   end
 
   def guest_login
-    @guest_user = User.create(
+    @guest_user = User.new(
       name: 'ゲスト',
       email: SecureRandom.alphanumeric(10) + '@example.com',
       password: 'password',
-      password_confirmation: 'password'
+      password_confirmation: 'password',
+      guest: true
     )
+    
+    return unless @guest_user.save
+
     auto_login(@guest_user)
     redirect_to root_path, success: t('.success')
+    
   end
 end

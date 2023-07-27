@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   def send_activation_needed_email
+    return if guest? || persisted?  # ゲストユーザーでない場合かつ未保存の場合にメールを送信
+
     UserMailer.activation_needed_email(self).deliver_now
   end
-
 end
