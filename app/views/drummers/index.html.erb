@@ -1,11 +1,13 @@
 <section>
   <div class="container">
-  <h3 class="pt-2"><%= t('.title') %></h3>
-  <div class="row row-cols-1 row-cols-md-3 g-3 pt-3">
-    <%= render 'drummers' %>
-  </div>
-  <div class="pt-5 justify-content-center d-flex">
-    <%= paginate @drummers, theme: 'bootstrap-5' %>
-  </div>
+    <h3 class="pt-2"><%= t('.title') %></h3>
+    <%= turbo_frame_tag "drummers", autoscroll: true, data: { autoscroll_block: "start", turbo_action: "advance" } do %>
+      <div class="row row-cols-1 row-cols-md-3 g-3 pt-3">
+        <%= render 'drummers' %>
+      </div>
+      <div class="pt-5 justify-content-center d-flex">
+        <%= paginate @drummers, theme: 'bootstrap-5' %>
+      </div>
+    <% end %>
   </div>
 </section>
