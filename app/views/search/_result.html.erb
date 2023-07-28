@@ -1,19 +1,22 @@
-<% if params[:q].present? && @drummers.any? %>
-  <div class="col-lg-7" >
-
-    <%= turbo_frame_tag "drummers-list" do %>
-      <div class="row row-cols-1 row-cols-md-3 g-3 pt-2">
-        <%= render partial: 'drummers/drummers' %> 
+<%= turbo_frame_tag 'drummers-list', autoscroll: true, data: { autoscroll_block: "start" } do %>
+  <div class="row">
+    <div class="col-lg-5"></div>
+      <div class="col">
+        <% if params[:q].present? && @drummers.any? %>
+          <div class="row row-cols-1 row-cols-md-3 g-3 pt-2">
+              <%= render partial: 'drummers/drummers' %> 
+          </div>
+          <div class="pt-5 justify-content-center d-flex">
+            <%= paginate @drummers, theme: 'bootstrap-5' %>
+          </div>
+        <% elsif params[:q].present? %>
+          <div class="col pt-8 text-center">
+            <p><%= t('defaults.message.no_result') %></p>
+          </div>
+        <% else %>
+          <div class="col" ></div>
+        <% end %>
       </div>
-  <% end %>
-    <div class="pt-5 justify-content-center d-flex">
-      <%= paginate @drummers, theme: 'bootstrap-5' %>
     </div>
   </div>
-<% elsif params[:q].present? %>
-  <div class="col-lg-7 pt-8 text-center">
-    <p><%= t('defaults.message.no_result') %></p>
-  </div>
-<% else %>
-  <div class="col-lg-7" ></div>
 <% end %>
