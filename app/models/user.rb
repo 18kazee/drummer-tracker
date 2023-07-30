@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   has_many :posts, dependent: :destroy
+  has_many :user_answers, dependent: :destroy
 
   def send_activation_needed_email
     return if guest? || persisted?  # ゲストユーザーでない場合かつ未保存の場合にメールを送信

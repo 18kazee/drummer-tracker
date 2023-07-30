@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/drummers/:id/modal', to: 'drummers#modal', as: 'modal'
   get '/drummers/autocomplete', to: 'drummers#autocomplete'
 
+  get '/recommended_drummers', to: 'recommended_drummers#index'
+
   post 'resend_activation', to: 'users#resend_activation'
   get 'resend_activation', to: 'users#resend_activation_form', as: :resend_activation_form
 
@@ -24,6 +26,8 @@ Rails.application.routes.draw do
     end
   end
   resources :drummers, only: [:index, :show]
+  resources :questions, only: [:show]
+  resources :user_answers, only: [:create]
   resources :posts
   resources :password_resets, only: [:new, :create, :edit, :update]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
