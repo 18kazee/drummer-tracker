@@ -15,7 +15,7 @@ class DrummersController < ApplicationController
     @drummer_artists = []
     @drummer.artists.each do |artist|
       result = RSpotify::Artist.search(artist.name)
-      search_artists = result[0..1]
+      search_artists = result[0..3]
       search_artists.each do |search_artist|
         search_artist.name.downcase!
         @search_artists << search_artist

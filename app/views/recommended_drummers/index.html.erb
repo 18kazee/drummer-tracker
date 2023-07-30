@@ -1,0 +1,16 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <h3>あなたにおすすめのドラマー3選</h3>
+        <div class= "pt-4">
+          <%= render partial: 'drummers/drummers' %>
+        </div>
+        <div class="pt-4 text-end">
+          <%= link_to "TOPに戻る", root_path, class: "btn btn-light btn-sm" %>
+          <%= link_to "初めから診断する", question_path(1), class: "btn btn-warning btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

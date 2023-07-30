@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_26_233158) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_004524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_233158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "spotify_name"
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.string "content"
+    t.bigint "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
   create_table "drummer_artists", force: :cascade do |t|
@@ -65,6 +73,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_233158) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.string "url"
@@ -72,6 +86,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_233158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["drummer_id"], name: "index_songs_on_drummer_id"
+  end
+
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "question_id", null: false
+    t.bigint "choice_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["choice_id"], name: "index_user_answers_on_choice_id"
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,6 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_233158) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "choices", "questions"
   add_foreign_key "drummer_artists", "artists"
   add_foreign_key "drummer_artists", "drummers"
   add_foreign_key "drummer_genres", "drummers"
@@ -101,4 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_233158) do
   add_foreign_key "posts", "drummers"
   add_foreign_key "posts", "users"
   add_foreign_key "songs", "drummers"
+  add_foreign_key "user_answers", "choices"
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "users"
 end

@@ -1,0 +1,36 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="text-center">
+          <h4> <%= @question.content %></h4>
+        </div>
+        <div class="card border-warning mb-3 mt-5">
+          <div class="card-body">
+        <%= form_with model: @user_answer, url: user_answers_path, local: true, data: {turbo_method: :post} do |f| %>
+          <%= f.hidden_field :question_id, value: @question.id %>
+          <% @choices.each do |choice| %>
+            <ul class="list-unstyled pt-2">
+              <div class="input-group"> 
+                <li><%= f.radio_button :choice_id, choice.id %></li>
+                <li class="px-2"><%= f.label "choice_id_#{choice.id}", choice.content %></li>
+              </div>
+            </ul>
+          <% end %>
+          <div class="pt-2 text-end">
+            <% unless  @question.id == Question.first.id %>
+              <%= link_to '戻る', @previous_question, class: 'btn btn-light btn-sm' %>
+            <% end %>
+            <% if @question.id == Question.last.id %>
+              <%= f.submit '結果を見る', class: 'btn btn-warning btn-sm' %>
+            <% else %>
+              <%= f.submit '次へ', class: 'btn btn-warning btn-sm' %>
+            <% end %>
+          </div>
+        <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
