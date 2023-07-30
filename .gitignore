@@ -63,3 +63,9 @@ Session.vim
 /public/uploads
 .env
 
+# Ignore byebug command history file.
+.byebug_history
+byebug.log
+
+
+
