@@ -4,8 +4,7 @@ class UserAnswersController < ApplicationController
   def create
     @question = Question.find(params[:user_answer][:question_id])
     @choices = @question.choices
-    @user_answer = UserAnswer.new(user_answer_params)
-    @user_answer.user_id = current_user.id
+    @user_answer = current_user.user_answers.build(user_answer_params)
     if @user_answer.save
       if next_question_exists?
         redirect_to next_question_path

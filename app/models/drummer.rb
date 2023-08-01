@@ -10,6 +10,8 @@ class Drummer < ApplicationRecord
   has_many :artists, through: :drummer_artists
   has_many :songs, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :recommended_drummersdrummers, dependent: :destroy
+  has_many :recommended_drummers, through: :recommended_drummersdrummers
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name country]

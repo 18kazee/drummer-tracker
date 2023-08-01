@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
   resources :drummers, only: [:index, :show]
-  resources :questions, only: [:show]
+  resources :questions, only: [:index, :show]
   resources :user_answers, only: [:create]
   resources :posts
   resources :password_resets, only: [:new, :create, :edit, :update]

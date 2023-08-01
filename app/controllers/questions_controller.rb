@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   skip_before_action :redirect_if_logged_in
 
+  def index; end
+
   def show
     @question = Question.find(params[:id])
     @choices = Choice.where(question_id: params[:id])

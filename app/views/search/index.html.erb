@@ -4,14 +4,9 @@
         <div class="col-lg-5 px-3">
           <div class="overflow-hidden p-fixed"> 
             <h3><%= t('.title') %></h3>
-            <p class="small pt-2" >
-              ドラマーの名前や関連するアーティスト名を入力し、ドラマーを検索できます。
-              <br>音楽ジャンルを選択し、関連するドラマーを検索できます。
-            </p>
-            <p class="small">
-              どちらか一方の検索条件だけで検索できるので、
-              <br>お好みの方法で検索してください。
-            </p>
+            <div  class="small pt-3">
+              <%= simple_format(h(t('.text'))) %>
+            </div>
               <%= render 'form' %>
           </div>
         </div>
