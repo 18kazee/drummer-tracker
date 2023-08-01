@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 # kaminari for pagination
 gem 'kaminari'
 
+# google-api-client for google api
+gem 'google-api-client'
+
 # bootstrap5-kaminari-views for styling pagination
 gem 'bootstrap5-kaminari-views'
 

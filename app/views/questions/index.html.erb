@@ -1,0 +1,20 @@
+<section>
+  <div class="question-container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="jumbotron text-center">
+          <h2 class="mb-4"><%= t('.title') %></h2>
+          <div class="lead">
+            <%= simple_format(h(t('.body'))) %>
+          </div>
+          <div class="pt-4">
+            <%= link_to t('.start'), question_path(1), class: "btn btn-primary " %>
+          </div>
+        </div>
+        <div class="pt-5 text-center">
+          <%= link_to t('.back_to_top'), root_path, class: "btn btn-light btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

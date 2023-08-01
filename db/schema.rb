@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_004524) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_31_131640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_004524) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "recommended_drummers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "drummer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drummer_id"], name: "index_recommended_drummers_on_drummer_id"
+    t.index ["user_id"], name: "index_recommended_drummers_on_user_id"
+  end
+
+  create_table "recommended_drummers_drummers", force: :cascade do |t|
+    t.bigint "recommended_drummer_id", null: false
+    t.bigint "drummer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drummer_id"], name: "index_recommended_drummers_drummers_on_drummer_id"
+    t.index ["recommended_drummer_id"], name: "index_recommended_drummers_drummers_on_recommended_drummer_id"
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.string "url"
@@ -126,6 +144,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_004524) do
   add_foreign_key "drummer_genres", "genres"
   add_foreign_key "posts", "drummers"
   add_foreign_key "posts", "users"
+  add_foreign_key "recommended_drummers", "drummers"
+  add_foreign_key "recommended_drummers", "users"
+  add_foreign_key "recommended_drummers_drummers", "drummers"
+  add_foreign_key "recommended_drummers_drummers", "recommended_drummers"
   add_foreign_key "songs", "drummers"
   add_foreign_key "user_answers", "choices"
   add_foreign_key "user_answers", "questions"

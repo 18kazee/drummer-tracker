@@ -4,7 +4,28 @@
       <div class="col-lg-5">
         <h3>あなたにおすすめのドラマー3選</h3>
         <div class= "pt-4">
-          <%= render partial: 'drummers/drummers' %>
+          <% @drummers.each do |recommended_drummer| %>
+            <% drummer = Drummer.find(recommended_drummer.id) %>
+            <div class="col">
+              <div class="card h-100 border-warning">
+                <div class="text-muted">
+                  <% genre_names = drummer.genres.map(&:name).join(', ') %>
+                  <%= genre_names %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= drummer.name %>
+                  </h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    <% artist_names = drummer.artists.map(&:name).join(', ') %>
+                    <%= artist_names %>
+                  </h6>
+                  <h6><%= truncate(drummer.profile, length: 17, omission: '...') %></h6>
+                </div> 
+                <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-light btn-sm", data: { turbo_frame: "modal" } %>
+              </div>
+            </div>
+          <% end %>
         </div>
         <div class="pt-4 text-end">
           <%= link_to "TOPに戻る", root_path, class: "btn btn-light btn-sm" %>

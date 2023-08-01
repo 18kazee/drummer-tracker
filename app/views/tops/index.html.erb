@@ -3,8 +3,8 @@
     <div class="container">
       <div class="top-wrapper align-items-center text-center">
         <div class="row pt-3" data-animation-target="title">
-          <h1 class="fw-medium">Drummer Tracker</h1>
-            <p>ドラマーを検索するアプリ</p>
+          <h1 class="fw-medium"><%= t('.title') %></h1>
+          <div><%= t('.subtitle') %></div>
         </div>
         <div class="pt-7" data-animation-target="text">
           <button type="button" data-action="click->animation#scrollToSection" class="btn btn-outline-dark btn-lg">scroll</button>
@@ -18,9 +18,8 @@
       <div class="top-wrapper align-items-center" >
         <div class="row">
           <div class="col-sm-8 px-4" data-animation-target="image">
-            <h3 class="fw-bold">様々なアーティストを支えるドラマー</h5>
-            <h5>そんな人たちのことをあなたは知っていますか？</h5>
-            <h5 class='pt-3 pb-5'>What do you know about such drummers?</h5>
+            <h3 class="fw-bold"><%= simple_format(h(t('.section_title1'))) %></h5>
+            <h5><%= simple_format(h(t('.section_text1'))) %></h5>
           </div>
           <div class="col-sm-3 justify-content-start"> 
             <%= image_tag 'dr-logo.png', size: '200x150'%>
@@ -37,10 +36,8 @@
               <%= image_tag 'note.png', size: '100x100'%>
             </div>
             <div class="col-sm-6" data-animation-target="image">
-              <h3 class="fw-bold">いつも聴いているあのアーティスト</h5>
-              <h5>そんな一曲一曲を支えるドラマーを知って欲しい</h5>
-              <h5>少しでもドラムに興味を持っていただき</h5>
-              <h5>また違った目線で音楽を聴くきっかけになれば</h5>
+              <h3 class="fw-bold"><%= simple_format(h(t('.section_title2'))) %></h5>
+              <h5><%= simple_format(h(t('.section_text2'))) %></h5>
             </div>
           </div>
         </div>
@@ -50,17 +47,11 @@
         <div class="top-wrapper align-items-center">
           <div class="row">
             <div class="col-sm-8">
-              <h5>ログインしなくても検索できます</h5>
-              <h5>会員登録をしてログインをすると</h5>
-              <h5>おすすめドラマーを投稿することができます。</h5>
-              <h5>おすすめのドラマー診断（実装予定）と</h5>
-              <h5>お気に入り登録（実装予定）もできるので</h5>
-              <h5>ぜひ遊んでみてください</h5>
+              <h5><%= simple_format(h(t('.explanation'))) %></h5>
             </div>
             <div class="col-sm-3 ">
             </div>
           </div>
         </div>
     </section>
-
 </main>
