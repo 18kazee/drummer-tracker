@@ -24,3 +24,6 @@ application.register("modal", ModalController)
 
 import ResetFormController from "./reset_form_controller"
 application.register("reset-form", ResetFormController)
+
+import YoutubeController from "./youtube_controller"
+application.register("youtube", YoutubeController)

@@ -20,6 +20,21 @@
           <p>ウィキペディア (Wikipedia): フリー百科事典</p>
         </div>
 
+        <div data-controller="youtube" class="justify-content-center text-center">
+          <div id="video-container">
+            <iframe id="video-iframe" src="https://www.youtube.com/embed/<%= @drummer.youtube_videos.first %>" frameborder="0" allowfullscreen width="350" height="200"></iframe>
+          </div>
+          <div id="thumbnail-container" data-youtube-target="thumbnails">
+            <% @drummer.youtube_videos.each do |video_id| %>
+              <ul class="thumbnail" data-action="click->youtube#changeVideo" data-video-id="<%= video_id %>">
+                <li> <img src="https://img.youtube.com/vi/<%= video_id %>/0.jpg" alt="Thumbnail"></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+
+<div class="border-top border-5 mt-8 text-center">
+  <h4 class="pt-3">関連アーティストSpotify<i class="bi bi-spotify"></i></h4>
         <% if @search_artists.present? %>
           <% @search_artists.each do |search_artist| %>
             <% @drummer_artists.each do |drummer_artist| %>
@@ -33,8 +48,9 @@
                 <% end %>
               <% end %>
             <% end %>
+</div>
         <% else %>
-          <p>まだ登録されていません</p>
+          <p class="text-center">spotifyは見つかりません</p>
         <% end %>
         <% if logged_in? %>
           <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: false } %>
@@ -44,3 +60,5 @@
     </div>
   </div>
 <% end %>
+
+

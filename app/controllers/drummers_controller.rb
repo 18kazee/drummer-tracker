@@ -11,6 +11,7 @@ class DrummersController < ApplicationController
   
   def show
     @drummer = Drummer.includes(:artists, :genres).find(params[:id])
+
     @search_artists = []
     @drummer_artists = []
     @drummer.artists.each do |artist|

@@ -1,3 +1,5 @@
+require 'google/apis/youtube_v3'
+
 class Drummer < ApplicationRecord
   validates :name, presence: true
   validates :country, presence: true
@@ -19,5 +21,31 @@ class Drummer < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     %w[drummer_genres genres drmmer_artists artists]
+  end
+
+  def search_youtube_videos
+    youtube_service = Google::Apis::YoutubeV3::YouTubeService.new
+    youtube_service.key = ENV['YOUTUBE_API_KEY']
+
+    drummer_name = name
+    artist_names = artists.pluck(:name)
+    # ドラマーの名前でYouTube検索を行う
+     query_with_artists = "#{drummer_name} ドラム #{artist_names.join(' ')}"
+     search_response_with_artists = youtube_service.list_searches('snippet', q: query_with_artists, max_results: 4, type: 'video')
+
+    if search_response_with_artists.items.empty?
+    # 検索結果が見つからない場合、ドラマー名のみを含むクエリで再度検索
+      query_without_artists = "#{drummer_name} ドラム"
+      search_response_without_artists = youtube_service.list_searches('snippet', q: query_without_artists, max_results: 3, type: 'video')
+      search_response = search_response_without_artists
+    else
+      search_response = search_response_with_artists
+    end
+
+    youtube_videos = search_response.items.map do |item|
+      item.id.video_id
+    end
+    # データベースに保存
+    update_attribute(:youtube_videos, youtube_videos)
   end
 end

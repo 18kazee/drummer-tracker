@@ -21741,11 +21741,20 @@ label.required:after {
 .album-img {
   padding-top: 10px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .top-wrapper {
   height: 400px;
 }
 
+.thumbnail li {
+  list-style-type: none;
+  float: left;
+}
+.thumbnail li img {
+  width: 90px;
+  padding-left: 2px;
+}
 
 /*# sourceMappingURL=theme.css.map */
