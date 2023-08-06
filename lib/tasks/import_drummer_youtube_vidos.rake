@@ -9,7 +9,7 @@ namespace :import do
       drummer_name = row['name']
       drummer_youtube_videos = row['youtube_videos']
 
-      next if drummer_youtube_videos.nil?  youtubeがnilの場合、次の行に進む
+      next if drummer_youtube_videos.nil?
 
       drummer = Drummer.find_or_create_by(name: drummer_name, youtube_videos: drummer_youtube_videos)
     end
