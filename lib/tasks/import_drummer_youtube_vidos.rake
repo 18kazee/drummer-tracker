@@ -3,7 +3,7 @@ require 'csv'
 namespace :import do
   desc 'Import drummer_youtube_videos data from CSV'
   task drummer_youtube_videos: :environment do
-    file_path = 'db/csv/drummer_youtube_videos.csv' # ファイルパスを実際のパスに変更する
+    file_path = 'db/csv/drummers_youtube_videos.csv' # ファイルパスを実際のパスに変更する
 
     CSV.foreach(file_path, headers: true) do |row|
       drummer_name = row['name']
