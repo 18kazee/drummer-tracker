@@ -11,7 +11,10 @@ namespace :import do
 
       next if drummer_youtube_videos.nil?
 
-      drummer = Drummer.find_or_create_by(name: drummer_name, youtube_videos: drummer_youtube_videos)
+      drummer = Drummer.find_or_create_by(name: drummer_name)
+      youtube_ids = drummer_youtube_videos.split(',').map(&:strip)
+      drummer.youtube_videos = youtube_ids
+      drummer.save
     end
 
     puts 'Drummer-youtube data imported successfully!'
