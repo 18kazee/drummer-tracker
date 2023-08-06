@@ -6,7 +6,7 @@ namespace :import do
     file_path = 'db/csv/drummers_youtube_videos.csv' # ファイルパスを実際のパスに変更する
 
     CSV.foreach(file_path, headers: true) do |row|
-      drummer_name = row['name']
+      drummer_name = row['Name']
       drummer_youtube_videos = row['youtube_videos']
 
       next if drummer_youtube_videos.nil?
