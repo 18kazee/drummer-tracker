@@ -4,6 +4,7 @@ class DrummersController < ApplicationController
 
   require 'rspotify'
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
+  RSpotify.redirect_uri = 'https://drummer-tracker-85a20c07e028.herokuapp.com/callback' # 正しいコールバックURLを指定
 
   def index
     @drummers = Drummer.includes(:artists, :genres).order(:name).page(params[:page])
