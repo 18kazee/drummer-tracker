@@ -2,10 +2,6 @@ class DrummersController < ApplicationController
   skip_before_action :require_login, only: [:index, :show, :modal, :autocomplete]
   skip_before_action :redirect_if_logged_in
 
-  require 'rspotify'
-  RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
-  RSpotify.redirect_uri = 'https://drummer-tracker-85a20c07e028.herokuapp.com/callback' # 正しいコールバックURLを指定
-
   def index
     @drummers = Drummer.includes(:artists, :genres).order(:name).page(params[:page])
   end
