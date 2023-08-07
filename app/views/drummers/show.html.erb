@@ -33,29 +33,28 @@
           </div>
         </div>
 
-<div class="border-top border-5 mt-8 text-center">
-  <h4 class="pt-3">関連アーティストSpotify<i class="bi bi-spotify"></i></h4>
         <% if @search_artists.present? %>
+          <div class="border-top border-5 mt-8 text-center">
+            <h4 class="pt-3">関連アーティストSpotify<i class="bi bi-spotify"></i></h4>
+          </div>
           <% @search_artists.each do |search_artist| %>
             <% @drummer_artists.each do |drummer_artist| %>
               <% albums = search_artist.albums %>
               <% if drummer_artist.present? && albums.present? && drummer_artist.casecmp?(search_artist.name) %>
                 <% image = albums.first.images[1] %>
-                  <div class="album-img">
-                    <%= link_to image_tag(image["url"]), search_artist.albums.first.external_urls['spotify'], target: "_blank" %> 
-                  </div>
-                  <h4><%= search_artist.name.upcase %> </h4>
-                <% end %>
+                <div class="album-img">
+                  <%= link_to image_tag(image["url"]), search_artist.albums.first.external_urls['spotify'], target: "_blank" %> 
+                </div>
+                <h4><%= search_artist.name.upcase %> </h4>
               <% end %>
             <% end %>
-</div>
+          <% end %>
         <% else %>
           <p class="text-center">spotifyは見つかりません</p>
         <% end %>
         <% if logged_in? %>
           <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: false } %>
         <% end %>
-
       </div>
     </div>
   </div>
