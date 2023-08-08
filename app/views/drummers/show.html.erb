@@ -1,25 +1,27 @@
 <%= turbo_frame_tag 'drummer' do %>
   <div class="container">
+    <% if logged_in? %>
+      <div class="text-end pb-3">
+        <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: false } %>
+      </div>
+    <% end %>
     <div class="card">
       <div class="card-body">
         <h2 class="card-title">
           <%= @drummer.name %>
         </h2>
-        <h5 class="card-subtitle mb-2 text-muted">
-          <% artist_names = @drummer.artists.map(&:name).join(', ') %>
-            <%= artist_names %>
-        </h5>
-        <h5 class="text-muted">
+        <p class="text-muted">
           <% genre_names = @drummer.genres.map(&:name).join(', ') %>
             <%= genre_names %>
-        </h5>
-        <p class=>
-          <%= @drummer.profile %>
         </p>
+        <p class="card-subtitle mb-2 text-muted">
+          <% artist_names = @drummer.artists.map(&:name).join(', ') %>
+          <%= artist_names %>
+        </p>
+        <p><%= @drummer.profile %></p>
         <div class="text-end">
           <p>ウィキペディア (Wikipedia): フリー百科事典</p>
         </div>
-
         <div data-controller="youtube" class="justify-content-center text-center">
           <div id="video-container">
             <iframe id="video-iframe" src="https://www.youtube.com/embed/<%= @drummer.youtube_videos.first %>" frameborder="0" allowfullscreen width="350" height="200"></iframe>
@@ -30,34 +32,26 @@
                 <li> <img src="https://img.youtube.com/vi/<%= video_id %>/0.jpg" alt="Thumbnail"></li>
               </ul>
             <% end %>
+            <div class="pt-7"></div>
           </div>
         </div>
-
-        <% if @search_artists.present? %>
-          <div class="border-top border-5 mt-8 text-center">
-            <h4 class="pt-3">関連アーティストSpotify<i class="bi bi-spotify"></i></h4>
-          </div>
-          <% @search_artists.each do |search_artist| %>
-            <% @drummer_artists.each do |drummer_artist| %>
-              <% albums = search_artist.albums %>
-              <% if drummer_artist.present? && albums.present? && drummer_artist.casecmp?(search_artist.name) %>
-                <% image = albums.first.images[1] %>
-                <div class="album-img">
-                  <%= link_to image_tag(image["url"]), search_artist.albums.first.external_urls['spotify'], target: "_blank" %> 
-                </div>
-                <h4><%= search_artist.name.upcase %> </h4>
-              <% end %>
+        <% @artists.each do |artist| %>
+          <% spotify_artist = RSpotify::Artist.find(artist.spotify_id) %>
+          <% if spotify_artist.present? %>
+            <div class="border-bottom border-5 pt-3 mb-3 w-60">
+              <h4><%= artist.name %><i class="bi bi-spotify px-2"></i></h4>
+            </div>
+            <% album = spotify_artist.albums.first %>
+            <% if album.present? %>
+              <% image = album.images[1] %>
+              <div class="album-img">
+                <%= link_to image_tag(image["url"]), album.external_urls['spotify'], target: "_blank" %> 
+              </div>
+            <% else %>
             <% end %>
           <% end %>
-        <% else %>
-          <p class="text-center">spotifyは見つかりません</p>
-        <% end %>
-        <% if logged_in? %>
-          <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: false } %>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
-
-

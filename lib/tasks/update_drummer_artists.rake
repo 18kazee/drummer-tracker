@@ -11,11 +11,18 @@ namespace :import do
 
       next if artist_names.nil? # artist_namesがnilの場合、次の行に進む
 
+      drummer = Drummer.find_or_create_by(name: drummer_name)
+
       artist_names.split(',').each do |artist_name|
-        drummer = Drummer.find_or_create_by(name: drummer_name)
         artist = Artist.find_or_create_by(name: artist_name.strip)
 
-        DrummerArtist.find_or_create_by(drummer: drummer, artist: artist)
+        drummer_artist = DrummerArtist.find_or_initialize_by(drummer: drummer, artist: artist)
+        if !drummer_artist.persisted?
+          drummer_artist.save
+          puts "#{drummer_name} - #{artist_name} is updated!"
+        else
+          puts "#{drummer_name} - #{artist_name} is created!"
+        end
       end
     end
 
