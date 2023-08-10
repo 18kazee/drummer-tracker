@@ -2,7 +2,7 @@ require 'csv'
 
 namespace :import_drummer do
   desc 'Import drummers from CSV'
-  task :drummers => :environment do
+  task drummers: :environment do
     csv_file_path = 'db/csv/drummers.csv'  # CSVファイルのパスを指定してください
 
     CSV.foreach(csv_file_path, headers: true) do |row|
@@ -12,7 +12,7 @@ namespace :import_drummer do
         drummer.update(
           name: row['name'],
           country: row['country'].to_i,
-          profile: row['profile'],
+          profile: row['profile']
           # 他の属性もここに追加
         )
         puts "Updated drummer: #{drummer.name}"
@@ -20,7 +20,7 @@ namespace :import_drummer do
         Drummer.create(
           name: row['name'],
           country: row['country'].to_i,
-          profile: row['profile'],
+          profile: row['profile']
           # 他の属性もここに追加
         )
         puts "Created drummer: #{row['name']}"

@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_logged_in
-    if logged_in?
-      redirect_to root_path, success: 'ログインしています'
-    end
+    return unless logged_in?
+
+    redirect_to root_path, success: 'ログインしています'
   end
 end

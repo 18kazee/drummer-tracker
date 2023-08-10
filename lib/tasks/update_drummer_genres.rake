@@ -16,8 +16,8 @@ namespace :import do
       if drummer
         genres_names.split(',').each do |genre_name|
           genre = Genre.find_or_create_by(name: genre_name.strip)
-          
-          drummer_genre = DrummerGenre.find_or_initialize_by(drummer: drummer, genre: genre)
+
+          drummer_genre = DrummerGenre.find_or_initialize_by(drummer:, genre:)
           if !drummer_genre.persisted?
             drummer_genre.save
             puts "#{drummer_name} - #{genre_name} updated!"
