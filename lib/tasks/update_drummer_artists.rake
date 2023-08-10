@@ -16,7 +16,7 @@ namespace :import do
       artist_names.split(',').each do |artist_name|
         artist = Artist.find_or_create_by(name: artist_name.strip)
 
-        drummer_artist = DrummerArtist.find_or_initialize_by(drummer: drummer, artist: artist)
+        drummer_artist = DrummerArtist.find_or_initialize_by(drummer:, artist:)
         if !drummer_artist.persisted?
           drummer_artist.save
           puts "#{drummer_name} - #{artist_name} is updated!"
