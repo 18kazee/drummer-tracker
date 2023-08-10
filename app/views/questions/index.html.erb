@@ -1,19 +1,33 @@
+<section class="hero">
+  <div class="container text-start">
+    <h1 class="hero-title">おすすめ診断</h1>
+    <p class="hero-description">あなたにぴったりのドラマーを見つけよう！</p>
+    <div class="pt-2">
+    <%= link_to "診断スタート", question_path(1), class: "btn btn-primary" %>
+    </div>
+  </div>
+</section>
 <section>
-  <div class="question-container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="jumbotron text-center">
-          <h2 class="mb-4"><%= t('.title') %></h2>
-          <div class="lead">
-            <%= simple_format(h(t('.body'))) %>
-          </div>
-          <div class="pt-4">
-            <%= link_to t('.start'), question_path(1), class: "btn btn-primary " %>
-          </div>
-        </div>
-        <div class="pt-5 text-center">
-          <%= link_to t('.back_to_top'), root_path, class: "btn btn-light btn-sm" %>
-        </div>
+  <div class="container">
+    <div class="border-bottom border-5">
+      <h3><i class="bi bi-star-fill"></i>おすすめ診断とは？</h3>
+    </div>
+    <div class="pt-3">
+    <p>
+      ドラマー診断は、あなたの音楽の好みに基づいて、あなたにぴったりのドラマーをおすすめするツールです。<br>
+      簡単な質問に答えて、おすすめのドラマーを見つけましょう！
+    </p>
+    <div class="container">
+      <div class="border-bottom border-5">
+        <h3><i class="bi bi-star-fill"></i>特徴</h3>
+      </div>
+      <div class="pt-3">
+        <ul class="question-list">
+          <li><i class="bi bi-check-circle"></i> ドラマーに特化した診断ツール</li>
+          <li><i class="bi bi-check-circle"></i> 音楽好きなあなたにおすすめ</li>
+          <li><i class="bi bi-check-circle"></i> 簡単な質問に回答するだけ</li>
+          <li><i class="bi bi-check-circle"></i> おすすめのドラマーをスピーディに提案</li>
+        </ul>
       </div>
     </div>
   </div>

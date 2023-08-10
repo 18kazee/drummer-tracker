@@ -1,0 +1,79 @@
+.jumbotron {
+    background-image: url('drummer-tops.jpg');
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.jumbotron h1{
+    color: #FFF !important;
+    background:rgba(51,112,121,0.4);
+}
+.features {
+    padding: 115px 0;
+}
+.feature-icon {
+    font-size: 2.5rem;
+    color: #343a40;
+}
+.feature-title {
+    margin-top: 15px;
+    font-size: 1.5rem;
+}
+.feature-description {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #6c757d;
+    
+}
+.cta {
+    background-color: #343a40;
+    color: #fff;
+    padding: 40px 0;
+}
+.cta h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.cta-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.cta-list {
+    list-style: none;
+    font-size: 1rem;
+    padding-left: 0;
+    padding-top: 40px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.cta-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+.cta-list li i {
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 1.2rem;
+    color: #28a745; /* チェックアイコンの色 */
+}
+
+.cta-button {
+    font-size: 1.25rem;
+    margin-top: 30px;
+    padding: 15px 40px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #28a745; /* ボタンのホバー時の色 */
+    color: #fff;
+}

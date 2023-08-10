@@ -1,11 +1,15 @@
+<section class="hero">
+  <div class="container text-start">
+    <h1 class="hero-title">おすすめ診断</h1>
+    <p class="hero-description">あなたにぴったりのドラマーを見つけよう！</p>
+  </div>
+</section>
 <section>
   <div class="container">
-    <div class="row">
-      <div class="col-lg-5">
-        <div class="text-center">
+        <div class="border-bottom border-5">
           <h4> <%= @question.content %></h4>
         </div>
-        <div class="card border-warning mb-3 mt-5">
+        <div class="card border-warning mb-3 mt-5 text-center" style="width: 50%">
           <div class="card-body">
         <%= form_with model: @user_answer, url: user_answers_path, local: true, data: {turbo_method: :post} do |f| %>
           <%= f.hidden_field :question_id, value: @question.id %>
@@ -30,7 +34,5 @@
         <% end %>
           </div>
         </div>
-      </div>
-    </div>
   </div>
 </section>
