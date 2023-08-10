@@ -1,57 +1,50 @@
-<main data-controller="animation">
+<main>
   <section>
-    <div class="container">
-      <div class="top-wrapper align-items-center text-center">
-        <div class="row pt-3" data-animation-target="title">
-          <h1 class="fw-medium"><%= t('.title') %></h1>
-          <div><%= t('.subtitle') %></div>
+    <div class="jumbotron">
+        <h1>音楽のリズム、新たな出会いを。</h1>
+        <p class="lead">才能あるドラマーを探し、リズムの世界へダイブしよう。</p>
+    </div>
+    <div class="container features">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <div class="feature-icon">
+            <i class="bi bi-search"></i>
+          </div>
+          <h3 class="feature-title">ドラマー検索</h3>
+          <p class="feature-description">アーティスト名やジャンルから<br>理想のドラマーを見つけ出します。</p>
         </div>
-        <div class="pt-7" data-animation-target="text">
-          <button type="button" data-action="click->animation#scrollToSection" class="btn btn-outline-dark btn-lg">scroll</button>
+        <div class="col-md-4">
+          <div class="feature-icon">
+            <i class="bi bi-heart"></i>
+          </div>
+          <h3 class="feature-title">おすすめ掲示板</h3>
+          <p class="feature-description">音楽愛好者のおすすめドラマー情報を<br>シェアしましょう。</p>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-icon">
+            <i class="bi bi-file-earmark-text"></i>
+          </div>
+          <h3 class="feature-title">ドラマー診断</h3>
+          <p class="feature-description">ログインして診断<br>お気に入りのドラマーを見つけましょう。<br>（SNS投稿と保存機能は近日実装予定）</p>
         </div>
       </div>
     </div>
-  </section>
-
-  <section data-animation-target="section">
-    <div class="container">
-      <div class="top-wrapper align-items-center" >
+    <div class="cta container">
         <div class="row">
-          <div class="col-sm-8 px-4" data-animation-target="image">
-            <h3 class="fw-bold"><%= simple_format(h(t('.section_title1'))) %></h5>
-            <h5><%= simple_format(h(t('.section_text1'))) %></h5>
+          <div class="col-md-8 offset-md-2">
+            <div class="border-bottom border-5">
+            <h2 class="cta-title">アカウントを作成して、以下の機能を利用しよう！</h2>
+            </div>
+            <ul class="cta-list">
+              <li><i class="bi bi-check-circle"></i> おすすめドラマーの投稿</li>
+              <li><i class="bi bi-check-circle"></i> お気に入りドラマーの診断</li>
+              <li><i class="bi bi-check-circle"></i> 診断結果の保存とSNS投稿（近日実装予定）</li>
+              <!-- 他の特別な機能をここに追加 -->
+            </ul>
+            <%= link_to 'アカウント作成', new_user_path, class: "btn btn-lg btn-light cta-button" %>
           </div>
-          <div class="col-sm-3 justify-content-start"> 
-            <%= image_tag 'dr-logo.png', size: '200x150'%>
-          </div>
-        </div>
       </div>
+    </div>
+  </div>
   </section>
-
-  <section>
-      <div class="container">
-        <div class="top-wrapper align-items-center">
-          <div class="row">
-            <div class="col-sm-6 text-center pt-3 pb-3">
-              <%= image_tag 'note.png', size: '100x100'%>
-            </div>
-            <div class="col-sm-6" data-animation-target="image">
-              <h3 class="fw-bold"><%= simple_format(h(t('.section_title2'))) %></h5>
-              <h5><%= simple_format(h(t('.section_text2'))) %></h5>
-            </div>
-          </div>
-        </div>
-    </section>
-    <section>
-      <div class="container">
-        <div class="top-wrapper align-items-center">
-          <div class="row">
-            <div class="col-sm-8">
-              <h5><%= simple_format(h(t('.explanation'))) %></h5>
-            </div>
-            <div class="col-sm-3 ">
-            </div>
-          </div>
-        </div>
-    </section>
 </main>
