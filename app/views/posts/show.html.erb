@@ -1,32 +1,47 @@
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3"></div>
-      
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <% if logged_in? && current_user.id == @post.user_id %>
-              <div class="text-end">
-                <%= link_to (t'defaults.edit'), edit_post_path(@post),data: { turbo_frame: "post_#{@post.id}"}, class: "btn btn-primary btn-sm" %>
-                <%= link_to (t'defaults.delete'), post_path(@post), data: { turbo_method: :delete,  turbo_confirm: (t'defaults.confirm') }, class: "btn btn-danger btn-sm" %>
-              </div>
-            <% end %>
-            <h5 class="mb-0"><%= @post.user.name %></h5>
-            <p><%= @post.tweet %></p>
-            <div class="card">
-              <h5 class="px-2 pt-2 mb-0"><%= @post.drummer.name %></h5>
-              <p class="px-2 text-muted">
-                <% artist_names = @post.drummer.artists.map(&:name).join(', ') %>
-                <%= artist_names %>
-              </p>
-            </div>
-            <div class="card-footer">
-              <%= link_to Drummer.human_attribute_name(:drummer_id), modal_path(@post.drummer.id), class: "btn btn-success btn-sm", data: { turbo_frame: "modal" } %>
-            </div>
+<%= turbo_frame_tag "post-show" do %>
+
+          <%= link_to posts_path do %>
+          <div class="pt-3 px-2 d-flex">
+            <i class="bi bi-arrow-left pt-1"></i>
+            <h5 class="px-3">投稿</h5>
           </div>
+          <% end %>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="mb-0"><%= @post.user.name %></h5>
+        <p><%= @post.tweet %></p>
+        <P><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></P>
+        
+        <div class="card">
+          <h5 class="px-2 pt-2 mb-0"><%= @post.drummer.name %></h5>
+          <p class="px-2 text-muted">
+            <% artist_names = @post.drummer.artists.map(&:name).join(', ') %>
+            <%= artist_names %>
+          </p>
+          <%= link_to Drummer.human_attribute_name(:drummer_id), modal_path(@post.drummer.id), class: "btn btn-success btn-sm", data: { turbo_frame: "modal" } %>
+        </div>
+        <%= turbo_frame_tag 'like_count' %>
+
+        <div class="post-icon border-top">
+          <ul class="list-inline d-flex px-2 pt-2">
+            <div id="like_button_<%= @post.id %>" >
+              <li> <%= render 'posts/like_button', post: @post %></li>
+            </div>
+            <% if current_user.mine?(@post) %>
+              <li class="px-4">
+                <%= link_to edit_post_path(@post),data: { turbo_frame: "post_#{@post.id}"} do %>
+                  <i class="bi bi-pen"></i>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to post_path(@post), data: { turbo_method: :delete,  turbo_confirm: (t'defaults.message.delete_confirm') } do %>
+                  <i class="bi bi-trash"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
-</section>
+<% end %>

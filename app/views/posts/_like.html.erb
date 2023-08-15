@@ -1,0 +1,5 @@
+<%= turbo_frame_tag 'like_count' do %>
+<%= link_to post_likes_path(post_id: post.id), data: { turbo_method: :post } do %>
+  <i class="bi bi-heart"></i><%= post.likes.count %>
+<% end %>
+<% end %>
