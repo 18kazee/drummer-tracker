@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post   # ユーザーがいいねした投稿を取得
 
   def send_activation_needed_email
-    return if guest? || persisted?  # ゲストユーザーでない場合かつ未保存の場合にメールを送信
+    return if guest? || persisted? # ゲストユーザーでない場合かつ未保存の場合にメールを送信
 
     UserMailer.activation_needed_email(self).deliver_now
   end
@@ -39,7 +39,8 @@ class User < ApplicationRecord
     liked_posts.delete(post)
   end
 
-  def like?(post) # いいねしているかどうかの判定メソッド
+  # いいねしているかどうかの判定メソッド
+  def like?(post)
     liked_posts.include?(post)
   end
 end
