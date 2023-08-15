@@ -18540,7 +18540,7 @@ code[class*=language-], pre[class*=language-] {
 
   .p-fixed {
     position: fixed;
-    z-index: 1015;
+    z-index: 800;
     width: 400px;    
     overflow: hidden;
   }
@@ -21808,5 +21808,16 @@ label.required:after {
   font-size: 1rem;
   color: #28a745; /* チェックアイコンの色 */
 }
+
+.post-sub {
+  text-decoration: none;
+  color: #000;
+}
+
+.b-filter {
+  background-color: #FFF8EF;
+  width: 100%;
+}
+
 
 /*# sourceMappingURL=theme.css.map */

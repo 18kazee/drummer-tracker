@@ -1,11 +1,13 @@
 <div class="p-fixed">
-  <h3>おすすめドラマーを投稿</h3>
-  <p class="small pt-2 pb-1">
+  <div class="border-bottom border-3">
+  <h5>おすすめドラマーを投稿</h5>
+  <p class="small">
     知らない人にもあなたの投稿で知ってもらいませんか？
     <br>検索をして、結果から投稿することもできます！
   </p>
+  </div>
   <div data-controller="reset-form ">
-    <div class="autocomplete-dropdown">
+    <div class="autocomplete-dropdown pt-2">
       <%= bootstrap_form_with model: @post do |f| %>
         <%= f.text_field :tweet, data: { reset_form_target: "tweetField" },
                                  class: 'border-warning form-control',

@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :user_answers, dependent: :destroy
   has_many :recommended_drummers, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post   # ユーザーがいいねした投稿を取得
 
   def send_activation_needed_email
     return if guest? || persisted?  # ゲストユーザーでない場合かつ未保存の場合にメールを送信
@@ -25,4 +27,19 @@ class User < ApplicationRecord
     UserMailer.activation_needed_email(self).deliver_now
   end
 
+  def mine?(object)
+    id == object.user_id
+  end
+
+  def like(post)
+    liked_posts << post
+  end
+
+  def unlike(post)
+    liked_posts.delete(post)
+  end
+
+  def like?(post) # いいねしているかどうかの判定メソッド
+    liked_posts.include?(post)
+  end
 end

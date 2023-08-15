@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   resources :drummers, only: [:index, :show]
   resources :questions, only: [:index, :show]
   resources :user_answers, only: [:create]
-  resources :posts
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+    collection do
+      get :likes
+    end
+  end
   resources :password_resets, only: [:new, :create, :edit, :update]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   # Defines the root path route ("/")
