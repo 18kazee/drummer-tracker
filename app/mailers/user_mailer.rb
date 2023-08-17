@@ -9,6 +9,7 @@ class UserMailer < ApplicationMailer
 
   def activation_needed_email(user)
     return if user.guest?
+
     @user = user
     @url  = activate_user_url(@user.activation_token)
     mail(to: user.email, subject: 'DrummerTrackerアカウントの認証')
