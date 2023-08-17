@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   skip_before_action :redirect_if_logged_in
   skip_before_action :require_login
-  before_action :set_post
+  before_action :set_post, only: [:create, :destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
