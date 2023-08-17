@@ -6,6 +6,7 @@ class UserSessionsController < ApplicationController
 
   def create
     if login(params[:email], params[:password])
+      cookies.encrypted[:user_id] = current_user.id
       redirect_back_or_to root_path, success: t('.success')
     else
       flash.now[:danger] = t('.failed')
@@ -29,6 +30,7 @@ class UserSessionsController < ApplicationController
     
     return unless @guest_user.save
 
+    cookies.encrypted[:user_id] = @guest_user.id
     auto_login(@guest_user)
     redirect_to root_path, success: t('.success')
     

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :show]
   skip_before_action :redirect_if_logged_in
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_posts, only: [:index, :create, :update]
@@ -27,6 +27,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id]) 
+    @comments = @post.comments.includes(:user).order("created_at DESC")
+    @comment = Comment.new
   end
 
   def edit
@@ -54,10 +56,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.destroy
     respond_to do |format|
-      @post.destroy
       flash.now[:success] = t(".success")
-      format.turbo_stream
+      format.html { redirect_to posts_path }
     end
   end
 
