@@ -36,7 +36,9 @@
             <%= render 'posts/form' %>
             </div>
           <% end %>
-        <% end %>
+        <% else %>
+          <div class="pt-5"></div>
+        <%end %>
         <div id="posts" class="posts-card pt-2">
           <%= render 'post_card' %>
         </div>
