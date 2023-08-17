@@ -36,4 +36,6 @@ class Choice < ApplicationRecord
     # 保存したドラマーのIDを返す
     recommended_drummers.map(&:drummer_id)
   end
+
+
 end
