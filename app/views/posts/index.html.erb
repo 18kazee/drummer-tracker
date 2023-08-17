@@ -2,24 +2,26 @@
   <div class="container">
     <div class="row">
       <div class="col-md-5 pt-3">
-        <% if logged_in? %>
-          <%= turbo_frame_tag 'post_new' do %>
-            <%= render 'posts/form' %>
-          <% end %>
-        <% else %>
-          <div class="justify-content-center p-fixed">
-            <h5>みんなのおすすめドラマー</h5>
+          <div class="p-fixed">
+            <div class="border-bottom border-3">
+              <h5>おすすめドラマーを投稿</h5>
+              <p class="small">
+                知らない人にもあなたの投稿で知ってもらいませんか？
+                <br>検索をして、結果から投稿することもできます！
+              </p>
+            </div>
+            <% unless logged_in? %>
             <p class="small pt-2 pb-1">
-              ログインしてあなたもおすすめしてみませんか？
-              <br>ログインすればドラマーを探すの検索結果から投稿することもできます！
-            </p>
-            <ul class="list-unstyled">
-              <li class="mb-3"><%= link_to t('.login'), login_path, class: 'btn btn-primary' %></li>
-              <li class="mb-3"><%= link_to t('.guest_login'), guest_login_path, class: 'btn btn-success', data: { turbo_method: :post } %></li>
-              <li class="mb-6"><%= link_to t('.register'), new_user_path %></li>
-            </ul>
+            ログインしてあなたもおすすめしてみませんか？
+            <br>ログインすればドラマーを探すの検索結果から投稿することもできます！
+          </p>
+          <ul class="list-unstyled">
+            <li class="mb-3"><%= link_to t('.login'), login_path, class: 'btn btn-primary' %></li>
+            <li class="mb-3"><%= link_to t('.guest_login'), guest_login_path, class: 'btn btn-success', data: { turbo_method: :post } %></li>
+            <li><%= link_to t('.register'), new_user_path %></li>
+          </ul>
+          <% end %>
           </div>
-        <% end %>
       </div>
       <div class="col-md-5 justify-content-center">
       <%= turbo_frame_tag 'post-show' do %>
@@ -28,7 +30,14 @@
             <h5>投稿</h5>
           </div>
         </div>
-        <div id="posts" class="posts-card pt-8">
+        <% if logged_in? %>
+          <%= turbo_frame_tag 'post_new' do %>
+            <div class="pt-5"> 
+            <%= render 'posts/form' %>
+            </div>
+          <% end %>
+        <% end %>
+        <div id="posts" class="posts-card pt-2">
           <%= render 'post_card' %>
         </div>
           <%= paginate @posts, theme: 'bootstrap-5' %>

@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :recommended_drummers, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post   # ユーザーがいいねした投稿を取得
+  has_many :comments, dependent: :destroy
 
   def send_activation_needed_email
     return if guest? || persisted? # ゲストユーザーでない場合かつ未保存の場合にメールを送信

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :questions, only: [:index, :show]
   resources :user_answers, only: [:create]
   resources :posts do
+    resources :comments, only: [:new, :create, :destroy]
     resources :likes, only: [:create, :destroy]
     collection do
       get :likes

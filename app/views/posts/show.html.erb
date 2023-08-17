@@ -1,18 +1,20 @@
 <%= turbo_frame_tag "post-show" do %>
+  <%= link_to posts_path do %>
+    <div class="pt-3 px-2 d-flex p-fixed b-filter">
+      <i class="bi bi-arrow-left pt-1"></i>
+      <h5 class="px-3">投稿</h5>
+    </div>
+  <% end %>
 
-          <%= link_to posts_path do %>
-          <div class="pt-3 px-2 d-flex">
-            <i class="bi bi-arrow-left pt-1"></i>
-            <h5 class="px-3">投稿</h5>
-          </div>
-          <% end %>
-
+  <%= turbo_frame_tag "post_#{@post.id}" do  %>
+    <div class="pt-5">
     <div class="card">
       <div class="card-body">
+      
         <h5 class="mb-0"><%= @post.user.name %></h5>
         <p><%= @post.tweet %></p>
         <P><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></P>
-        
+      
         <div class="card">
           <h5 class="px-2 pt-2 mb-0"><%= @post.drummer.name %></h5>
           <p class="px-2 text-muted">
@@ -21,27 +23,52 @@
           </p>
           <%= link_to Drummer.human_attribute_name(:drummer_id), modal_path(@post.drummer.id), class: "btn btn-success btn-sm", data: { turbo_frame: "modal" } %>
         </div>
-        <%= turbo_frame_tag 'like_count' %>
 
         <div class="post-icon border-top">
           <ul class="list-inline d-flex px-2 pt-2">
             <div id="like_button_<%= @post.id %>" >
               <li> <%= render 'posts/like_button', post: @post %></li>
             </div>
-            <% if current_user.mine?(@post) %>
-              <li class="px-4">
-                <%= link_to edit_post_path(@post),data: { turbo_frame: "post_#{@post.id}"} do %>
-                  <i class="bi bi-pen"></i>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to post_path(@post), data: { turbo_method: :delete,  turbo_confirm: (t'defaults.message.delete_confirm') } do %>
-                  <i class="bi bi-trash"></i>
-                <% end %>
-              </li>
-            <% end %>
           </ul>
         </div>
       </div>
     </div>
+  <% end %>
+</div>
 <% end %>
+<div class="show-comment">
+  <% if logged_in? %>
+    <%= bootstrap_form_with model: [@post, @comment],local: true do |f| %>
+      <div class="card">
+        <div class="card-body"> 
+          <%= f.text_field :body, class: 'form-control' %>
+          <%= f.submit 'コメントする', class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="comments">コメント一覧</div>
+    <div id="comments">
+      <% @comments.each do |comment| %>
+        <div class="card" id="comment_<%= comment.id %>">
+          <div class="card-body">
+            <div class="comment-user">
+              <div class="comment-user-name"><%= comment.user.name %></div>
+              <div class="comment-user-body"><%= comment.body %></div>
+              <div class="comment-user-time"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+              <% if current_user %>
+              <div id="current-user-info" data-user-id="<%= current_user.id %>"></div>
+              <% end %>
+              <% if comment.user == current_user %>
+              <%= link_to post_comment_path(@post, comment), class: 'delete-comment-button', data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？', comment_id: comment.id} do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

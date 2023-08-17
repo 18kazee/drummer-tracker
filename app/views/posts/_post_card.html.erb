@@ -18,7 +18,7 @@
             <div id="like_button_<%= post.id %>" >
               <li> <%= render 'posts/like_button', post: post %></li>
             </div>
-            <% if current_user.mine?(post) %>
+            <% if current_user && current_user.mine?(post) %>
               <li class="px-4">
                 <%= link_to edit_post_path(post),data: { turbo_frame: "post_#{post.id}"} do %>
                   <i class="bi bi-pen"></i>
