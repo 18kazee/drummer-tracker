@@ -7,18 +7,30 @@
     <% end %>
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title">
+        <div class="image-container border">
+          <% if @drummer.image_urls.present? %>
+            <%= image_tag @drummer.image_urls.first %>
+          <% else %>
+            <%= image_tag "no-image.png" %>
+          <% end %>
+        </div>
+        <% @drummer.genres.each do |genre| %>
+          <div class="badge bg-info mt-2">
+            <%= genre.name %>
+          </div>
+        <% end %>
+
+        <h2 class="card-title pt-2">
           <%= @drummer.name %>
         </h2>
-        <p class="text-muted">
-          <% genre_names = @drummer.genres.map(&:name).join(', ') %>
-            <%= genre_names %>
-        </p>
-        <p class="card-subtitle mb-2 text-muted">
-          <% artist_names = @drummer.artists.map(&:name).join(', ') %>
-          <%= artist_names %>
-        </p>
-        <p><%= @drummer.profile %></p>
+        <% @drummer.artists.each do |artist| %>
+          <div class="badge bg-secondary">
+            <%= artist.name %>
+          </div>
+        <% end %>
+        <div class="pt-2">
+          <p><%= @drummer.profile %></p>
+        </div>
         <div class="text-end">
           <p>ウィキペディア (Wikipedia): フリー百科事典</p>
         </div>

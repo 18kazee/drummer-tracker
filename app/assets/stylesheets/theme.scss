@@ -405,7 +405,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 h6, .h6 {
@@ -497,10 +497,6 @@ sup {
 a {
   color: #007bff;
   text-decoration: none;
-}
-a:hover {
-  color: #0062cc;
-  text-decoration: underline;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -21819,5 +21815,43 @@ label.required:after {
   width: 100%;
 }
 
+.image-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.image-container {
+  text-align: center;
+  line-height: 115px;
+  width: 120px;
+  height: 120px;
+}
+
+.image-container img {
+  max-width: 120px;
+  max-height: 120px;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.post-image-container {
+  text-align: center;
+  line-height: 75px;
+  width: 80px;
+  height: 80px;
+}
+
+.post-image-container img {
+  max-width: 80px;
+  max-height: 80px;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.post-border {
+  border-bottom-width: 50%;
+}
 /*# sourceMappingURL=theme.css.map */

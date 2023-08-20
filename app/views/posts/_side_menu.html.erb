@@ -1,0 +1,18 @@
+<div class="border-bottom border-3">
+  <h3>おすすめドラマーを投稿</h3>
+  <p class="small">
+    知らない人にもあなたの投稿で知ってもらいませんか？
+    <br>検索をして、結果から投稿することもできます！
+  </p>
+</div>
+<% unless logged_in? %>
+  <p class="small pt-2 pb-1">
+    ログインしてあなたもおすすめしてみませんか？
+    <br>ログインすればドラマーを探すの検索結果から投稿することもできます！
+  </p>
+  <ul class="list-unstyled">
+    <li class="mb-3"><%= link_to t('.login'), login_path, class: 'btn btn-primary' %></li>
+    <li class="mb-3"><%= link_to t('.guest_login'), guest_login_path, class: 'btn btn-success', data: { turbo_method: :post } %></li>
+    <li><%= link_to t('.register'), new_user_path %></li>
+  </ul>
+<% end %>

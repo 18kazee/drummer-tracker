@@ -1,21 +1,42 @@
 <% @drummers.each do |drummer| %>
-  <div class="col">
-    <div class="card h-100 border-warning">
-      <div class="text-muted">
-        <% genre_names = drummer.genres.map(&:name).join(', ') %>
-          <%= genre_names %>
+  <div class="card" style="max-width: 800px;">
+    <div class= "card-header border-0 bg-white">
+    </div>
+    <div class="row g-0">
+      <div class="col-sm-5 image-center"> 
+        <div class="image-container border">
+        <% if drummer.image_urls.present? %>
+          <%= image_tag drummer.image_urls.first %>
+        <% else %>
+          <%= image_tag 'no-image.png' %>
+        <% end %>
+        </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">
-          <%= drummer.name %>
-        </h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          <% artist_names = drummer.artists.map(&:name).join(', ') %>
-            <%= artist_names %>
-        </h6>
-        <h6><%= truncate(drummer.profile, length: 17, omission: '...') %></h6>
-      </div> 
-      <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-light btn-sm", data: { turbo_frame: "modal" } %>
+      <div class="col-sm-7 px-2">
+        <div class="card-body border-start">
+      <% drummer.genres.each do |genre| %>
+        <div class="badge bg-info"> 
+          <%= genre.name %>
+        </div>
+      <% end %>
+
+          <div class="border-bottom">
+          <h5 class="card-title mt-2">
+            <%= drummer.name %>
+          </h5>
+          </div>
+            <% drummer.artists.each do |artist| %>
+            <div class="badge bg-secondary mt-3">
+            <%= artist.name %>
+            </div>
+            <% end %>
+        </div> 
+      </div>
+    </div>
+    <div class="card-footer border-0 bg-white">
+      <div class="text-end">
+        <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-primary btn-sm", data: { turbo_frame: "modal" } %>
+      </div>
     </div>
   </div>
 <% end %>
