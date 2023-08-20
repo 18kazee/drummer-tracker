@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_15_041726) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_19_130802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_041726) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "youtube_videos", default: [], array: true
+    t.string "discogs_id"
+    t.string "image_urls", default: [], array: true
   end
 
   create_table "genres", force: :cascade do |t|

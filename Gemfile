@@ -67,7 +67,9 @@ gem 'bootstrap_form'
 gem 'rspotify'
 
 # sorcery for authentication
-gem "sorcery", "~> 0.16.5"
+gem "sorcery"
+
+gem 'discogs-wrapper', '~> 2.4'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

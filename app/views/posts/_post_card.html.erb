@@ -1,19 +1,15 @@
 <% @posts.each do |post| %>
-  <%= turbo_frame_tag "post_#{post.id}" do %>
-    <a href="/posts/<%= post.id %>" data-turbo-frame="post-show" data-turbo-action="replace">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="mb-0"><%= post.user.name %></h5>
-        <p><%= post.tweet %></p>
-        <div class="card">
-          <h5 class="px-2 pt-2 mb-0"><%= post.drummer.name %></h5>
-          <p class="px-2 text-muted">
-            <% artist_names = post.drummer.artists.map(&:name).join(', ') %>
-            <%= artist_names %>
-          </p>
-          <%= link_to Drummer.human_attribute_name(:drummer_id), modal_path(post.drummer.id), class: "btn btn-success btn-sm", data: { turbo_frame: "modal" } %>
+  <a href="/posts/<%= post.id %>" data-turbo-frame="post-show" data-turbo-action="replace">
+    <%= turbo_frame_tag "post_#{post.id}", data: { turbo_action: :advance } do %>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title border-bottom border-2" style="width:50%;">
+            <h4><%= post.user.name %></h4>
+          </div>
+          <p><%= post.tweet %></p>
+          <%= render 'post_drummer_card', post: post %>
         </div>
-        <div class="card-footer post-icon">
+        <div class="card-footer bg-white border-0">
           <ul class="list-inline d-flex">
             <div id="like_button_<%= post.id %>" >
               <li> <%= render 'posts/like_button', post: post %></li>
@@ -33,7 +29,6 @@
           </ul>
         </div>
       </div>
-    </div>
-    </a>
-  <% end %>
+    <% end %>
+  </a>
 <% end %>

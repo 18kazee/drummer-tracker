@@ -2,7 +2,6 @@ class Choice < ApplicationRecord
   belongs_to :question
   has_many :user_answers, dependent: :destroy
 
-
   def self.select_user_genres(user_answer)
     choice = Choice.find(user_answer.choice_id)
     case choice.content
@@ -37,8 +36,4 @@ class Choice < ApplicationRecord
     # 保存したドラマーのIDを返す
     recommended_drummers.map(&:drummer_id)
   end
-
-
-
-
 end

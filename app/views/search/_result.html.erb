@@ -1,9 +1,10 @@
 <%= turbo_frame_tag 'drummers-list', autoscroll: true, data: { autoscroll_block: "start", turbo_action: "advance" } do %>
+  <div class="container">
   <div class="row">
     <div class="col-lg-5"></div>
-      <div class="col">
+      <div class="col-lg-7">
         <% if params[:q].present? && @drummers.any? %>
-          <div class="row row-cols-1 row-cols-md-3 g-3 pt-2">
+          <div class="row row-cols-1 g-3 pt-2">
               <%= render partial: 'drummers/drummers' %> 
           </div>
           <div class="pt-5 justify-content-center d-flex">
@@ -13,10 +14,9 @@
           <div class="col pt-8 text-center">
             <p><%= t('defaults.message.no_result') %></p>
           </div>
-        <% else %>
-          <div class="col" ></div>
         <% end %>
       </div>
     </div>
+  </div>
   </div>
 <% end %>

@@ -1,0 +1,8 @@
+<%= bootstrap_form_with model: [@post, @comment],local: true do |f| %>
+  <div class="card">
+    <div class="card-body"> 
+      <%= f.text_field :body, class: 'form-control' %>
+      <%= f.submit 'コメントする', class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+<% end %>
