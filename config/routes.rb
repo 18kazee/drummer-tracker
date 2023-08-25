@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post 'resend_activation', to: 'users#resend_activation'
   get 'resend_activation', to: 'users#resend_activation_form', as: :resend_activation_form
 
-  resources :users, only: [:new, :create] do
+  resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
     member do
       get :activate
     end

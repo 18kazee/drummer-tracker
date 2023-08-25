@@ -1,34 +1,25 @@
-<div class="card">
-  <div class="row g-0">
-    <div class="col-sm-3 image-center">
-      <div class="post-image-container border">
-        <% if post.drummer.image_urls.present? %>
-          <%= image_tag post.drummer.image_urls.first %>
-        <% else %>
-          <%= image_tag 'no-image.png' %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-sm-9">
-      <div class="card-body">
-        <div class="border-bottom">
-          <% post.drummer.genres.each do |genre| %>
-            <div class="badge bg-info">
-              <%= genre.name %>
-            </div>
+<%= link_to  modal_path(post.drummer.id), data: { turbo_frame: "modal" } do %>
+  <div class="card">
+    <div class="my-2 ms-2">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <% if post.drummer.image_urls.present? %>
+            <%= image_tag post.drummer.image_urls.first, class: "post-image-container" %>
+          <% else %>
+            <%= image_tag 'no-image.png', class: "post-image-container" %>
           <% end %>
-          <h4 class="px-2 pt-2 mb-0"><%= post.drummer.name %></h4>
-        </div>
-        <% post.drummer.artists.each do |artist| %>
-          <div class="badge bg-secondary mt-2">
-            <%= artist.name %>
+          <div class="ms-2 ps-3 border-start">
+            <h5 class="border-bottom">
+              <%= post.drummer.name %>
+            </h5>
+            <% post.drummer.artists.each do |artist| %>
+              <div class="badge bg-info">
+                <%= artist.name %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card-footer bg-white border-0 text-end">
-    <%= link_to Drummer.human_attribute_name(:drummer_id), modal_path(post.drummer.id), class: "btn btn-primary btn-sm", data: { turbo_frame: "modal" } %>
-  </div>
-</div>
-
+<% end %>

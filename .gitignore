@@ -50,6 +50,7 @@ doc/
 # Ignore precompiled assets for production environment
 /public/assets
 /public/system
+/public/uploads
 
 # Ignore Mac and Linux file system files
 Vim

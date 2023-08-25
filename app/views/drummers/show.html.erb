@@ -1,69 +1,73 @@
-<%= turbo_frame_tag 'drummer' do %>
-  <div class="container">
-    <% if logged_in? %>
-      <div class="text-end pb-3">
-        <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: false } %>
+<section>
+  <div class="container mt-5">
+
+    <%= turbo_frame_tag 'drummer' do %>
+      <div class="card">
+        <div class="card-body">
+          <% if logged_in? %>
+            <div class="text-end pb-3">
+              <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: :false } %>
+            </div>
+          <% end %>
+
+          <div class="image-container border">
+            <% if @drummer.image_urls.present? %>
+              <%= image_tag @drummer.image_urls.first %>
+            <% else %>
+              <%= image_tag "no-image.png" %>
+            <% end %>
+          </div>
+          <% @drummer.genres.each do |genre| %>
+            <div class="badge bg-info mt-2">
+              <%= genre.name %>
+            </div>
+          <% end %>
+
+          <h2 class="card-title pt-2">
+            <%= @drummer.name %>
+          </h2>
+          <% @drummer.artists.each do |artist| %>
+            <div class="badge bg-secondary">
+              <%= artist.name %>
+            </div>
+          <% end %>
+          <div class="pt-2">
+            <p><%= @drummer.profile %></p>
+          </div>
+          <div class="text-end">
+            <p>ウィキペディア (Wikipedia): フリー百科事典</p>
+          </div>
+          <div data-controller="youtube" class="justify-content-center text-center">
+            <div id="video-container">
+              <iframe id="video-iframe" src="https://www.youtube.com/embed/<%= @drummer.youtube_videos.first %>" frameborder="0" allowfullscreen width="350" height="200"></iframe>
+            </div>
+            <div id="thumbnail-container" data-youtube-target="thumbnails">
+              <% @drummer.youtube_videos.each do |video_id| %>
+                <ul class="thumbnail" data-action="click->youtube#changeVideo" data-video-id="<%= video_id %>">
+                  <li> <img src="https://img.youtube.com/vi/<%= video_id %>/0.jpg" alt="Thumbnail"></li>
+                </ul>
+              <% end %>
+              <div class="pt-7"></div>
+            </div>
+          </div>
+          <% @artists.each do |artist| %>
+            <% spotify_artist = RSpotify::Artist.find(artist.spotify_id) %>
+            <% if spotify_artist.present? %>
+              <div class="border-bottom border-5 pt-3 mb-3 w-60">
+                <h4><%= artist.name %><i class="bi bi-spotify px-2"></i></h4>
+              </div>
+              <% album = spotify_artist.albums.first %>
+              <% if album.present? %>
+                <% image = album.images[1] %>
+                <div class="album-img">
+                  <%= link_to image_tag(image["url"]), album.external_urls['spotify'], target: "_blank" %> 
+                </div>
+              <% else %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     <% end %>
-    <div class="card">
-      <div class="card-body">
-        <div class="image-container border">
-          <% if @drummer.image_urls.present? %>
-            <%= image_tag @drummer.image_urls.first %>
-          <% else %>
-            <%= image_tag "no-image.png" %>
-          <% end %>
-        </div>
-        <% @drummer.genres.each do |genre| %>
-          <div class="badge bg-info mt-2">
-            <%= genre.name %>
-          </div>
-        <% end %>
-
-        <h2 class="card-title pt-2">
-          <%= @drummer.name %>
-        </h2>
-        <% @drummer.artists.each do |artist| %>
-          <div class="badge bg-secondary">
-            <%= artist.name %>
-          </div>
-        <% end %>
-        <div class="pt-2">
-          <p><%= @drummer.profile %></p>
-        </div>
-        <div class="text-end">
-          <p>ウィキペディア (Wikipedia): フリー百科事典</p>
-        </div>
-        <div data-controller="youtube" class="justify-content-center text-center">
-          <div id="video-container">
-            <iframe id="video-iframe" src="https://www.youtube.com/embed/<%= @drummer.youtube_videos.first %>" frameborder="0" allowfullscreen width="350" height="200"></iframe>
-          </div>
-          <div id="thumbnail-container" data-youtube-target="thumbnails">
-            <% @drummer.youtube_videos.each do |video_id| %>
-              <ul class="thumbnail" data-action="click->youtube#changeVideo" data-video-id="<%= video_id %>">
-                <li> <img src="https://img.youtube.com/vi/<%= video_id %>/0.jpg" alt="Thumbnail"></li>
-              </ul>
-            <% end %>
-            <div class="pt-7"></div>
-          </div>
-        </div>
-        <% @artists.each do |artist| %>
-          <% spotify_artist = RSpotify::Artist.find(artist.spotify_id) %>
-          <% if spotify_artist.present? %>
-            <div class="border-bottom border-5 pt-3 mb-3 w-60">
-              <h4><%= artist.name %><i class="bi bi-spotify px-2"></i></h4>
-            </div>
-            <% album = spotify_artist.albums.first %>
-            <% if album.present? %>
-              <% image = album.images[1] %>
-              <div class="album-img">
-                <%= link_to image_tag(image["url"]), album.external_urls['spotify'], target: "_blank" %> 
-              </div>
-            <% else %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
   </div>
-<% end %>
+</section>

@@ -1,0 +1,55 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 pt-3">
+        <div class="p-fixed">
+          <%= render partial: 'shared/side_menu' %>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <%= turbo_frame_tag 'user-show' do %>
+          <%= link_to posts_path, data:{ turbo_action: :advance } do %>
+            <div class="pt-3 px-2 d-flex p-fixed b-filter">
+              <i class="bi bi-arrow-left pt-1"></i>
+              <h5 class="px-3">投稿</h5>
+            </div>
+          <% end %>
+          <div class="card container mt-5">
+            <div class=card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center mt-2">
+                  <%= image_tag @user.avatar.url, class: "rounded-circle border me-4", width: "88px", height: "88px" %>
+                </div>
+                <% if current_user == @user %>
+                  <div class="ms-auto">
+                    <%= link_to "編集", edit_user_path(@user), class: "btn btn-outline-secondary", data: { turbo_action: :advance } %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="mt-2">
+                <h1><%= @user.name %></h1>
+                <p>ここにプロフィール文がはいるaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                </p>
+                <div>
+                  <p class="mb-0">登録日：<%= @user.created_at.strftime("%Y年%m月%d日") %></p>
+                </div>
+                <div class="d-flex justify-content-beetween align-items-center mt-3">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <%= link_to '投稿', user_path(@user), class: "btn btn-outline-secondary border-0", data:{ turbo_action: :advance } %>
+                    </div>
+                    <div class="ms-4">
+                      <%= link_to 'いいねした投稿', likes_posts_path(@user), class: "btn btn-outline-secondary border-0", data: { turbo_action: :advance } %>
+                    </div>
+                  </div>
+                </div>  
+                <%= render 'user_post_card', posts: @posts %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

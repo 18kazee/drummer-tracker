@@ -1,0 +1,31 @@
+  <%= turbo_frame_tag "post_#{post.id}" do  %>
+    <div class="card">
+      <div class="card-body">
+        <%= render 'post_card_user', post: post %> 
+        <div class="mt-2">
+          <p><%= post.tweet %></p>
+        </div>
+        <P><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></P>
+        <%= render 'post_drummer_card', post: post %>
+        <div class="post-icon border-top">
+          <ul class="list-inline d-flex px-2 pt-2">
+            <div id="like_button_<%= post.id %>" >
+              <li><%= render 'posts/like_button', post: post %></li>
+            </div>
+            <% if current_user && current_user.mine?(post) %>
+              <li class="px-4">
+                <%= link_to edit_post_path(post), data: { turbo_frame: "post_#{post.id}", turbo_action: :advance } do %>
+                  <i class="bi bi-pen" style="font-size: 1rem;"></i>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
+                  <i class="bi bi-trash" style="font-size: 1rem;"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>

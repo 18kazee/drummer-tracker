@@ -1,27 +1,34 @@
-<%= turbo_frame_tag "post_#{@post.id}" do %>
-  <div class="card">
-    <div class="card-body">
-      <%= bootstrap_form_with model: @post do |f| %>
-        <%= f.text_field :tweet, data: { reset_form_target: "tweetField" },
-                                 class: 'border-warning form-control',
-                                 placeholder: t('defaults.placeholder_tweet') %>
-        <div data-controller="autocomplete" data-autocomplete-url-value="/drummers/autocomplete" role="combobox">
-          <%= f.text_field :drummer_id, data: { autocomplete_target: "input",
-                                                reset_form_target: "drummerField" },
-                                          class: 'border-warning form-control',
-                                          placeholder: t('defaults.placeholder_drummer') , 
-                                          value: @drummer_name %>
-          <%= f.hidden_field :drummer_id, data: { autocomplete_target: "hidden", 
-                                                  reset_form_target: "drummerHiddenField" }, 
-                                                  value: @drummer_id %>
-          <ul class="list-group" data-autocomplete-target="results" data-action="autocomplete#select"></ul>
-        </div>
-        <div class="d-flex justify-content-start mt-3">
-          <%= f.submit t('defaults.update'), class: "btn btn-warning",
-                                   data: { action: "click->reset-form#submitForm" } %>
+<section>
+  <div class="container">
+    <div class="pt-5">
+      <%= turbo_frame_tag "post_#{@post.id}" do %>
+        <div class="card">
+          <div class="card-body">
+            <%= bootstrap_form_with model: @post, data:{ turbo_method: :path, turbo_action: :advanse } do |f| %>
+              <%= f.text_field :tweet, data: { reset_form_target: "tweetField" },
+                                       class: 'border-warning form-control',
+                                       placeholder: t('defaults.placeholder_tweet') %>
+              <div data-controller="autocomplete" data-autocomplete-url-value="/drummers/autocomplete" role="combobox">
+                <%= f.text_field :drummer_id, data: { autocomplete_target: "input",
+                                                      reset_form_target: "drummerField" },
+                                                class: 'border-warning form-control',
+                                                placeholder: t('defaults.placeholder_drummer') , 
+                                                value: @drummer_name %>
+                <%= f.hidden_field :drummer_id, data: { autocomplete_target: "hidden", 
+                                                        reset_form_target: "drummerHiddenField" }, 
+                                                        value: @drummer_id %>
+                <ul class="list-group" data-autocomplete-target="results" data-action="autocomplete#select"></ul>
+              </div>
+              <div class="d-flex justify-content-start mt-3">
+                <%= f.submit t('defaults.update'), class: "btn btn-warning",
+                                                   data: { action: "click->reset-form#submitForm",
+                                                           turbo_action: :advance} %>
+              </div>
+            <% end %>
+            <%= link_to (t"defaults.cancel"), post_path(@post), class: "btn btn-outline-warning mt-3", data: { turbo_action: :advance } %>
+          </div>
         </div>
       <% end %>
-      <%= link_to (t"defaults.cancel"), posts_path, class: "btn btn-outline-warning mt-3" %>
     </div>
   </div>
-<% end %>
+</section>

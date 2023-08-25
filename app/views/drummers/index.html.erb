@@ -1,7 +1,7 @@
 <section>
   <div class="container pt-5">
     <h3 class="pt-2"><%= t('.title') %></h3>
-    <%= turbo_frame_tag "drummers", autoscroll: true, data: { autoscroll_block: "start", turbo_action: "advance" } do %>
+    <%= turbo_frame_tag 'drummers', autoscroll: true, data: { autoscroll_block: "start", turbo_action: "advance" } do %>
       <div class="row row-cols-1 row-cols-md-2 g-3 pt-3">
         <%= render 'drummers' %>
       </div>

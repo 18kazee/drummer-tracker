@@ -23,8 +23,9 @@
           <%= link_to "おすすめ診断", questions_path, class: 'nav-link' %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="nav-link-text">マイページ</span>
+          <a class="nav-link" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%=  image_tag current_user.avatar.url, class: "rounded-circle border", width: "20", height: "20"  %>
+            <span "nav-link-text">マイページ</span>
           </a>
           <div class="dropdown-menu dropdown-components py-3" aria-labelledby="navbarDropdownMenuLink">
             <div class="row">

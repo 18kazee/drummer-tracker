@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
-  skip_before_action :redirect_if_logged_in, only: [:create, :activate]
+  skip_before_action :redirect_if_logged_in, only: [:edit, :show, :update, :create, :posts_user, :activate]
 
   # User Registration
   def new
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params_create)
     # If user is saved successfully than show message
     if @user.save
       @user.send_activation_needed_email
@@ -16,6 +16,30 @@ class UsersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @user = current_user
+  end
+  
+  def show
+    @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params_update)
+      redirect_to user_path(@user), success: 'プロフィールを更新しました。'
+    else
+      puts @user.errors.full_messages
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def posts_user
+    @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def activate
@@ -41,7 +65,11 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :salt)
+  def user_params_create
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :salt, :avatar, :avatar_cache)
+  end
+
+  def user_params_update
+    params.require(:user).permit(:name, :avatar, :avatar_cache)
   end
 end

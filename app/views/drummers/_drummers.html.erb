@@ -14,28 +14,28 @@
       </div>
       <div class="col-sm-7 px-2">
         <div class="card-body border-start">
-      <% drummer.genres.each do |genre| %>
-        <div class="badge bg-info"> 
-          <%= genre.name %>
-        </div>
-      <% end %>
+          <% drummer.genres.each do |genre| %>
+            <div class="badge bg-info"> 
+              <%= genre.name %>
+            </div>
+          <% end %>
 
           <div class="border-bottom">
-          <h5 class="card-title mt-2">
-            <%= drummer.name %>
-          </h5>
+            <h5 class="card-title mt-2">
+              <%= drummer.name %>
+            </h5>
           </div>
-            <% drummer.artists.each do |artist| %>
+          <% drummer.artists.each do |artist| %>
             <div class="badge bg-secondary mt-3">
-            <%= artist.name %>
+              <%= artist.name %>
             </div>
-            <% end %>
+          <% end %>
         </div> 
       </div>
     </div>
     <div class="card-footer border-0 bg-white">
       <div class="text-end">
-        <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-primary btn-sm", data: { turbo_frame: "modal" } %>
+        <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-primary btn-sm card__link", data: { turbo_frame: "modal", turbo_action: :advance } %>
       </div>
     </div>
   </div>
