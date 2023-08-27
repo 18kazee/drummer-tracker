@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
-  skip_before_action :redirect_if_logged_in, only: [:edit, :show, :update, :create, :likes, :activate]
+  skip_before_action :redirect_if_logged_in, only: [:edit, :show, :update, :create, :likes, :favorites,  :activate]
 
   # User Registration
   def new
@@ -43,6 +43,11 @@ class UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     @liked_posts = @user.liked_posts.order(created_at: :desc)
+  end
+
+  def favorites
+    @user = User.find(params[:id])
+    @favorite_drummers = @user.favorite_drummers.order(created_at: :desc)
   end
 
   def activate

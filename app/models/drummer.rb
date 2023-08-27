@@ -4,7 +4,7 @@ class Drummer < ApplicationRecord
   validates :name, presence: true
   validates :country, presence: true
 
-  enum country: {japan: 0, abroad: 1}
+  enum country_state: {japan: 0, abroad: 1}
 
   has_many :drummer_genres, dependent: :destroy
   has_many :genres, through: :drummer_genres
@@ -14,6 +14,7 @@ class Drummer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :recommended_drummersdrummers, dependent: :destroy
   has_many :recommended_drummers, through: :recommended_drummersdrummers
+  has_many :favorites, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name country]

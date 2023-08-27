@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post   # ユーザーがいいねした投稿を取得
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_drummers, through: :favorites, source: :drummer
 
   def send_activation_needed_email
     return if guest? || persisted? # ゲストユーザーでない場合かつ未保存の場合にメールを送信
@@ -46,5 +48,17 @@ class User < ApplicationRecord
   # いいねしているかどうかの判定メソッド
   def like?(post)
     liked_posts.include?(post)
+  end
+
+  def favorite(drummer)
+    favorite_drummers << drummer
+  end
+
+  def unfavorite(drummer)
+    favorite_drummers.delete(drummer)
+  end
+
+  def favorite?(drummer)
+    favorite_drummers.include?(drummer)
   end
 end

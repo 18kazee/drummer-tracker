@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     member do
       get :activate
       get :likes
+      get :favorites
     end
   end
   resources :account_settings, only: [:show, :edit, :update] do
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   end
 
   resources :drummers, only: [:index, :show]
+  resources :favorites, only: [:create, :destroy]
   resources :questions, only: [:index, :show]
   resources :user_answers, only: [:create]
   resources :posts do
