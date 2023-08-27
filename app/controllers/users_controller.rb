@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
-  skip_before_action :redirect_if_logged_in, only: [:edit, :show, :update, :create, :posts_user, :activate]
+  skip_before_action :redirect_if_logged_in, only: [:edit, :show, :update, :create, :likes, :activate]
 
   # User Registration
   def new
@@ -30,16 +30,19 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params_update)
-      redirect_to user_path(@user), success: 'プロフィールを更新しました。'
+      flash[:success] = 'プロフィールを更新しました。'
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @user }
+      end
     else
-      puts @user.errors.full_messages
       render :edit, status: :unprocessable_entity
     end
   end
 
-  def posts_user
+  def likes
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc)
+    @liked_posts = @user.liked_posts.order(created_at: :desc)
   end
 
   def activate
@@ -59,7 +62,7 @@ class UsersController < ApplicationController
       # activation_stateが'active'でない場合のみ再送信
       user.resend_activation_email
     end
-    flash[:success] = '確認メールを再送信しました。'
+    flash[:success] = '確認メールを送信しました。'
     redirect_to new_user_path
   end
 
@@ -70,6 +73,6 @@ class UsersController < ApplicationController
   end
 
   def user_params_update
-    params.require(:user).permit(:name, :avatar, :avatar_cache)
+    params.require(:user).permit(:name, :avatar, :avatar_cache, :profile)
   end
 end

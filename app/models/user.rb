@@ -4,10 +4,11 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   validates :name, presence: true, length: { maximum: 20 }
-  validates :email, presence: true, uniqueness: true, on: :create
+  validates :email, presence: true, uniqueness: true, on: [:create, :account_settings_update]
   validates :password, presence: true, on: :create
   validates :password, length: { minimum: 5 }, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, on: :create
+  validates :profile, length: { maximum: 200 }, on: :update
 
   has_many :posts, dependent: :destroy
   has_many :user_answers, dependent: :destroy

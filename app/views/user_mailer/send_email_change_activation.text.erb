@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <div>
+    <p><%= @user.name %>様</p>
+    <hr>
+    <p>メールアドレスの変更を受け付けました。</p>
+    <hr>
+    <p>メールアドレス変更の確認をお願いいたします。</p>
+    <p>以下のリンクをクリックして、新しいメールアドレスを確認してください。</p>
+    <p><%= link_to "メールアドレスの変更を確認する", activate_email_change_url(token: @token) %></p>
+    <hr>
+    <p>※このメールに心当たりがない場合は、お手数ですが破棄してください。</p>
+  </div>
+</body>
+</html>

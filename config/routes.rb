@@ -20,20 +20,30 @@ Rails.application.routes.draw do
   post 'resend_activation', to: 'users#resend_activation'
   get 'resend_activation', to: 'users#resend_activation_form', as: :resend_activation_form
 
+  get '/activate_email_change', to: 'account_settings#activate_email_change', as: 'activate_email_change'
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
     member do
       get :activate
+      get :likes
     end
   end
+  resources :account_settings, only: [:show, :edit, :update] do
+    collection do
+      get :password_confirmation
+      post :check_password
+      get :edit_password
+      post :send_password_reset_link
+      get :edit_email
+      post :update_email
+    end
+  end
+
   resources :drummers, only: [:index, :show]
   resources :questions, only: [:index, :show]
   resources :user_answers, only: [:create]
   resources :posts do
     resources :comments, only: [:new, :create, :destroy]
     resources :likes, only: [:create, :destroy]
-    collection do
-      get :likes
-    end
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

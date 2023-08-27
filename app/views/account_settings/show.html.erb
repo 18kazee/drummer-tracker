@@ -1,0 +1,40 @@
+<section>
+  <div class="container">
+    <div class="pt-5">
+
+      <div class="row">
+        <div class="col-lg-3">
+          <%= render 'side_menu' %>
+        </div>
+        <div class="col-lg-9">
+          <div class="container pt-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="border-bottom">
+                  <h4>会員情報</h4>
+                </div>
+                <table class="table">
+                  <tr>
+                    <td>名前</td>
+                    <td><%= @user.name %></td>
+
+                  </tr>
+                  <tr>
+                    <td>メールアドレス</td>
+                    <td><%= @user.email %></td>
+                    <td><%= link_to '編集', edit_email_account_settings_path %></td>
+                  </tr>
+                  <tr>
+                    <td>パスワード</td>
+                    <td>●●●●●●●●●●●●●●●●</td>
+                    <td><%= link_to '編集', edit_password_account_settings_path %></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

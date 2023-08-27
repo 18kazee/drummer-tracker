@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   skip_before_action :redirect_if_logged_in
   before_action :set_post, only: [:edit, :update, :destroy]
-  before_action :set_posts, only: [:index, :create, :update ,:destroy]
+  before_action :set_posts, only: [:index, :create, :update, :destroy]
 
   def index
     @drummer_id = params[:drummer_id]
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
       end
     else
       render :edit, status: :unprocessable_entity
-  end
+    end
   end
 
   def destroy
@@ -55,10 +55,6 @@ class PostsController < ApplicationController
       format.turbo_stream
       format.html { redirect_to posts_path }
     end
-  end
-
-  def likes
-    @liked_posts = current_user.liked_posts
   end
 
   private

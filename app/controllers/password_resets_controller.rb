@@ -1,13 +1,14 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :require_login, only: %i[create edit update new]
+  include PasswordResetHelper
+  skip_before_action :redirect_if_logged_in
+  skip_before_action :require_login, only: %i[create edit new]
   before_action :set_token, only: %i[edit update]
   before_action :set_user, only: %i[edit update]
 
   def new; end
 
   def create
-    @user = User.find_by(email: params[:email])
-    @user&.deliver_reset_password_instructions!
+    send_reset_link_to_email(params[:email])
     redirect_to login_path, success: t('.success')
   end
 
@@ -20,7 +21,8 @@ class PasswordResetsController < ApplicationController
 
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
-      redirect_to login_path, success: t('.success')
+      flash[:success] = t('.success')
+      redirect_to login_path
     else
       render :edit, status: :unprocessable_entity
     end

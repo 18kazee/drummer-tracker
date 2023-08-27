@@ -1,10 +1,17 @@
-<%= link_to user_path(post.user), data: { turbo_frame: 'user-show', turbo_action: :advance } do %>
-<div class="user-info">
-  <%= image_tag post.user.avatar.url, class: "rounded-circle border", width: "40px", height: "40px" %>
-  <div class="card-title">
-    <%= link_to user_path(post.user), data: { turbo: :false } do %>
-    <h5 class="mb-0 ps-1"><%= post.user.name %></h5>
+<% if logged_in? %>
+  <%= link_to user_path(post.user), data: { turbo_frame: 'user-show', turbo_action: :advance } do %>
+    <div class="user-info">
+      <%= image_tag post.user.avatar.url, class: "rounded-circle border", width: "40px", height: "40px" %>
+      <div class="card-title">
+          <h5 class="mb-0 ps-1"><%= post.user.name %></h5>
+      </div>
+    </div>
   <% end %>
+<% else %>
+  <div class="user-info">
+    <%= image_tag post.user.avatar.url, class: "rounded-circle border", width: "40px", height: "40px" %>
+    <div class="card-title">
+        <h5 class="mb-0 ps-1"><%= post.user.name %></h5>
+    </div>
   </div>
-</div>
 <% end %>

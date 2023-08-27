@@ -1,0 +1,13 @@
+<div class="container">
+  <h4>アカウント設定</h4>
+  <div class="card">
+    <div class="card-body">
+      <%= link_to 'アカウント設定', account_setting_path(current_user), class: 'card-link' %>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <%= link_to 'Profile', user_path(current_user), class: 'card-link' %>
+    </div>
+  </div>
+</div>

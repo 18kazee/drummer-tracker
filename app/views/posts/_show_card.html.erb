@@ -14,7 +14,7 @@
             </div>
             <% if current_user && current_user.mine?(post) %>
               <li class="px-4">
-                <%= link_to edit_post_path(post), data: { turbo_frame: "post_#{post.id}", turbo_action: :advance } do %>
+                <%= link_to edit_post_path(post), data: { turbo_frame: "post_#{post.id}" } do %>
                   <i class="bi bi-pen" style="font-size: 1rem;"></i>
                 <% end %>
               </li>

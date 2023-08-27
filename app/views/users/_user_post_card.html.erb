@@ -1,9 +1,9 @@
 <% posts.each do |post| %>
-  <%= turbo_frame_tag "post_#{post.id}" do %>
-
+  <%= turbo_frame_tag "user_#{post.id}" do %>
       <div class="card">
         <div class="card-body">
           <%= render partial: 'posts/post_card_user', locals: { post: post } %>
+
           <div class="ps-5">
             <p><%= post.tweet %></p>
             <%= render partial: 'posts/post_drummer_card', locals: { post: post } %>
@@ -12,18 +12,9 @@
             <div id="like_button_<%= post.id %>" >
               <li> <%= render 'posts/like_button', post: post %></li>
             </div>
-            <% if current_user && current_user.mine?(post) %>
-              <li class="px-4">
-                <%= link_to edit_post_path(post), data: { turbo_frame: "post_#{post.id}", turbo_action: :advance} do %>
-                  <i class="bi bi-pen" style="font-size: 1rem;"></i>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to post_path(post), data: { turbo_method: :delete,  turbo_confirm: (t'defaults.message.delete_confirm') } do %>
-                  <i class="bi bi-trash" style="font-size: 1rem;"></i>
-                <% end %>
-              </li>
-            <% end %>
+            <div class="ms-auto">
+              <li><%= link_to '詳細', post_path(post),class: 'btn btn-outline-info btn-sm', data: { turbo_frame: 'post-show' } %></li>
+            </div>
           </ul>
         </div>
       </div>

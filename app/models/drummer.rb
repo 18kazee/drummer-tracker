@@ -25,20 +25,28 @@ class Drummer < ApplicationRecord
 
   def self.update_discogs_id
     drummers = Drummer.all
+
     drummers.each_slice(25) do |batch|
+      auth_wrapper = Discogs::Wrapper.new("My awesome web app", user_token: ENV['DISCOGS_USER_TOKEN'])
+
       batch.each do |drummer|
-        auth_wrapper = Discogs::Wrapper.new("My awesome web app", user_token: ENV['DISCOGS_USER_TOKEN'])
-        search = auth_wrapper.search(drummer.name, per_page: 10, type: :artist)
-        if search.results.present? && search.results[0].id
-          discogs_id = search.results[0].id
-          drummer.update(discogs_id:)
-          Rails.logger.debug "success update discogs_id #{drummer.name}"
-        else
-          drummer.update(discogs_id: nil)
-          Rails.logger.debug "failed update discogs_id #{drummer.name}"
-        end
+        update_drummer_discogs_id(drummer, auth_wrapper)
       end
+
       sleep(60)
+    end
+  end
+
+  def self.update_drummer_discogs_id(drummer, auth_wrapper)
+    search = auth_wrapper.search(drummer.name, per_page: 10, type: :artist)
+
+    if search.results.present? && search.results[0].id
+      discogs_id = search.results[0].id
+      drummer.update(discogs_id:)
+      Rails.logger.debug "Success: Updated discogs_id for #{drummer.name}"
+    else
+      drummer.update(discogs_id: nil)
+      Rails.logger.debug "Failed: Unable to update discogs_id for #{drummer.name}"
     end
   end
 end

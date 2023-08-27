@@ -17,10 +17,8 @@
                 </div>
               <% end %>
               <%= turbo_frame_tag "post_delete_#{@post.id}" do %>
-                <div id="posts" class="posts-card pt-2">
-                  <div class="pt-5">
+                <div id="posts" class="posts-card pt-5">
                   <%= render 'show_card', post: @post %> 
-                  </div>
                 </div>
               <div class="show-comment">
                 <% if logged_in? %>
