@@ -20,4 +20,11 @@ class UserMailer < ApplicationMailer
    @url  = login_url
    mail(to: user.email, subject: 'DrummerTrackeアカウントが認証されました')
   end
+
+  def send_email_change_activation(user, token, new_email)
+    @user = user
+    @token = token
+    @new_email = new_email
+    mail(to: user.new_email, subject: "メールアドレス変更の確認")
+  end
 end

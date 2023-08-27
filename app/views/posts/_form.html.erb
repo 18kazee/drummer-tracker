@@ -2,7 +2,7 @@
   <div class="card-body">
     <div data-controller="reset-form ">
       <div class="autocomplete-dropdown pt-2">
-        <%= bootstrap_form_with model: @post do |f| %>
+        <%= bootstrap_form_with model: @post, data: { turbo_action: :advance } do |f| %>
           <%= f.text_field :tweet, data: { reset_form_target: "tweetField" },
                                    class: 'border-warning form-control',
                                    placeholder: t('defaults.placeholder_tweet') %>

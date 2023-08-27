@@ -1,0 +1,2 @@
+<%= turbo_stream.update "user_update", partial: 'users/user', locals: { user: @user } %>
+<%= turbo_stream.update 'flash', partial: 'shared/flash_message', locals: { flash: flash } %>

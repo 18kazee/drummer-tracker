@@ -1,34 +1,28 @@
 <% @posts.each do |post| %>
-  <a href="/posts/<%= post.id %>" data-turbo-frame="post-show" data-turbo-action="replace">
-    <%= turbo_frame_tag "post_#{post.id}", data: { turbo_action: :advance } do %>
+  <%= turbo_frame_tag "post_#{post.id}", data: {turbo_action: :advance} do %>
       <div class="card">
         <div class="card-body">
-          <div class="card-title border-bottom border-2" style="width:50%;">
-            <h4><%= post.user.name %></h4>
-          </div>
-          <p><%= post.tweet %></p>
-          <%= render 'post_drummer_card', post: post %>
-        </div>
-        <div class="card-footer bg-white border-0">
-          <ul class="list-inline d-flex">
+          <% if logged_in? %>
+            <%= link_to user_path(post.user) do %>
+              <%= render 'post_card_user', post: post %>
+            <% end %>
+          <% else %>
+            <%= render 'post_card_user', post: post %>
+          <% end %>
+                      <div class="ps-5">
+              <p><%= post.tweet %></p>
+              <%= render 'post_drummer_card', post: post %>
+            </div>
+          <ul class="list-inline d-flex ps-5 mb-0 pt-3">
             <div id="like_button_<%= post.id %>" >
               <li> <%= render 'posts/like_button', post: post %></li>
             </div>
-            <% if current_user && current_user.mine?(post) %>
-              <li class="px-4">
-                <%= link_to edit_post_path(post),data: { turbo_frame: "post_#{post.id}"} do %>
-                  <i class="bi bi-pen"></i>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to post_path(post), data: { turbo_method: :delete,  turbo_confirm: (t'defaults.message.delete_confirm') } do %>
-                  <i class="bi bi-trash"></i>
-                <% end %>
-              </li>
-            <% end %>
+          <div class="ms-auto">
+            <li><%= link_to '詳細', post_path(post),class: 'btn btn-outline-info btn-sm', data: { turbo_frame: 'post-show' } %></li>
+          </div>
+
           </ul>
         </div>
       </div>
-    <% end %>
-  </a>
+  <% end %>
 <% end %>

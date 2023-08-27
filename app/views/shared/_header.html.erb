@@ -23,16 +23,19 @@
           <%= link_to "おすすめ診断", questions_path, class: 'nav-link' %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="nav-link-text">マイページ</span>
+          <a class="nav-link" id="navbarDropdownMenuLink3" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%=  image_tag current_user.avatar.url, class: "rounded-circle border", width: "20", height: "20"  %>
+            <span "nav-link-text">マイページ</span>
           </a>
           <div class="dropdown-menu dropdown-components py-3" aria-labelledby="navbarDropdownMenuLink">
             <div class="row">
               <div class="col-6 col-md-3 px-2">
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <%= link_to t('defaults.logout'), logout_path, class: "nav-link fw-medium px-1 py-2",
-                                                                   method: :deletve,
+                    <%= link_to '設定', account_setting_path(current_user), class: 'nav-link fw-medium' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to t('defaults.logout'), logout_path, class: "nav-link fw-medium", 
                                                                    data: { 'turbo-method': :delete, turbo_confirm: t('defaults.message.logout_confirm')
                                                                    } %>
                   </li>

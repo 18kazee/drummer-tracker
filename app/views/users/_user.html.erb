@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "user_update" do %>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center mt-2">
+      <%= image_tag @user.avatar.url, class: "rounded-circle border me-4", width: "88px", height: "88px" %>
+    </div>
+    <% if current_user == @user %>
+      <div class="ms-auto">
+        <%= link_to "編集", edit_user_path(@user), class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mt-2">
+    <h1><%= @user.name %></h1>
+    <% if @user.profile.present? %>
+      <p> <%= @user.profile %> </p>
+    <% else %>
+      <p>プロフィールが登録されていません。</p>
+    <% end %>
+  </div>
+<% end %>

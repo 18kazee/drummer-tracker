@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'like_count' do %>
-<%= link_to post_like_path(post_id: post.id, id: current_user.likes.find_by(post_id: post.id)), data: { turbo_method: :delete } do %>
-  <i class="bi bi-heart-fill text-danger"></i><%= post.likes.count %>
-<% end %>
+  <%= link_to post_like_path(post_id: post.id, id: current_user.likes.find_by(post_id: post.id)), data: { turbo_method: :delete } do %>
+    <i class="bi bi-heart-fill text-danger"style="font-size: 1rem;"></i><%= post.likes.count %>
+  <% end %>
 <% end %>

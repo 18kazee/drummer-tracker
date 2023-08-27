@@ -4,50 +4,32 @@
       <div class="row">
         <div class="col-lg-6 pt-3">
           <div class="p-fixed">
-            <%= render 'side_menu' %>
+            <%= render 'shared/side_menu' %>
           </div>
         </div>
         <div class="col-lg-6 justify-content-center">
-        <%= link_to posts_path do %>
-        <div class="pt-3 px-2 d-flex p-fixed b-filter">
-          <i class="bi bi-arrow-left pt-1"></i>
-          <h5 class="px-3">投稿</h5>
-        </div>
-      <% end %>
 
-      <%= turbo_frame_tag "post_#{@post.id}" do  %>
-        <div class="pt-5">
-          <div class="card">
-            <div class="card-body">
-              <div class="border-bottom border-2" style="width:50%;">
-                <h4 class="mb-0"><%= @post.user.name %></h4>
+          <%= turbo_frame_tag 'user-show' do %>
+              <%= link_to posts_path, data: { turbo_action: :advance } do %>
+                <div class="pt-3 px-2 d-flex p-fixed b-filter">
+                  <i class="bi bi-arrow-left pt-1"></i>
+                  <h5 class="px-3">投稿</h5>
+                </div>
+              <% end %>
+              <%= turbo_frame_tag "post_delete_#{@post.id}" do %>
+                <div id="posts" class="posts-card pt-5">
+                  <%= render 'show_card', post: @post %> 
+                </div>
+              <div class="show-comment">
+                <% if logged_in? %>
+                  <%= render 'comments/form' %>
+                <% end %>
+                <%= render 'comments/comment' %>
               </div>
-              <div class="mt-2">
-                <p><%= @post.tweet %></p>
-              </div>
-              <P><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></P>
-            
-              <%= render 'post_drummer_card', post: @post %>
-              
-              <div class="post-icon border-top">
-                <ul class="list-inline d-flex px-2 pt-2">
-                  <div id="like_button_<%= @post.id %>" >
-                    <li><%= render 'posts/like_button', post: @post %></li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </div>
-      <% end %>
-    </div>
-    <% end %>
-    <div class="show-comment">
-      <% if logged_in? %>
-        <%= render 'comments/form' %>
-      <% end %>
-      <%= render 'comments/comment' %>
-    </div>
-  </div>
+              <% end %>
+          <% end %>
+        </div>
       </div>
-</div>
+    <% end %>
+  </div>
 </section>

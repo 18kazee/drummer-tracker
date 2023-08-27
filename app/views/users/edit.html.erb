@@ -1,0 +1,35 @@
+<section>
+  <div class="pt-5">
+    <div class="container">
+      <%= turbo_frame_tag 'user-show' do %> 
+        <%= turbo_frame_tag 'user_update' do %>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center mt-2">
+              <%= image_tag @user.avatar.url, class: "rounded-circle border me-4", width: "88px", height: "88px" %>
+            </div>
+            <div class="ms-auto">
+              <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary', data: { turbo_action: :advance } %>
+            </div>
+          </div>
+          <%= form_with model: @user, url: user_path(@user), data: {turbo_method: :patch, turbo_action: :advance } do |f| %>
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :profile %>
+              <%= f.text_area :profile, class: 'form-control' %>
+            <div class="form-group">
+              <%= f.label :avatar %>
+              <%= f.file_field :avatar, class: 'form-control' %>
+              <%= f.hidden_field :avatar_cache %>
+            </div>
+            <div class="mb-3">
+            <%= f.submit class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -495,7 +495,6 @@ sup {
 }
 
 a {
-  color: #007bff;
   text-decoration: none;
 }
 
@@ -8108,7 +8107,6 @@ textarea.form-control-lg {
   -webkit-box-align: center !important;
   -ms-flex-align: center !important;
   align-items: center !important;
-  padding-top: 70px;
 }
 
 .align-items-baseline {
@@ -21838,20 +21836,39 @@ label.required:after {
 
 .post-image-container {
   text-align: center;
-  line-height: 75px;
-  width: 80px;
-  height: 80px;
-}
-
-.post-image-container img {
-  max-width: 80px;
-  max-height: 80px;
-  display: inline-block;
-  margin: 0 auto;
-  position: relative;
+  line-height: 5px;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .post-border {
   border-bottom-width: 50%;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info:hover {
+  text-decoration: underline;
+}
+
+.user-info .card-title {
+  margin-bottom: 0;
+  margin-left: 11px;
+}
+
+.card__link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: auto;
+  content: "";
+  background-color: transparent;
 }
 /*# sourceMappingURL=theme.css.map */

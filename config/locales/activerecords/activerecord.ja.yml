@@ -12,6 +12,8 @@ ja:
         password_confirmation: パスワード（確認用）
         created_at: 登録日時
         updated_at: 更新日時
+        avatar: 写真
+        profile: プロフィール
       drummer:
         drummer_id: ドラマー
       post:
