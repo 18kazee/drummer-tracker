@@ -20,4 +20,8 @@ class DrummersController < ApplicationController
     @drummers = Drummer.where("name ILIKE ?", "%#{query}%")
     render partial: 'drummers/autocomplete_results', locals: { drummers: @drummers }
   end
+
+  def favorites
+    @favorite_drummers = current_user.favorite_drummers.includes(:user, :artists, :genres).order(created_at: :desc).page(params[:page])
+  end
 end

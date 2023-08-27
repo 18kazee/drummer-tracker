@@ -5,7 +5,7 @@
       <div class="col-lg-7">
         <% if params[:q].present? && @drummers.any? %>
           <div class="row row-cols-1 g-3 pt-2">
-              <%= render partial: 'drummers/drummers' %> 
+              <%= render partial: 'drummers/drummers', locals: { drummers: @drummers } %>  
           </div>
           <div class="pt-5 justify-content-center d-flex">
             <%= paginate @drummers, theme: 'bootstrap-5' %>

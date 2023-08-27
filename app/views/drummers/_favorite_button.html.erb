@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "favorite_#{drummer.id}" do %>
+  <% if current_user && current_user.favorite?(drummer) %>
+    <%= render 'drummers/unfavorite', { drummer: drummer } %>
+  <% else %>
+    <%= render 'drummers/favorite', { drummer: drummer } %>
+  <% end %>
+<% end %>

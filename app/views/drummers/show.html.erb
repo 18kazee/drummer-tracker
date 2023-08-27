@@ -5,8 +5,10 @@
       <div class="card">
         <div class="card-body">
           <% if logged_in? %>
-            <div class="text-end pb-3">
-              <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: :false } %>
+            <div class="d-flex align-items-center mb-2">
+              <div class="ms-auto">
+                <%= link_to "おすすめ投稿する", posts_path(drummer_name: @drummer.name, drummer_id: @drummer.id), class: "btn btn-primary", data: { turbo: :false } %>
+              </div>
             </div>
           <% end %>
 

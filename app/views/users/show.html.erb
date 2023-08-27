@@ -26,8 +26,12 @@
                     <%= link_to '投稿', user_path(@user), class: "btn btn-outline-secondary border-0", data:{ turbo_action: :advance } %>
                   </div>
                   <div class="ms-4">
-                    <%= link_to 'いいねした投稿', likes_user_path(@user), class: "btn btn-outline-secondary border-0", data: { turbo_action: :advance } %>
+                    <%= link_to 'いいね', likes_user_path(@user), class: "btn btn-outline-secondary border-0", data: { turbo_action: :advance } %>
                   </div>
+                  <div class="ms-4">
+                    <%= link_to 'お気に入り', favorites_user_path(@user), class: "btn btn-outline-secondary border-0", data: { turbo_action: :advance } %>
+                  </div>
+
                 </div>
               </div>  
               <%= turbo_frame_tag "user_likes_#{@user.id}" do %>
