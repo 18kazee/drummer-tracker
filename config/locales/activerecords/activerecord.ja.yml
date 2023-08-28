@@ -19,3 +19,8 @@ ja:
       post:
         tweet: 投稿内容
         drummer: ドラマー
+  enums:
+    user:
+      role:
+        general: '一般'
+        admin: '管理者'

@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-  skip_before_action :redirect_if_logged_in
 
   def create
     @drummer = Drummer.find(params[:drummer_id])

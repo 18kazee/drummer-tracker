@@ -1,6 +1,5 @@
 class DrummersController < ApplicationController
   skip_before_action :require_login, only: [:index, :show, :modal, :autocomplete]
-  skip_before_action :redirect_if_logged_in
 
   def index
     @drummers = Drummer.includes(:artists, :genres).order(:name).page(params[:page])
