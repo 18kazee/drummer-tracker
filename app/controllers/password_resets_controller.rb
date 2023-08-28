@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController
   include PasswordResetHelper
-  skip_before_action :redirect_if_logged_in
+  
   skip_before_action :require_login, only: %i[create edit new]
   before_action :set_token, only: %i[edit update]
   before_action :set_user, only: %i[edit update]

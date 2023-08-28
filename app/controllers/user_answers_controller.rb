@@ -1,5 +1,4 @@
 class UserAnswersController < ApplicationController
-  skip_before_action :redirect_if_logged_in, only: [:create]
 
   def create
     @question = Question.find(params[:user_answer][:question_id])

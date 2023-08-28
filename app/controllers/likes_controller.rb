@@ -1,6 +1,5 @@
 class LikesController < ApplicationController
   skip_before_action :require_login
-  skip_before_action :redirect_if_logged_in
   before_action :set_post, only: [:create, :destroy]
 
   def create

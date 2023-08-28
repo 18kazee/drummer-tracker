@@ -19,6 +19,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_drummers, through: :favorites, source: :drummer
 
+  enum role: { general: 0, admin: 1 }
+
   def send_activation_needed_email
     return if guest? || persisted? # ゲストユーザーでない場合かつ未保存の場合にメールを送信
 

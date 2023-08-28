@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
-  skip_before_action :redirect_if_logged_in, only: [:edit, :show, :update, :create, :likes, :favorites,  :activate]
 
   # User Registration
   def new
+    if logged_in?
+      redirect_to root_path
+    end
     @user = User.new
   end
 

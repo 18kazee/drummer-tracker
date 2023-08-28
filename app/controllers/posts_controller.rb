@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  skip_before_action :redirect_if_logged_in
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_posts, only: [:index, :create, :update, :destroy]
 

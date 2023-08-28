@@ -1,8 +1,11 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :guest_login] 
-  skip_before_action :redirect_if_logged_in, only: [:destroy, :guest_login]
 
-  def new; end
+  def new
+    if logged_in?
+      redirect_to root_path
+    end
+  end
 
   def create
     if login(params[:email], params[:password])

@@ -2,7 +2,6 @@ class AccountSettingsController < ApplicationController
   include PasswordResetHelper
 
   skip_before_action :require_login, only: [:edit_password, :check_password]
-  skip_before_action :redirect_if_logged_in
 
   def show
     @user = current_user
