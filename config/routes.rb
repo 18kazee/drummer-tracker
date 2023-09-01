@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'rooms/show'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount ActionCable.server => '/cable'
   get 'password_resets/create'
   get 'password_resets/edit'
   get 'password_resets/update'
@@ -39,6 +41,9 @@ Rails.application.routes.draw do
       post :update_email
     end
   end
+  resources :rooms, only: [:show] do
+    resources :messages, only: [:create]
+  end
 
   resources :drummers, only: [:index, :show]
   resources :favorites, only: [:create, :destroy]
@@ -47,6 +52,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:new, :create, :destroy]
     resources :likes, only: [:create, :destroy]
+    member do
+      get 'create_room_and_enter', to: 'rooms#create_room_and_enter'
+    end
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

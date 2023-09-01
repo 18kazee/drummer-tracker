@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   def create
     @drummer = Drummer.find(params[:drummer_id])
     current_user.favorite(@drummer)

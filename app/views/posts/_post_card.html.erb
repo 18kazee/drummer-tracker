@@ -9,10 +9,10 @@
           <% else %>
             <%= render 'post_card_user', post: post %>
           <% end %>
-                      <div class="ps-5">
-              <p><%= post.tweet %></p>
-              <%= render 'post_drummer_card', post: post %>
-            </div>
+          <div class="ps-5">
+            <p><%= post.tweet %></p>
+            <%= render 'post_drummer_card', post: post %>   
+          </div>
           <ul class="list-inline d-flex ps-5 mb-0 pt-3">
             <div id="like_button_<%= post.id %>" >
               <li> <%= render 'posts/like_button', post: post %></li>
@@ -20,7 +20,6 @@
           <div class="ms-auto">
             <li><%= link_to '詳細', post_path(post),class: 'btn btn-outline-info btn-sm', data: { turbo_frame: 'post-show' } %></li>
           </div>
-
           </ul>
         </div>
       </div>

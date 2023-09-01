@@ -2,9 +2,10 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :guest_login] 
 
   def new
-    if logged_in?
-      redirect_to root_path
-    end
+    return unless logged_in?
+
+    redirect_to root_path
+    
   end
 
   def create

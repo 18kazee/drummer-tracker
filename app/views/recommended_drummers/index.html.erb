@@ -10,7 +10,7 @@
       <h3>あなたにおすすめのドラマー3選</h3>
     </div>
     <div class= "pt-4">
-      <%= render partial: "drummers/drummers" %>
+      <%= render partial: "drummers/drummers",locals: { drummers: @drummers } %>
     </div>
     <div class="pt-4 text-start">
       <%= link_to "初めから診断する", question_path(1), class: "btn btn-primary btn-sm" %>

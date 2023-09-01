@@ -1,5 +1,4 @@
 class UserAnswersController < ApplicationController
-
   def create
     @question = Question.find(params[:user_answer][:question_id])
     @choices = @question.choices

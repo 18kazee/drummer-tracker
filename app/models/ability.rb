@@ -8,7 +8,8 @@ class Ability
     #
     #   return unless user.present?
     #   can :read, :all
-    return unless user && user&.admin?
+    return unless user&.admin?
+
     can :access, :rails_admin
     can :manage, :all
     #

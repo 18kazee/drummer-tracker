@@ -2,7 +2,7 @@ require 'csv'
 
 namespace :import_artist do
   desc 'Import drummers from CSV'
-  task drummers: :environment do
+  task artists: :environment do
     csv_file_path = 'db/csv/artists.csv'  # CSVファイルのパスを指定してください
 
     CSV.foreach(csv_file_path, headers: true) do |row|

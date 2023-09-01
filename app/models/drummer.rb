@@ -4,7 +4,7 @@ class Drummer < ApplicationRecord
   validates :name, presence: true
   validates :country, presence: true
 
-  enum country_state: {japan: 0, abroad: 1}
+  enum country: {japan: 0, abroad: 1}
 
   has_many :drummer_genres, dependent: :destroy
   has_many :genres, through: :drummer_genres

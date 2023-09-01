@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_drummers, through: :favorites, source: :drummer
+  has_many :messages, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :rooms, through: :user_rooms
 
   enum role: { general: 0, admin: 1 }
 

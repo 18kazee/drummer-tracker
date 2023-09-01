@@ -1,0 +1,3 @@
+<div class="<%= message.user == current_user ? 'my-message' : 'other-message' %> message">
+  <%= message.user.name %>: <%= message.content %>
+</div>

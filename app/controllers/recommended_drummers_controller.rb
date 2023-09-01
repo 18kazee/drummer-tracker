@@ -1,5 +1,4 @@
 class RecommendedDrummersController < ApplicationController
-
   def index
     filter_drummers
     select_and_manage_drummer
@@ -25,6 +24,7 @@ class RecommendedDrummersController < ApplicationController
 
     # ジャンルの回答で得たドラマーの中から、選択した洋楽か邦楽かでドラマーを絞り込む
     @filtered_drummers = Choice.filter_drummers_by_country(all_drummers, choice.content)
+    Rails.logger.debug "filterd drummers count: #{@filtered_drummers.count}"
   end
 
   def select_and_manage_drummer
@@ -32,7 +32,7 @@ class RecommendedDrummersController < ApplicationController
     selected_drummer_ids = session[:selected_drummer_ids] || []
 
     # 前回のジャンル回答と異なる場合に新しいドラマーを選択し、セッションに保存する
-    if session[:question_1_answered] != @latest_genre_user_answer.id
+    if session[:latest_genre_user_answer] != @latest_genre_user_answer.id
 
       # 新しいランダムなドラマーを選択し、セッションに記録する
       random_drummers = @filtered_drummers.sample(3)
@@ -43,7 +43,7 @@ class RecommendedDrummersController < ApplicationController
       if saved_drummer_ids.present?
         selected_drummer_ids = saved_drummer_ids
         session[:selected_drummer_ids] = selected_drummer_ids
-        session[:question_1_answered] = @latest_genre_user_answer.id
+        session[:latest_genre_user_answer] = @latest_genre_user_answer.id
       end
     end
 
