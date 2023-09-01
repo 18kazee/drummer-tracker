@@ -20,7 +20,7 @@ if (ROOM_ID) {
       const newMessage = document.createElement('div');
       newMessage.classList.add('message');
 
-      if (currentUserId == ${data.data.user.id}) {
+      if (currentUserId == data.data.user.id) {
         newMessage.classList.add('my-message');
       } else {
         newMessage.classList.add('other-message');
