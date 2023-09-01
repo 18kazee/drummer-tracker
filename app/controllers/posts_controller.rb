@@ -13,6 +13,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+
+    create_room
+
     respond_to do |format|
       if @post.save
         flash.now[:success] = t(".success")
@@ -59,7 +62,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:tweet, :drummer_id, :user_id)
+    params.require(:post).permit(:tweet, :drummer_id, :user_id, :room_id)
   end
 
   def set_posts
@@ -68,5 +71,12 @@ class PostsController < ApplicationController
 
   def set_post
     @post = current_user.posts.find(params[:id])
+  end
+
+  def create_room
+    return unless @post.room_id.nil?
+
+    room = Room.create(name: "#{@post.tweet}についての部屋")
+    @post.update(room_id: room.id)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_28_051818) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_01_135500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,13 +96,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_051818) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "tweet", limit: 140, null: false
     t.bigint "user_id", null: false
     t.bigint "drummer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "room_id"
     t.index ["drummer_id"], name: "index_posts_on_drummer_id"
+    t.index ["room_id"], name: "index_posts_on_room_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -130,6 +142,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_051818) do
     t.index ["recommended_drummer_id"], name: "index_recommended_drummers_drummers_on_recommended_drummer_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.string "url"
@@ -148,6 +166,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_051818) do
     t.index ["choice_id"], name: "index_user_answers_on_choice_id"
     t.index ["question_id"], name: "index_user_answers_on_question_id"
     t.index ["user_id"], name: "index_user_answers_on_user_id"
+  end
+
+  create_table "user_rooms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_user_rooms_on_room_id"
+    t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -185,7 +212,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_051818) do
   add_foreign_key "favorites", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "posts", "drummers"
+  add_foreign_key "posts", "rooms"
   add_foreign_key "posts", "users"
   add_foreign_key "recommended_drummers", "drummers"
   add_foreign_key "recommended_drummers", "users"
@@ -195,4 +225,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_051818) do
   add_foreign_key "user_answers", "choices"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "users"
+  add_foreign_key "user_rooms", "rooms"
+  add_foreign_key "user_rooms", "users"
 end

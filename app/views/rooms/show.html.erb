@@ -1,0 +1,39 @@
+<section>
+  <div class="container">
+      <div class="mt-4">
+        <div id="room-data" data-room-id="<%= @room.id %>">
+        <!-- その他のチャットルームの内容 -->
+          <div class="row">
+            <div class="p-fixed">
+              <h2><%= @room.name %></h2>
+              <%= link_to "戻る", post_path(@post), class: "btn btn-info" %>
+            </div>
+            <div class="col-lg-6">
+            </div>
+
+            <div class="col-lg-6">
+
+              <div id="messages">
+                <% if current_user %>
+                  <div id='room-current-user' data-user-id="<%= current_user.id %>"></div>
+                <% end %>
+                <% @room.messages.each do |message| %>
+                  <%= render 'messages/message', message: message %>
+                <% end %>
+              </div>
+
+              <div class="text-center mt-5 message-form-flex">
+                <%= form_with(model: [ @room, @room.messages.build ], data: { turbo: false }, local: true) do |f| %>
+                  <div class="form-group ms-form">
+                  <%= f.text_field :content, placeholder: "ここにメッセージを書いてください...", class: "form-control" %>
+                  <%= f.submit "送信", class: "btn btn-info", disabled: true %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+

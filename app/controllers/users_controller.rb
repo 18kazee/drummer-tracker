@@ -3,9 +3,7 @@ class UsersController < ApplicationController
 
   # User Registration
   def new
-    if logged_in?
-      redirect_to root_path
-    end
+    redirect_to root_path if logged_in?
     @user = User.new
   end
 

@@ -1,0 +1,6 @@
+<div class="mt-8">
+<h1>Room select</h1>
+<%= @rooms.each do |room| %>
+<%= link_to room.name, room_path(room) %></div>
+<% end %>
+</div>
