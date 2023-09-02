@@ -19,6 +19,8 @@ ja:
       post:
         tweet: 投稿内容
         drummer: ドラマー
+      comment:
+        body: コメント
   enums:
     user:
       role:

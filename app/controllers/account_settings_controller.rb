@@ -25,10 +25,11 @@ class AccountSettingsController < ApplicationController
   def check_password
     if current_user.valid_password?(params[:password])
       session[:authenticated_for_settings] = true
+      flash[:success] = 'パスワードが確認できました。'
       redirect_to account_setting_path(current_user)
     else
       flash[:danger] = 'パスワードが間違っています。'
-      render :password_confirmation
+      render :password_confirmation, status: :unauthorized
     end
   end
 
@@ -43,8 +44,8 @@ class AccountSettingsController < ApplicationController
       flash[:success] = '確認メールを送信しました。メールを確認してください。'
       redirect_to account_setting_path(current_user)
     else
-      flash[:danger] = 'Email update failed'
-      render :show
+      flash[:danger] = 'メールを送信できませんでした。'
+      render :show, status: :internal_server_error
     end
   end
 
