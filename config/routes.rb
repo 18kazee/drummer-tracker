@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'resend_activation', to: 'users#resend_activation_form', as: :resend_activation_form
 
   get '/activate_email_change', to: 'account_settings#activate_email_change', as: 'activate_email_change'
+  get "pages/*id" => 'pages#show', as: :static_page, format: false
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
     member do
       get :activate
