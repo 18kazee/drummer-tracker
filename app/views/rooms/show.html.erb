@@ -8,10 +8,10 @@
               <h2><%= @room.name %></h2>
               <%= link_to "戻る", posts_path, class: "btn btn-info", data: { turbo: :false }  %>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4 border-end">
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-8 form-container">
 
               <div id="messages">
                 <% if current_user %>
@@ -22,11 +22,11 @@
                 <% end %>
               </div>
 
-              <div class="text-center mt-5 message-form-flex">
+              <div class="fixed-form">
                 <%= form_with(model: [ @room, @room.messages.build ], data: { turbo: false }, local: true) do |f| %>
                   <div class="form-group ms-form">
-                  <%= f.text_field :content, placeholder: "ここにメッセージを書いてください...", class: "form-control" %>
-                  <%= f.submit "送信", class: "btn btn-info", disabled: true %>
+                  <%= f.text_field :content, placeholder: "ここにメッセージを書いてください", class: " form-control" %>
+                  <%= f.submit "送信", class: "btn btn-info btn-sm", disabled: true %>
                   </div>
                 <% end %>
               </div>

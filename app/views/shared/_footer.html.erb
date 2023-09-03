@@ -3,7 +3,12 @@
     <div class="row justify-content-between">
       <div class="col-12 col-md-auto mb-1 mb-md-0">
         <ul class="footer-list">
-          <li> <p>&copy; DrummerTrucker All Rights Resaved<span class="mx-2">|</span><span class="text-900 hover-color-white">2023 </span></p></li>
+          <li> <p>&copy; DrummerTrucker All Rights Resaved<span class="mx-2">|</span><span class="text-900">2023 </span></p></li>
+          <li>
+            <%= link_to "利用規約", static_page_path('terms'), class: "text-90" %>
+            <span>|</span>
+            <%= link_to "プライバシーポリシー", static_page_path('privacy'), class: "text-90" %>
+          </li>
         </ul>
       </div>
     </div>

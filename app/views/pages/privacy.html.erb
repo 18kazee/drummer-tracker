@@ -1,0 +1,98 @@
+<section>
+  <div class="container">
+    <div class="text-center">
+      <h3>プライバシーポリシー</h3>
+    </div>
+    <div>
+      <strong><%= t('.customer_info_title') %> </strong>
+    </div>
+    <div class="indent">
+      <%= t('.customer_info_description') %>
+    </div>
+    <div class="secound-indent-list">
+      <ul>
+        <li><%= t('.customer_info_name') %></li>
+        <li><%= t('.customer_info_email') %></li>
+        <li><%= t('.customer_info_photo_video') %></li>
+        <li><%= t('.customer_info_cookie') %></li>
+        <li><%= t('.customer_info_os_device') %></li>
+        <li><%= t('.customer_info_website_behavior') %></li>
+        <li><%= t('.customer_info_app_usage') %></li>
+      </ul>
+    </div>
+    <strong><%= t('.usage_purpose_title') %></strong>
+    <ul>
+      <li><%= t('.usage_purpose_register') %></li>
+      <li><%= t('.usage_purpose_usage_history') %></li>
+      <li><%= t('.usage_purpose_analyze_behavior') %></li>
+      <li><%= t('.usage_purpose_send_information') %></li>
+      <li><%= t('.usage_purpose_customer_support') %></li>
+      <li><%= t('.usage_purpose_compliance') %></li>
+      <li><%= t('.usage_purpose_others') %></li>
+    </ul>
+    <div>
+      <strong><%= t('.security_measures_title') %></strong>
+    </div>
+    <div class="indent">
+      <%= t('.security_measures_description') %>
+    </div>
+    <div class="pt-2">
+      <strong><%= t('.third_party_disclosure_title') %></strong>
+    </div>
+    <div class="indent">
+      <%= t('.third_party_disclosure_description') %>
+    </div>
+    <div class="secound-indent-list">
+      <ul>
+        <li><%= t('.third_party_disclosure_outsourcing') %></li>
+        <li><%= t('.third_party_disclosure_acquisition') %></li>
+        <li><%= t('.third_party_disclosure_partnership') %></li>
+        <li><%= t('.third_party_disclosure_legal') %></li>
+      </ul>
+    </div>
+
+    <div>
+      <strong><%= t('.access_analysis_title') %></strong>
+    </div>
+    <div class="indent">
+      <%= t('.access_analysis_description')%>
+    </div>
+    <div class="secound-indent">
+      <%= link_to t('.access_analysis_link_text'), 'https://marketingplatform.google.com/about/analytics/terms/jp/' %>
+    </div>
+
+    <div class="pt-2">
+      <strong><%= t('.privacy_policy_change_title') %></strong>
+    </div>
+    <div class="indent">
+      <%= t('.privacy_policy_change_description') %>
+    </div>
+
+    <div class="pt-2">
+      <strong><%= t('.contact_title') %></strong>
+    </div>
+    <div class="indent">
+      <%= t('.contact_description') %>
+    </div>
+    <div class="secound-indent">
+      <%= t('.contact_email') %>
+      <%= mail_to 'drummertracker.info@gmail.com' %>
+    </div>
+    <div class="indent">
+      <%= t('.contact_disclaimer') %>
+    </div>
+    <div class="pt-2">
+      <strong><%= t('.business_entity_name') %></strong>
+    </div>
+
+    <div class="indent">
+      <%= t('.entity_name') %>
+    </div>
+
+    <div class="pt-2">
+      <strong><%= t('.unlisted_questions_contact') %></strong>
+    </div>
+
+    <div class="pt-5">
+      <%= t('.last_updated', date: Time.zone.now.strftime('%Y年%m月%d日')) %>
+    </div>
