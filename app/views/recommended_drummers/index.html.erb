@@ -17,7 +17,7 @@
         <% @drummers_name << drummer.name %>
       <% end %>
       <%= link_to(
-        "https://twitter.com/share?url=#{request.url}&text=あなたへのおすすめドラマーは...%0a%0a#{@drummers_name.join(', ')}",
+        "https://twitter.com/share?url=https://drummer-tracker.com&text=あなたへのおすすめドラマーは...%0a%0a#{@drummers_name.join(', ')}%0a%0a",
         class: "btn bg-twitter boeder-twitter text-white btn-sm"
       ) do %>
         <i class="bi bi-twitter"></i> Twitterでシェア
