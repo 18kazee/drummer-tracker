@@ -13,7 +13,16 @@
       <%= render partial: "drummers/drummers",locals: { drummers: @drummers } %>
     </div>
     <div class="pt-4 text-start">
-      <%= link_to "初めから診断する", question_path(1), class: "btn btn-primary btn-sm" %>
+      <% @drummers.each do |drummer| %>
+        <% @drummers_name << drummer.name %>
+      <% end %>
+      <%= link_to(
+        "https://twitter.com/share?url=#{request.url}&text=あなたへのおすすめドラマーは...%0a%0a#{@drummers_name.join(', ')}",
+        class: "btn bg-twitter boeder-twitter text-white btn-sm"
+      ) do %>
+        <i class="bi bi-twitter"></i> Twitterでシェア
+      <% end %>
+      <%= link_to "初めから診断する", question_path(1), class: "btn btn-success btn-sm" %>
       <%= link_to "TOPに戻る", questions_path, class: "btn btn-light btn-sm" %>
     </div>
   </div>

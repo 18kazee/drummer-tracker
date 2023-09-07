@@ -829,7 +829,6 @@ progress {
 
 .initialism {
   font-size: 75%;
-  text-transform: uppercase;
 }
 
 .blockquote {
@@ -18075,7 +18074,6 @@ small, .small {
 .nav-link {
   position: relative;
   letter-spacing: 0.125rem;
-  text-transform: uppercase;
   line-height: 1.2 !important;
 }
 
@@ -18323,7 +18321,6 @@ small, .small {
 |   Buttons
 -----------------------------------------------*/
 .btn {
-  text-transform: uppercase;
   -webkit-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
@@ -18958,7 +18955,6 @@ code[class*=language-], pre[class*=language-] {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  text-transform: uppercase;
   color: #000;
   text-decoration: none;
   font-weight: 400;
@@ -19615,7 +19611,6 @@ h6, .h6 {
   font-weight: 400;
   border-bottom: 1px solid rgba(73, 71, 71, 0.15);
   letter-spacing: 0.125rem;
-  text-transform: uppercase;
 }
 
 .dropdown-toggle:after {
@@ -19803,7 +19798,6 @@ h6, .h6 {
 /*                                  Accordion                                 */
 /* -------------------------------------------------------------------------- */
 .accordion-button {
-  text-transform: uppercase;
   font-family: Raleway, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 .accordion-button:not(.collapsed)::before {

@@ -2,6 +2,7 @@ class RecommendedDrummersController < ApplicationController
   def index
     filter_drummers
     select_and_manage_drummer
+    @drummers_name = []
   end
 
   private
