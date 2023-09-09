@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_135500) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_09_181006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_135500) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "diagnosis_results", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_diagnosis_results_on_user_id"
   end
 
   create_table "drummer_artists", force: :cascade do |t|
@@ -129,17 +136,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_135500) do
     t.bigint "drummer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "diagnosis_result_id"
     t.index ["drummer_id"], name: "index_recommended_drummers_on_drummer_id"
     t.index ["user_id"], name: "index_recommended_drummers_on_user_id"
-  end
-
-  create_table "recommended_drummers_drummers", force: :cascade do |t|
-    t.bigint "recommended_drummer_id", null: false
-    t.bigint "drummer_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["drummer_id"], name: "index_recommended_drummers_drummers_on_drummer_id"
-    t.index ["recommended_drummer_id"], name: "index_recommended_drummers_drummers_on_recommended_drummer_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -204,6 +203,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_135500) do
   add_foreign_key "choices", "questions"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "diagnosis_results", "users"
   add_foreign_key "drummer_artists", "artists"
   add_foreign_key "drummer_artists", "drummers"
   add_foreign_key "drummer_genres", "drummers"
@@ -217,10 +217,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_135500) do
   add_foreign_key "posts", "drummers"
   add_foreign_key "posts", "rooms"
   add_foreign_key "posts", "users"
+  add_foreign_key "recommended_drummers", "diagnosis_results"
   add_foreign_key "recommended_drummers", "drummers"
   add_foreign_key "recommended_drummers", "users"
-  add_foreign_key "recommended_drummers_drummers", "drummers"
-  add_foreign_key "recommended_drummers_drummers", "recommended_drummers"
   add_foreign_key "songs", "drummers"
   add_foreign_key "user_answers", "choices"
   add_foreign_key "user_answers", "questions"

@@ -1,0 +1,76 @@
+<section class="hero">
+  <div class="container text-start">
+    <h1 class="hero-title">おすすめ診断</h1>
+    <p class="hero-description">あなたにぴったりのドラマーを見つけよう！</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="border-bottom border-5">
+      <h3>あなたにおすすめのドラマー3選</h3>
+    </div>
+    <div class= "pt-4">
+      <% @drummers.each do |drummer| %>
+        <div class="card" style="max-width: 800px;">
+          <div class="text-end">
+            <div id="favorite_<% drummer.drummer.id %>">
+              <%= render 'drummers/favorite_button', drummer: drummer.drummer %>
+            </div>
+          </div>
+          <div class= "card-header border-0 bg-white">
+          </div>
+          <div class="row g-0">
+            <div class="col-sm-5 image-center"> 
+              <div class="image-container border">
+              <% if drummer.drummer.image_urls.present? %>
+                <%= image_tag drummer.drummer.image_urls.first %>
+              <% else %>
+                <%= image_tag 'no-image.png' %>
+              <% end %>
+              </div>
+            </div>
+            <div class="col-sm-7 px-2">
+              <div class="card-body border-start">
+                <% drummer.drummer.genres.each do |genre| %>
+                  <div class="badge bg-info"> 
+                    <%= genre.name %>
+                  </div>
+                <% end %>
+
+                <div class="border-bottom">
+                  <h5 class="card-title mt-2">
+                    <%= drummer.drummer.name %>
+                  </h5>
+                </div>
+                <% drummer.drummer.artists.each do |artist| %>
+                  <div class="badge bg-secondary mt-3">
+                    <%= artist.name %>
+                  </div>
+                <% end %>
+              </div> 
+            </div>
+          </div>
+          <div class="card-footer border-0 bg-white">
+            <div class="text-end">
+              <%= link_to (t'defaults.show'), modal_path(drummer.drummer.id), class: "btn btn-primary btn-sm", data: { turbo_frame: "modal", turbo_action: :advance } %>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="pt-4 text-start">
+      <% @drummers.each do |drummer| %>
+        <% @drummers_name << drummer.drummer.name %>
+      <% end %>
+      <%= link_to(
+        "https://twitter.com/share?url=#{request.url}&text=あなたへのおすすめドラマーは...%0a%0a#{@drummers_name.join(', ')}",
+        class: "btn bg-twitter boeder-twitter text-white btn-sm"
+      ) do %>
+        <i class="bi bi-twitter"></i> Twitterでシェア
+      <% end %>
+      <%= link_to "初めから診断する", question_path(1), class: "btn btn-success btn-sm" %>
+      <%= link_to "TOPに戻る", questions_path, class: "btn btn-light btn-sm" %>
+    </div>
+  </div>
+</section>

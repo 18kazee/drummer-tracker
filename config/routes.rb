@@ -31,6 +31,11 @@ Rails.application.routes.draw do
       get :likes
       get :favorites
     end
+    resources :diagnosis_results, only: [:index, :show] do
+      member do
+        get 'process_answers'
+      end
+    end
   end
   resources :account_settings, only: [:show, :edit, :update] do
     collection do
