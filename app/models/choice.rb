@@ -30,7 +30,7 @@ class Choice < ApplicationRecord
   def self.select_and_save_drummers(random_drummers, user)
     recommended_drummers = []
     random_drummers.each do |drummer|
-      recommended_drummer = RecommendedDrummer.new(user_id: user.id, drummer_id: drummer.id)
+      recommended_drummer = RecommendedDrummer.new(user_id: user.id, drummer_id: drummer.id, diagnosis_result_id: user.diagnosis_results.ids.last)
       recommended_drummers << recommended_drummer if recommended_drummer.save
     end
     # 保存したドラマーのIDを返す
