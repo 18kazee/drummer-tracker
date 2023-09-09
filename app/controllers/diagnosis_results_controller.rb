@@ -1,6 +1,6 @@
 class DiagnosisResultsController < ApplicationController
   def show
-    @drummers = RecommendedDrummer.where(user_id: params[:user_id],  diagnosis_result_id: params[:id])
+    @drummers = RecommendedDrummer.where(user_id: params[:user_id], diagnosis_result_id: params[:id])
     @drummers_name = []
   end
 

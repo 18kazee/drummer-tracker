@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
+ skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
+ before_action :correct_user, only: [:edit, :update]
 
   # User Registration
   def new
@@ -79,5 +80,10 @@ class UsersController < ApplicationController
 
   def user_params_update
     params.require(:user).permit(:name, :avatar, :avatar_cache, :profile)
+  end
+
+  def  correct_user
+    @user = User.find(params[:id])
+    redirect_to root_path unless @user == current_user
   end
 end
