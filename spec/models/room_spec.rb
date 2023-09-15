@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Room, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'アソシエーション' do
+    it { is_expected.to have_many(:messages).dependent(:destroy) }
+    it { is_expected.to have_many(:user_rooms).dependent(:destroy) }
+    it { is_expected.to have_many(:users).through(:user_rooms) }
+    it { is_expected.to have_many(:posts).dependent(:destroy) }
+  end
 end

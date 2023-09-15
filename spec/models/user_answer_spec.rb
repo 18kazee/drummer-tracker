@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe UserAnswer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    it { is_expected.to validate_presence_of(:user_id) }
+    it { is_expected.to validate_presence_of(:question_id) }
+    it { is_expected.to validate_presence_of(:choice_id) }
+  end
 end

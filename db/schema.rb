@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_09_181006) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_071817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -147,15 +147,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_181006) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "songs", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
-    t.bigint "drummer_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["drummer_id"], name: "index_songs_on_drummer_id"
-  end
-
   create_table "user_answers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "question_id", null: false
@@ -220,7 +211,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_181006) do
   add_foreign_key "recommended_drummers", "diagnosis_results"
   add_foreign_key "recommended_drummers", "drummers"
   add_foreign_key "recommended_drummers", "users"
-  add_foreign_key "songs", "drummers"
   add_foreign_key "user_answers", "choices"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "users"
