@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
- skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
- before_action :correct_user, only: [:edit, :update]
+  skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
+  before_action :correct_user, only: [:edit, :update]
 
   # User Registration
   def new
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       @user.send_activation_needed_email
       redirect_to login_path, success: '登録用のメールを送信しました。メールをご確認ください。'
     else
+      flash.now[:danger] = '登録に失敗しました。'
       render :new, status: :unprocessable_entity
     end
   end
@@ -37,7 +38,9 @@ class UsersController < ApplicationController
         format.html { redirect_to @user }
       end
     else
+      flash.now[:danger] = 'プロフィールの更新に失敗しました。'
       render :edit, status: :unprocessable_entity
+
     end
   end
 
@@ -82,7 +85,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :avatar, :avatar_cache, :profile)
   end
 
-  def  correct_user
+  def correct_user
     @user = User.find(params[:id])
     redirect_to root_path unless @user == current_user
   end

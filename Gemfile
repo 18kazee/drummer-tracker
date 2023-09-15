@@ -104,6 +104,10 @@ group :development, :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'shoulda-matchers'
+  # dotenv-rails for environment variables
+  gem 'dotenv-rails'
+
 end
 
 group :development do
@@ -111,9 +115,6 @@ group :development do
   gem "web-console"
 
   gem "letter_opener_web"
-
-  # dotenv-rails for environment variables
-  gem 'dotenv-rails'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -126,5 +127,4 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end

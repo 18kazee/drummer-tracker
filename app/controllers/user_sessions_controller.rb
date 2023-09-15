@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
       redirect_back_or_to root_path, success: t('.success')
     else
       flash.now[:danger] = t('.failed')
-      render 'new', status: :unauthorized
+      render :new, status: :unauthorized
     end
   end
 
