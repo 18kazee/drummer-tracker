@@ -1,10 +1,12 @@
 <% drummers.each do |drummer| %>
   <div class="card" style="max-width: 800px;">
-    <div class="text-end">
-      <div id="favorite_<% drummer.id %>">
-        <%= render 'drummers/favorite_button', drummer: drummer %>
+    <% if logged_in? %>
+      <div class="text-end">
+        <div id="favorite_<% drummer.id %>">
+          <%= render 'drummers/favorite_button', drummer: drummer %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class= "card-header border-0 bg-white">
     </div>
     <div class="row g-0">
@@ -40,9 +42,8 @@
     </div>
     <div class="card-footer border-0 bg-white">
       <div class="text-end">
-        <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-primary btn-sm", data: { turbo_frame: "modal", turbo_action: :advance } %>
+        <%= link_to (t'defaults.show'), modal_path(drummer.id), class: "btn btn-primary btn-sm", data: { turbo_frame: "modal" } %>
       </div>
-
     </div>
   </div>
 <% end %>

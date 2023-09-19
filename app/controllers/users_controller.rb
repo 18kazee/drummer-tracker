@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create, :activate, :resend_activation_form, :resend_activation] 
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :favorites]
 
   # User Registration
   def new
