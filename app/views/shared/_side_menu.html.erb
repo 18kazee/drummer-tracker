@@ -12,6 +12,9 @@
   <div class="mt-2">
     <%= link_to '投稿一覧', posts_path, class: 'btn btn-outline-info', data:{ turbo_frame: 'post-new', turbo_action: :advance } %>
   </div>
+  <div class="mt-2">
+    <%= link_to '過去の診断結果', user_diagnosis_results_path(current_user), class: 'btn btn-outline-info', data:{ turbo: :false } %>
+  </div>
   <div class= "mt-2">
     <%= link_to "アカウント設定", account_setting_path(current_user), class: 'btn btn-outline-info', data:{ turbo: :false } %>
   </div>

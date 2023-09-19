@@ -1,7 +1,14 @@
 class DiagnosisResultsController < ApplicationController
+  before_action :mine?, only: %i[index]
+
+  def index
+    @diagnosis_results = DiagnosisResult.where(user_id: params[:user_id]).order(created_at: :desc)
+  end
+
   def show
     @drummers = RecommendedDrummer.where(user_id: params[:user_id], diagnosis_result_id: params[:id])
     @drummers_name = []
+    @user = User.find(params[:user_id])
   end
 
   def process_answers
@@ -37,5 +44,11 @@ class DiagnosisResultsController < ApplicationController
     random_drummers = @filtered_drummers.sample(3)
     random_drummers.pluck(:id)
     Choice.select_and_save_drummers(random_drummers, current_user)
+  end
+
+  def mine?
+    unless params[:user_id] == current_user.id.to_s
+      redirect_to root_path
+    end
   end
 end

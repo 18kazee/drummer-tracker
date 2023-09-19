@@ -1,0 +1,26 @@
+<section class="hero">
+  <div class="container text-start">
+    <h1 class="hero-title">おすすめ診断</h1>
+    <p class="hero-description">あなたにぴったりのドラマーを見つけよう！</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="pb-3">
+      <h2>過去の診断結果</h2>
+    </div>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <% if @diagnosis_results.present? %>
+          <% @diagnosis_results.each do |diagnosis_result| %>
+            <li class="list-group-item">
+              診断日時: <%= link_to diagnosis_result.created_at.strftime("%Y年%m月%d日 %H:%M"), user_diagnosis_result_path(current_user, diagnosis_result) %>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="list-group-item">診断結果はありません</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>

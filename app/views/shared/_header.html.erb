@@ -35,6 +35,8 @@
                     <%= link_to 'profile', user_path(current_user), class: 'nav-link fw-medium' %>
                   </li>
                   <li class="nav-item">
+                    <%= link_to '過去の診断', user_diagnosis_results_path(current_user), class: 'nav-link fw-medium' %>
+                  <li class="nav-item">
                     <%= link_to '設定', account_setting_path(current_user), class: 'nav-link fw-medium', data: { turbo_action: :advance} %>
                   </li>
                   <li class="nav-item">
