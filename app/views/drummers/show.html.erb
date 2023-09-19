@@ -53,19 +53,14 @@
             </div>
           </div>
           <% @artists.each do |artist| %>
-            <% spotify_artist = RSpotify::Artist.find(artist.spotify_id) %>
-            <% if spotify_artist.present? %>
+            <% if artist.album_image.present? && artist.album_url.present? %>
               <div class="border-bottom border-5 pt-3 mb-3 w-60">
                 <h4><%= artist.name %><i class="bi bi-spotify px-2"></i></h4>
               </div>
-              <% album = spotify_artist.albums.first %>
-              <% if album.present? %>
-                <% image = album.images[1] %>
-                <div class="album-img">
-                  <%= link_to image_tag(image["url"]), album.external_urls['spotify'], target: "_blank" %> 
-                </div>
-              <% else %>
-              <% end %>
+
+              <div class="album-img">
+                <%= link_to image_tag(artist.album_image), artist.album_url, target: "_blank" %>
+              </div>
             <% end %>
           <% end %>
         </div>

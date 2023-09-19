@@ -28,9 +28,11 @@
                   <div class="ms-4">
                     <%= link_to 'いいね', likes_user_path(@user), class: "btn btn-outline-secondary border-0", data: { turbo_action: :advance } %>
                   </div>
-                  <div class="ms-4">
-                    <%= link_to 'お気に入り', favorites_user_path(@user), class: "btn btn-outline-secondary border-0", data: { turbo_action: :advance } %>
-                  </div>
+                  <% if current_user == @user && @user %>
+                    <div class="ms-4">
+                      <%= link_to 'お気に入り', favorites_user_path(@user), class: "btn btn-outline-secondary border-0", data: { turbo_action: :advance } %>
+                    </div>
+                  <% end %>
 
                 </div>
               </div>  

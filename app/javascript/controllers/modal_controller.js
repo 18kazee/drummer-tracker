@@ -11,11 +11,13 @@ export default class extends Controller {
 
   close(event) {
       this.modal.hide()
+
     }
 
   closeModal() {
     // Your existing closeModal logic to stop the video
     const iframe = document.getElementById("video-iframe");
     iframe.src = ""; // Set the src to empty to stop the video
+
   }
 }

@@ -5,7 +5,6 @@ class UserSessionsController < ApplicationController
     return unless logged_in?
 
     redirect_to root_path
-    
   end
 
   def create
