@@ -25,6 +25,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @token = token
     @new_email = new_email
+    @url = activate_email_change_url(token: @token)
     mail(to: user.new_email, subject: "メールアドレス変更の確認")
   end
 end
