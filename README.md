@@ -1,5 +1,8 @@
 # drummer-tracker
 
+## ■ サービスURL
+https://www.drummer-tracker.com/
+
 ## ■ サービス概要
 バンド名や歌手名からドラマーを探せる
 音楽関連情報を提供する
@@ -21,7 +24,7 @@
 ## ■メインのターゲットユーザー
 20代から30代の音楽ファンやドラム愛好家
 
-## ■実装予定の機能
+## ■実装機能
 ### 未ログインユーザー
   - ドラマーを検索できる
     - バンド名、歌手名を入力して関連するドラマーを検索できる
@@ -64,17 +67,11 @@
 
 ## ■技術選定
 - Rails7
-- ドラマー詳細画面にturboとstimulusモーダル
-- 検索機能にオートコンプリートを使用
-- コメント機能にアクションケーブルを使用
+- ドラマー詳細画面にstimulusモーダル
+- 検索機能にStimulus Autocompleteを使用
+- コメントとチャット機能にActionCableを使用
 - Google Analytics 4
 - PostgreSQL
 - JavaScript(Stimulus)
 - Bootstrap
 - heroku
-
-## ■画面遷移図
-https://www.figma.com/file/2staqgNAmpoYTVKI3oEJ2T/Drummer-Tracker?type=design&node-id=0%3A1&t=sjpbtps5eNunMAhB-1
-
-## ■ER図
-https://drive.google.com/file/d/18u4DpTKDyZSqdMV6p5kjvhtF1gEos_v0/view?usp=sharing
